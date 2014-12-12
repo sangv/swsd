@@ -1,7 +1,7 @@
 swsd
 ====
 
-A simple word sense disambiguation library
+A simple word sense disambiguation library written in scala with a java api
 
 Dependencies:
 
