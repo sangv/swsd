@@ -8,15 +8,19 @@
 	<artifactId>swsd</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>Simple word sense disambiguation library</name>
-	<description>Simple word sense disambiguation library</description>
+
 	<properties>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<encoding>UTF-8</encoding>
+		<scala.version>2.10.4</scala.version>
 		<gremlinVersion>3.0.0.M6</gremlinVersion>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
-			<version>2.10.4</version>
+			<version>${scala.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.tinkerpop.blueprints</groupId>
@@ -38,6 +42,17 @@
 			<artifactId>scalatest_2.10</artifactId>
 			<version>1.9.2</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>3.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>3.4.1</version>
+			<classifier>models</classifier>
 		</dependency>
 	</dependencies>
 
