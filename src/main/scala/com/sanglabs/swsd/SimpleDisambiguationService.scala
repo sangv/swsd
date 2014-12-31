@@ -1,6 +1,7 @@
 package com.sanglabs.swsd
 
-import net.sf.extjwnl.data.{IndexWord, IndexWordSet, Synset}
+import grizzled.slf4j.Logger
+import net.sf.extjwnl.data.{POS, IndexWord, IndexWordSet, Synset}
 
 
 /**
@@ -12,6 +13,7 @@ import net.sf.extjwnl.data.{IndexWord, IndexWordSet, Synset}
  */
 object SimpleDisambiguationService {
 
+  //Nice to have: perform word compoundification and remove stop words
   //connect all possible options (synsets) filtered by pos and maintain a multimap
   //between the words and the possible synsets
 
@@ -21,26 +23,43 @@ object SimpleDisambiguationService {
 
   val dictionary = WordnetDictionaryService.dictionary
 
-  def lookup(words: String) = {
+  val posmap: Map[POS,Char] = Map(POS.NOUN -> 'n',POS.VERB -> 'v',POS.ADJECTIVE -> 'a', POS.ADVERB -> 'r')
+
+  val logger = Logger[this.type]
+
+  def lookupOptions(words: String):scala.collection.mutable.Map[WordAnalysis,List[String]] = {
 
     //todo filter out stop words
     val analyzedWords = StanfordNLPService.analyze(words)
+    val mapOfOptions = scala.collection.mutable.Map[WordAnalysis,List[String]]()
 
     //handle duplicates by putting them into a map
+    var options = List[String]()
     for (wordAnalysis <- analyzedWords) {
       val lemma = wordAnalysis.lemma
-      println(wordAnalysis)
+
       val indexWordSet: IndexWordSet = dictionary.lookupAllIndexWords(lemma)
       val iter = indexWordSet.getIndexWordArray.iterator
       while (iter.hasNext) {
         val indexWord: IndexWord = iter.next()
         import scala.collection.JavaConverters._
-        for (sense: Synset <- indexWord.getSenses.asScala.filter(_.getPOS.equals(wordAnalysis.pos)))//Keep only the synsets that match the pos defined by stanfordnlp
-          println(s"${sense.getPOS} => ${sense.getGloss}")
-      }
-      println("----------------------------------------")
-    }
 
+        var index = 0
+
+        //Keep only the synsets that match the pos defined by stanfordnlp -- TODO make this configurable
+        for (sense: Synset <- indexWord.getSenses.asScala.filter(_.getPOS.equals(wordAnalysis.pos))) {
+          index += 1
+          val synsetForm = s"${indexWord.getLemma}#${posmap.get(indexWord.getPOS).get}#$index"
+          logger.debug(s"$synsetForm => ${sense.getGloss}")
+          options = options :+ synsetForm
+        }
+
+      }
+      logger.info(s"$wordAnalysis => ${options.mkString(", ")}")
+      mapOfOptions += (wordAnalysis -> options)
+      options = List[String]()
+    }
+    mapOfOptions
   }
 
 }

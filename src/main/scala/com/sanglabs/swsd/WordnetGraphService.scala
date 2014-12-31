@@ -1,9 +1,9 @@
 package com.sanglabs.swsd
 
 import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph
+import grizzled.slf4j.Logger
 import net.sf.extjwnl.data.{POS, Synset}
 import org.neo4j.graphdb._
-import org.slf4j.{Logger, LoggerFactory}
 
 /**
  *
@@ -16,7 +16,7 @@ object WordnetGraphService {
 
   private val graphDb: Neo4jGraph = new Neo4jGraph("data/wordnetgraph.db")
 
-  private val LOGGER: Logger = LoggerFactory.getLogger(WordnetGraphService.getClass)
+  private val logger = Logger[this.type]
 
   private val synsetRelationshipType = new RelationshipType {
     override def name(): String = "Synset"
@@ -77,7 +77,7 @@ object WordnetGraphService {
       synsetWordsString.append(word.getLemma).append(", ")
     }
     synsetWordsString.append(parentSynset.getOffset + ")")
-    LOGGER.debug(synsetWordsString.toString)
+    logger.info(synsetWordsString.toString)
     return parentSynset.getOffset
   }
 

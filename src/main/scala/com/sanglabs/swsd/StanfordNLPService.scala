@@ -6,6 +6,7 @@ import edu.stanford.nlp.ling.CoreAnnotations._
 import edu.stanford.nlp.ling.CoreLabel
 import edu.stanford.nlp.pipeline.{Annotation, StanfordCoreNLP}
 import edu.stanford.nlp.util.CoreMap
+import grizzled.slf4j.Logger
 import net.sf.extjwnl.data.POS
 
 import scala.collection.JavaConverters._
@@ -13,7 +14,7 @@ import scala.collection.mutable
 
 /**
  *
- * The StanfordNLPService provides access to certain StanfordNLP functionality like lemmatization, named entity recognition etc.
+ * The StanfordNLPService provides access to certain StanfordNLP functionality like lemmatization, part of speech tagging etc.
  *
  * @author Sang Venkatraman
  *
@@ -29,6 +30,8 @@ object StanfordNLPService {
 
   //using stopwords from http://www.ranks.nl/stopwords
   val stopWords: List[String] = scala.io.Source.fromFile("data/stopwords.txt").getLines.toList
+
+  val logger = Logger[this.type]
 
 
   def analyze(documentText: String): List[WordAnalysis] =
@@ -47,6 +50,8 @@ object StanfordNLPService {
     // create an empty Annotation just with the given text
     val document: Annotation = new Annotation(documentText)
 
+    val ignoreWords = mutable.MutableList[String]()
+
     // run all Annotators on this text
     stanfordCoreNLPPipeline.annotate(document)
 
@@ -56,11 +61,14 @@ object StanfordNLPService {
       // Iterate over all tokens in a sentence
       for (token: CoreLabel <- sentence.get(classOf[TokensAnnotation]).asScala) {
         // Retrieve and add the lemma for each word into the list of lemmas
-        if(!stopWords.contains(token.get(classOf[LemmaAnnotation]).toLowerCase)) {
-          lemmas = lemmas :+ WordAnalysis(token.get(classOf[LemmaAnnotation]), token.get(classOf[LemmaAnnotation]), convertPOS(token.get(classOf[PartOfSpeechAnnotation])))
+        if(!(stopWords.contains(token.get(classOf[OriginalTextAnnotation]).toLowerCase) || stopWords.contains(token.get(classOf[LemmaAnnotation]).toLowerCase))) {
+          lemmas = lemmas :+ WordAnalysis(token.get(classOf[OriginalTextAnnotation]), token.get(classOf[LemmaAnnotation]), convertPOS(token.get(classOf[PartOfSpeechAnnotation])))
+        } else {
+          ignoreWords += token.get(classOf[OriginalTextAnnotation])
         }
       }
   }
+    logger.info(s"Ignored words => ${ignoreWords.mkString(", ")}")
     lemmas
   }
 

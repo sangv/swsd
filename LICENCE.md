@@ -1,0 +1,2 @@
+All these software distributions are open source, licensed under the GNU GPLv3 license. Note that this is the full GPL, which allows many free uses, but does not allow its incorporation (even in part or in translation) into any type of proprietary software which you distribute.
+This license may change in the future but is currently dictated by the license of stanford nlp library which is released under the same license.
