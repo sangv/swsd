@@ -27,7 +27,7 @@ object SimpleDisambiguationService {
 
   val logger = Logger[this.type]
 
-  def lookupOptions(words: String):scala.collection.mutable.Map[WordAnalysis,List[String]] = {
+  def lookupOptions(words: String): scala.collection.mutable.Map[WordAnalysis,List[String]] = {
 
     //todo filter out stop words
     val analyzedWords = StanfordNLPService.analyze(words)
@@ -61,6 +61,7 @@ object SimpleDisambiguationService {
     }
     mapOfOptions
   }
+
 
 }
 

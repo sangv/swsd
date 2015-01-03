@@ -1,9 +1,15 @@
 package com.sanglabs.swsd
 
+import com.tinkerpop.blueprints.Vertex
 import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph
+import com.tinkerpop.gremlin.scala._
+import com.tinkerpop.pipes.branch.LoopPipe.LoopBundle
 import grizzled.slf4j.Logger
 import net.sf.extjwnl.data.{POS, Synset}
 import org.neo4j.graphdb._
+
+import scala.collection.JavaConverters._
+import scala.collection._
 
 /**
  *
@@ -15,6 +21,10 @@ import org.neo4j.graphdb._
 object WordnetGraphService {
 
   private val graphDb: Neo4jGraph = new Neo4jGraph("data/wordnetgraph.db")
+
+  def gs = ScalaGraph(graphDb)
+  def v(i: Int) = gs.v(i:Integer).get
+  def e(i: Int) = gs.e(i:Integer).get
 
   private val logger = Logger[this.type]
 
@@ -83,5 +93,49 @@ object WordnetGraphService {
 
   def preprocessLemma (lemma: String):String = lemma.trim.toLowerCase
 
+  def disambiguate(options: mutable.Map[WordAnalysis,List[String]]): mutable.Map[WordAnalysis,String] = {
+    val result:scala.collection.mutable.Map[WordAnalysis,String] = scala.collection.mutable.Map[WordAnalysis,String]()
+    //options.keySet.filter( (x:WordAnalysis) => options.get(x).get.size == 1) foreach ((x:WordAnalysis) => { result.put(x,options.get(x).get.head) })
+
+    val unresolvedMap: mutable.Map[WordAnalysis,List[String]] = mutable.Map[WordAnalysis,List[String]]()
+    options.keySet.foreach { key =>
+      options.get(key) match {
+        case(Some(List(value:String))) => result.put(key,value)
+        case Some(x :: xs) => unresolvedMap.put(key,x::xs)
+        case Some(List()) => logger.error("$key cannot be resolved")
+      }
+    }
+
+
+    result
+  }
+
+
+  def shortestPath(synsetName1: String, synsetName2: String): List[String] = {
+
+    val synset1: Synset = getSynset(synsetName1)
+    val synset2: Synset = getSynset(synsetName2)
+
+    val v1: ScalaVertex = gs.V.has("pos",synset1.getPOS.getKey).has("offset",synset1.getOffset).iterator().next() //TODO guard against multiple (or no) matches
+    val v2: ScalaVertex = gs.V.has("pos",synset2.getPOS.getKey).has("offset",synset2.getOffset).iterator().next()
+
+    val pipe = v1.->.as("synset").out.loop("synset",(loopBundle: LoopBundle[Vertex]) => {
+      loopBundle.getLoops() < 8 &&
+        loopBundle.getObject.getProperty[Long]("offset") != v2.getProperty[Long]("offset")
+    },
+      (loopBundle: LoopBundle[Vertex]) => {
+        loopBundle.getObject.getProperty[Long]("offset") == v2.getProperty[Long]("offset")
+      }).path(new ScalaPipeFunction[Vertex, String](
+      (v: Vertex) => v.getProperty[Long]("offset") + ":" + v.getProperty[String]("gloss")
+    ))
+
+    if(pipe.hasNext) {
+      pipe.next().asScala.toList.asInstanceOf[List[String]]
+    } else {
+      Nil
+    }
+
+
+  }
 
 }

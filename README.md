@@ -28,7 +28,7 @@ Provide a simple play webapp to deploy this as a REST service
 
 Research into other alternatives to using StanfordNLP
 
-Research into using other graph databases or in-memory graphs like Tinkerpop etc.
+Research into using other graph databases or in-memory graphs like TinkerGraph etc.
 
 
 
