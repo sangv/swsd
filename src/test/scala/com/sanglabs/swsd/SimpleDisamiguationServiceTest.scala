@@ -1,6 +1,8 @@
 package com.sanglabs.swsd
 
 import net.sf.extjwnl.data.POS
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.{BeforeAndAfter, FlatSpec}
 
@@ -11,6 +13,7 @@ import org.scalatest.{BeforeAndAfter, FlatSpec}
  * @author Sang Venkatraman
  *
  */
+@RunWith(classOf[JUnitRunner])
 class SimpleDisamiguationServiceTest extends FlatSpec with ShouldMatchers with BeforeAndAfter {
 
   "Plethora of fish at sea" should "have synset options for 3 words" in {

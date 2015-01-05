@@ -1,6 +1,8 @@
 package com.sanglabs.swsd
 
 import net.sf.extjwnl.data.POS
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.{BeforeAndAfter, FlatSpec}
 
@@ -11,6 +13,7 @@ import org.scalatest.{BeforeAndAfter, FlatSpec}
  * @author Sang Venkatraman
  *
  */
+@RunWith(classOf[JUnitRunner])
 class WordnetGraphServiceTest extends FlatSpec with ShouldMatchers with BeforeAndAfter {
 
   "Querying the graph database for hypernym trees" should "return correct parent offsets" in {
