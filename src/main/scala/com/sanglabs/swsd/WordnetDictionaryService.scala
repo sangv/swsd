@@ -23,8 +23,13 @@ object WordnetDictionaryService {
     dictionary.getSynsetAt(POS.getPOSForKey(pos), offset)
   }
 
-  def indexWord(synsetPOS: POS, synsetWord:String ) = {
+  def indexWord(synsetPOS: POS, synsetWord:String) = {
     dictionary.getIndexWord(synsetPOS, synsetWord)
+  }
+
+  def getBaseForm(pos: POS, word: String): String = {
+    val indexWord = dictionary.getMorphologicalProcessor.lookupBaseForm(pos, word.toLowerCase)
+    if (indexWord != null) indexWord.getLemma else null
   }
 
 }

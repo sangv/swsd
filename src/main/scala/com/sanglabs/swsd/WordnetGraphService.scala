@@ -1,6 +1,6 @@
 package com.sanglabs.swsd
 
-import com.tinkerpop.blueprints.Vertex
+import com.tinkerpop.blueprints.{Edge, Vertex}
 import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph
 import com.tinkerpop.gremlin.scala._
 import com.tinkerpop.pipes.branch.LoopPipe.LoopBundle
@@ -119,18 +119,23 @@ object WordnetGraphService {
     val v1: ScalaVertex = gs.V.has("pos",synset1.getPOS.getKey).has("offset",synset1.getOffset).iterator().next() //TODO guard against multiple (or no) matches
     val v2: ScalaVertex = gs.V.has("pos",synset2.getPOS.getKey).has("offset",synset2.getOffset).iterator().next()
 
-    val pipe = v1.->.as("synset").out.loop("synset",(loopBundle: LoopBundle[Vertex]) => {
+    val pipe = v1.->.as("synset").outE("Synset").inV.loop("synset",(loopBundle: LoopBundle[Vertex]) => {
       loopBundle.getLoops() < 8 &&
         loopBundle.getObject.getProperty[Long]("offset") != v2.getProperty[Long]("offset")
     },
       (loopBundle: LoopBundle[Vertex]) => {
         loopBundle.getObject.getProperty[Long]("offset") == v2.getProperty[Long]("offset")
-      }).path(new ScalaPipeFunction[Vertex, String](
-      (v: Vertex) => v.getProperty[Long]("offset") + ":" + v.getProperty[String]("gloss")
+      }).path(new ScalaPipeFunction[Any, Any]({
+        case (v: Vertex) => v.getProperty[Long]("offset")
+        case (e:Edge) => e.getProperty[String]("pointer_type")
+    }
     ))
 
+
     if(pipe.hasNext) {
-      pipe.next().asScala.toList.asInstanceOf[List[String]]
+      val list = pipe.next().asScala.toList
+      logger.debug(list mkString(" -> "))
+      list.filter(_.isInstanceOf[Long]).asInstanceOf[List[String]]
     } else {
       Nil
     }

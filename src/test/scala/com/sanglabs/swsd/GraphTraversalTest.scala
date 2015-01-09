@@ -128,7 +128,7 @@ class GraphTraversalTest  extends FunSpec with ShouldMatchers with BeforeAndAfte
     val v1: ScalaVertex = gs.V.has("pos",synset1.getPOS.getKey).has("offset",synset1.getOffset).iterator().next() //TODO guard against multiple (or no) matches
     val v2: ScalaVertex = gs.V.has("pos",synset2.getPOS.getKey).has("offset",synset2.getOffset).iterator().next()
 
-    val pipe = v1.->.as("synset").outE().filter({(e:Edge) => "pointer_type".equals(e.getLabel) && "Hypernym".equals(e.getProperty[String]("pointer_type"))}).inV().loop("synset",(loopBundle: LoopBundle[Vertex]) => {
+    val pipe = v1.->.as("synset").outE().filter({(e:Edge) => "Synset".equals(e.getLabel) && "Hypernym".equals(e.getProperty[String]("pointer_type"))}).inV().loop("synset",(loopBundle: LoopBundle[Vertex]) => {
       loopBundle.getLoops() < 3 &&
         loopBundle.getObject.getProperty[Long]("offset") != v2.getProperty[Long]("offset")
     },

@@ -11,6 +11,7 @@ import net.sf.extjwnl.data.POS
 
 import scala.collection.JavaConverters._
 import scala.collection.mutable
+import scala.collection.mutable.ListBuffer
 
 /**
  *
@@ -28,13 +29,10 @@ object StanfordNLPService {
 
   val stanfordCoreNLPPipeline: StanfordCoreNLP = new StanfordCoreNLP(props)
 
-  //using stopwords from http://www.ranks.nl/stopwords
-  val stopWords: List[String] = scala.io.Source.fromFile("data/stopwords.txt").getLines.toList
-
   val logger = Logger[this.type]
 
 
-  def analyze(documentText: String): List[WordAnalysis] =
+  def analyze(documentText: String): List[Sentence] =
   {
 
     def convertPOS(pos: String): POS = pos match {
@@ -45,12 +43,12 @@ object StanfordNLPService {
       case _ => null
     }
 
-    var lemmas: List[WordAnalysis] = List[WordAnalysis]()
+    var rawSentences = ListBuffer[Sentence]()
 
     // create an empty Annotation just with the given text
     val document: Annotation = new Annotation(documentText)
 
-    val ignoreWords = mutable.MutableList[String]()
+    //val ignoreWords = mutable.MutableList[String]()
 
     // run all Annotators on this text
     stanfordCoreNLPPipeline.annotate(document)
@@ -59,17 +57,22 @@ object StanfordNLPService {
     val sentences: mutable.Buffer[CoreMap] = document.get(classOf[SentencesAnnotation]).asScala
     for(sentence: CoreMap <- sentences) {
       // Iterate over all tokens in a sentence
+      val rawSentence = mutable.ListBuffer[WordAnalysis]()
       for (token: CoreLabel <- sentence.get(classOf[TokensAnnotation]).asScala) {
+
         // Retrieve and add the lemma for each word into the list of lemmas
-        if(!(stopWords.contains(token.get(classOf[OriginalTextAnnotation]).toLowerCase) || stopWords.contains(token.get(classOf[LemmaAnnotation]).toLowerCase))) {
-          lemmas = lemmas :+ WordAnalysis(token.get(classOf[OriginalTextAnnotation]), token.get(classOf[LemmaAnnotation]), convertPOS(token.get(classOf[PartOfSpeechAnnotation])))
-        } else {
+        //if(!(stopWords.contains(token.get(classOf[OriginalTextAnnotation]).toLowerCase) || stopWords.contains(token.get(classOf[LemmaAnnotation]).toLowerCase))) {
+        val pos = convertPOS(token.get(classOf[PartOfSpeechAnnotation]))
+        val surfaceForm = token.get(classOf[OriginalTextAnnotation])
+        rawSentence += WordAnalysis(surfaceForm, WordnetDictionaryService.getBaseForm(pos,surfaceForm), pos)
+        /*} else {
           ignoreWords += token.get(classOf[OriginalTextAnnotation])
-        }
+        }*/
       }
+      rawSentences += Sentence(rawSentence.toList)
   }
-    logger.info(s"Ignored words => ${ignoreWords.mkString(", ")}")
-    lemmas
+    //logger.info(s"Ignored words => ${ignoreWords.mkString(", ")}")
+    rawSentences.toList
   }
 
 
@@ -78,3 +81,5 @@ object StanfordNLPService {
 }
 
 case class WordAnalysis(word: String, lemma: String, pos: POS)
+
+case class Sentence(words: List[WordAnalysis])

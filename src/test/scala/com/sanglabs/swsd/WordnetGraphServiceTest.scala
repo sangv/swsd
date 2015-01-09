@@ -44,7 +44,7 @@ class WordnetGraphServiceTest extends FlatSpec with ShouldMatchers with BeforeAn
     val shortestPath = WordnetGraphService.shortestPath("fish#n#1","sea#n#1")
     println(shortestPath.mkString(" -> "))
     shortestPath should not be Nil
-    shortestPath.size shouldEqual(6)
+    shortestPath.size shouldEqual(8)
   }
 
 
