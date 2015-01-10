@@ -24,7 +24,7 @@ object StanfordNLPService {
 
 
   val props: Properties = new Properties()
-  props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref")
+  props.put("annotators", "tokenize, ssplit, pos")//lemma, ner, parse, dcoref
 
 
   val stanfordCoreNLPPipeline: StanfordCoreNLP = new StanfordCoreNLP(props)
@@ -43,36 +43,27 @@ object StanfordNLPService {
       case _ => null
     }
 
-    var rawSentences = ListBuffer[Sentence]()
+    var sentences = ListBuffer[Sentence]()
 
     // create an empty Annotation just with the given text
     val document: Annotation = new Annotation(documentText)
 
-    //val ignoreWords = mutable.MutableList[String]()
-
     // run all Annotators on this text
     stanfordCoreNLPPipeline.annotate(document)
 
-    // Iterate over all of the sentences found
-    val sentences: mutable.Buffer[CoreMap] = document.get(classOf[SentencesAnnotation]).asScala
-    for(sentence: CoreMap <- sentences) {
-      // Iterate over all tokens in a sentence
-      val rawSentence = mutable.ListBuffer[WordAnalysis]()
-      for (token: CoreLabel <- sentence.get(classOf[TokensAnnotation]).asScala) {
+    val stanfordSentences: mutable.Buffer[CoreMap] = document.get(classOf[SentencesAnnotation]).asScala
+    for(stanfordSentence: CoreMap <- stanfordSentences) {
 
-        // Retrieve and add the lemma for each word into the list of lemmas
-        //if(!(stopWords.contains(token.get(classOf[OriginalTextAnnotation]).toLowerCase) || stopWords.contains(token.get(classOf[LemmaAnnotation]).toLowerCase))) {
+      val sentence = mutable.ListBuffer[WordAnalysis]()
+      for (token: CoreLabel <- stanfordSentence.get(classOf[TokensAnnotation]).asScala) {
+
         val pos = convertPOS(token.get(classOf[PartOfSpeechAnnotation]))
         val surfaceForm = token.get(classOf[OriginalTextAnnotation])
-        rawSentence += WordAnalysis(surfaceForm, WordnetDictionaryService.getBaseForm(pos,surfaceForm), pos)
-        /*} else {
-          ignoreWords += token.get(classOf[OriginalTextAnnotation])
-        }*/
+        sentence += WordAnalysis(surfaceForm, WordnetDictionaryService.getBaseForm(pos,surfaceForm), pos, token.get(classOf[PartOfSpeechAnnotation]))
       }
-      rawSentences += Sentence(rawSentence.toList)
+      sentences += Sentence(sentence.toList)
   }
-    //logger.info(s"Ignored words => ${ignoreWords.mkString(", ")}")
-    rawSentences.toList
+    sentences.toList
   }
 
 
@@ -80,6 +71,6 @@ object StanfordNLPService {
 
 }
 
-case class WordAnalysis(word: String, lemma: String, pos: POS)
+case class WordAnalysis(word: String, lemma: String, pos: POS, stanfordPOS: String)
 
 case class Sentence(words: List[WordAnalysis])
