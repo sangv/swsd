@@ -1,6 +1,5 @@
 package com.sanglabs.swsd
 
-import net.sf.extjwnl.data.POS
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.matchers.ShouldMatchers
@@ -23,15 +22,6 @@ class WordnetGraphServiceTest extends FlatSpec with ShouldMatchers with BeforeAn
     WordnetGraphService.getHypernymTree("genetic#a#1") shouldEqual(1314537)
   }
 
-  "Plethora of fish at sea" should "have 1 simple disambiguation" in {
-    val options = scala.collection.mutable.Map(WordAnalysis("Plethora","plethora",POS.NOUN,"NN") -> List("plethora#n#1"),
-    WordAnalysis("fish","fish",POS.NOUN,"NN") -> List("fish#n#1", "fish#n#2", "fish#n#3", "fish#n#4"),
-    WordAnalysis("sea","sea",POS.NOUN,"NN") -> List("sea#n#1", "sea#n#2", "sea#n#3"))
-    val result =  WordnetGraphService.disambiguate(options)
-    result.size shouldEqual(1)
-    result.get(WordAnalysis("Plethora","plethora",POS.NOUN,"NN")).get shouldEqual("plethora#n#1")
-  }
-
 
   "Test traversal of adjacent synsets" should "result" in {
     val shortestPath = WordnetGraphService.shortestPath("swim#v#1","travel#v#1")
@@ -45,6 +35,11 @@ class WordnetGraphServiceTest extends FlatSpec with ShouldMatchers with BeforeAn
     println(shortestPath.mkString(" -> "))
     shortestPath should not be Nil
     shortestPath.size shouldEqual(8)
+  }
+
+  "Test get synsets" should "result" in {
+    val synset = WordnetGraphService.getSynset("new_york#n#1")
+    assert(synset != null)
   }
 
 

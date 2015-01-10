@@ -4,6 +4,7 @@ import grizzled.slf4j.Logger
 import net.sf.extjwnl.data.{IndexWord, IndexWordSet, POS, Synset}
 
 import scala.collection.mutable.ListBuffer
+import scala.collection._
 
 
 /**
@@ -15,7 +16,6 @@ import scala.collection.mutable.ListBuffer
  */
 object SimpleDisambiguationService {
 
-  //Nice to have: perform word compoundification and remove stop words
   //connect all possible options (synsets) filtered by pos and maintain a multimap
   //between the words and the possible synsets
 
@@ -32,12 +32,11 @@ object SimpleDisambiguationService {
   //using stopwords from http://www.ranks.nl/stopwords
   val stopWords: List[String] = scala.io.Source.fromFile("data/stopwords.txt").getLines.toList
 
-  def lookupOptions(words: String): scala.collection.mutable.Map[WordAnalysis,List[String]] = {
+  def lookupOptions(words: String): mutable.Map[WordAnalysis,List[String]] = {
 
     val sentences = StanfordNLPService.analyze(words)
 
-    //compoundify words (nouns) currently 2 at a time
-    //for ( (f,s) <- latlong zip latlong.drop(1) ) println (s"f: $f, s: $s")
+    //compoundify words (nouns) currently 2 at a time -- TODO add support for differently sized compound words
     val compoundedSentences = sentences map (sentence => {
       val compoundedWords = ListBuffer[WordAnalysis]()
       var index = 0
@@ -49,9 +48,7 @@ object SimpleDisambiguationService {
           if (WordnetDictionaryService.getBaseForm(f.pos,compoundWord) != null) {
             compoundedWords += WordAnalysis(compoundWord, WordnetDictionaryService.getBaseForm(f.pos, compoundWord), f.pos, f.stanfordPOS)
           } else {
-            //TODO refactor
-            compoundedWords += f;
-            if (index == sentence.words.length - 1) compoundedWords += s
+            compoundedWords += f; if (index == sentence.words.length - 1) compoundedWords += s
           }
         }  else {
           compoundedWords+=f; if(index == sentence.words.length-1) compoundedWords+=s
@@ -95,6 +92,7 @@ object SimpleDisambiguationService {
     }
     mapOfOptions
   }
+
 
 
 }

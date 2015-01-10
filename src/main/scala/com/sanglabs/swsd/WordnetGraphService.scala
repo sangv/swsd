@@ -1,7 +1,7 @@
 package com.sanglabs.swsd
 
-import com.tinkerpop.blueprints.{Edge, Vertex}
 import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph
+import com.tinkerpop.blueprints.{Edge, Vertex}
 import com.tinkerpop.gremlin.scala._
 import com.tinkerpop.pipes.branch.LoopPipe.LoopBundle
 import grizzled.slf4j.Logger
@@ -93,21 +93,28 @@ object WordnetGraphService {
 
   def preprocessLemma (lemma: String):String = lemma.trim.toLowerCase
 
-  def disambiguate(options: mutable.Map[WordAnalysis,List[String]]): mutable.Map[WordAnalysis,String] = {
+  def disambiguate(options: mutable.Map[WordAnalysis,List[String]]): List[(String,Int)] = {
     val result:scala.collection.mutable.Map[WordAnalysis,String] = scala.collection.mutable.Map[WordAnalysis,String]()
     //options.keySet.filter( (x:WordAnalysis) => options.get(x).get.size == 1) foreach ((x:WordAnalysis) => { result.put(x,options.get(x).get.head) })
 
-    val unresolvedMap: mutable.Map[WordAnalysis,List[String]] = mutable.Map[WordAnalysis,List[String]]()
+    /*val unresolvedMap: mutable.Map[WordAnalysis,List[String]] = mutable.Map[WordAnalysis,List[String]]()
     options.keySet.foreach { key =>
       options.get(key) match {
         case(Some(List(value:String))) => result.put(key,value)
         case Some(x :: xs) => unresolvedMap.put(key,x::xs)
         case Some(List()) => logger.error("$key cannot be resolved")
       }
+    }*/
+
+    var occurences = List[String]()
+    val optionValues: List[String] = options.values.toList.flatten
+    //TODO account for multiple occurances
+    for ( (f:String,s:String) <- optionValues zip optionValues.drop(1) ) {
+      occurences ++= shortestPath(f,s)
     }
 
-
-    result
+    //TODO add WordAnalysis to the result
+    occurences.groupBy(l => l).map(t => (t._1, t._2.length)).toList.sortBy({_._2}).reverse
   }
 
 
@@ -126,16 +133,16 @@ object WordnetGraphService {
       (loopBundle: LoopBundle[Vertex]) => {
         loopBundle.getObject.getProperty[Long]("offset") == v2.getProperty[Long]("offset")
       }).path(new ScalaPipeFunction[Any, Any]({
-        case (v: Vertex) => v.getProperty[Long]("offset")
-        case (e:Edge) => e.getProperty[String]("pointer_type")
+        case (v: Vertex) => v.getProperty[java.util.List[String]]("synsetNames").get(0)//v.getProperty[Long]("offset")//v.getProperty[Long]("offset")
+        case (e:Edge) => "pointerType" + e.getProperty[String]("pointer_type")
     }
     ))
 
 
     if(pipe.hasNext) {
-      val list = pipe.next().asScala.toList
+      val list: List[String] = pipe.next().asScala.toList.asInstanceOf[List[String]]
       logger.debug(list mkString(" -> "))
-      list.filter(_.isInstanceOf[Long]).asInstanceOf[List[String]]
+      list.filterNot(_.startsWith("pointerType"))
     } else {
       Nil
     }
