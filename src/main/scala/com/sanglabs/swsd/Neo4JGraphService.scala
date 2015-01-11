@@ -1,12 +1,13 @@
 package com.sanglabs.swsd
 
+import java.util.Comparator
+
 import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph
-import com.tinkerpop.blueprints.{Edge, Vertex}
-import com.tinkerpop.gremlin.scala._
-import com.tinkerpop.pipes.branch.LoopPipe.LoopBundle
 import grizzled.slf4j.Logger
 import net.sf.extjwnl.data.{POS, Synset}
 import org.neo4j.graphdb._
+import org.neo4j.graphdb.traversal.{Traverser, _}
+import org.neo4j.kernel.{Traversal, Uniqueness}
 
 import scala.collection.JavaConverters._
 import scala.collection._
@@ -18,13 +19,9 @@ import scala.collection._
  * @author Sang Venkatraman
  *
  */
-object WordnetGraphService {
+object Neo4JGraphService {
 
   private val graphDb: Neo4jGraph = new Neo4jGraph("data/wordnetgraph.db")
-
-  def gs = ScalaGraph(graphDb)
-  def v(i: Int) = gs.v(i:Integer).get
-  def e(i: Int) = gs.e(i:Integer).get
 
   private val logger = Logger[this.type]
 
@@ -41,15 +38,7 @@ object WordnetGraphService {
     val synsetWord: String = preprocessLemma(synsetNameParts(0))
     val synsetPOS: POS = POS.getPOSForKey(synsetNameParts(1))
     val synsetIndex: Int = Integer.valueOf(synsetNameParts(2))
-    /*val iter: java.util.Iterator[Node] = graphDb.getRawGraph.index().forNodes(INDEXWORD_INDEX).get("lemma",synsetWord).iterator()
-
-      while (iter.hasNext) {
-        val currentNode = iter.next()
-        if (synsetPOS.equals(currentNode.getProperty("pos"))) {
-          val indexWord: IndexWord = new IndexWord(WordnetDictionaryService.dictionary,synsetWord,synsetPOS, List(1000L).toArray)//FIXME
-          return indexWord.getSenses.get(synsetIndex - 1)
-        }
-      }*/
+   
     WordnetDictionaryService.indexWord(synsetPOS, synsetWord).getSenses.get(synsetIndex - 1)
   }
 
@@ -94,23 +83,17 @@ object WordnetGraphService {
   def preprocessLemma (lemma: String):String = lemma.trim.toLowerCase
 
   def disambiguate(options: mutable.Map[WordAnalysis,List[String]]): List[(String,Int)] = {
-    val result:scala.collection.mutable.Map[WordAnalysis,String] = scala.collection.mutable.Map[WordAnalysis,String]()
-    //options.keySet.filter( (x:WordAnalysis) => options.get(x).get.size == 1) foreach ((x:WordAnalysis) => { result.put(x,options.get(x).get.head) })
-
-    /*val unresolvedMap: mutable.Map[WordAnalysis,List[String]] = mutable.Map[WordAnalysis,List[String]]()
-    options.keySet.foreach { key =>
-      options.get(key) match {
-        case(Some(List(value:String))) => result.put(key,value)
-        case Some(x :: xs) => unresolvedMap.put(key,x::xs)
-        case Some(List()) => logger.error("$key cannot be resolved")
-      }
-    }*/
 
     var occurences = List[String]()
     val optionValues: List[String] = options.values.toList.flatten
     //TODO account for multiple occurances
-    for ( (f:String,s:String) <- optionValues zip optionValues.drop(1) ) {
-      occurences ++= shortestPath(f,s)
+    for ( f <- optionValues) {
+      for(s <- optionValues) {
+        if(!f.equals(s)) {
+          logger.info(s"Computing $f and $s")
+          occurences ++= shortestPath(f, s)
+        }
+      }
     }
 
     //TODO add WordAnalysis to the result
@@ -118,36 +101,54 @@ object WordnetGraphService {
   }
 
 
-  def shortestPath(synsetName1: String, synsetName2: String): List[String] = {
+  def shortestPath(synsetName1: String, synsetName2: String, maxDepth: Int = 5): List[String] = {
 
-    val synset1: Synset = getSynset(synsetName1)
-    val synset2: Synset = getSynset(synsetName2)
+    val startNode = getSynsetNode(synsetName1)
+    val endNode = getSynsetNode(synsetName2)
 
-    val v1: ScalaVertex = gs.V.has("pos",synset1.getPOS.getKey).has("offset",synset1.getOffset).iterator().next() //TODO guard against multiple (or no) matches
-    val v2: ScalaVertex = gs.V.has("pos",synset2.getPOS.getKey).has("offset",synset2.getOffset).iterator().next()
 
-    val pipe = v1.->.as("synset").outE("Synset").inV.loop("synset",(loopBundle: LoopBundle[Vertex]) => {
-      loopBundle.getLoops() < 8 &&
-        loopBundle.getObject.getProperty[Long]("offset") != v2.getProperty[Long]("offset")
-    },
-      (loopBundle: LoopBundle[Vertex]) => {
-        loopBundle.getObject.getProperty[Long]("offset") == v2.getProperty[Long]("offset")
-      }).path(new ScalaPipeFunction[Any, Any]({
-        case (v: Vertex) => v.getProperty[java.util.List[String]]("synsetNames").get(0)//v.getProperty[Long]("offset")//v.getProperty[Long]("offset")
-        case (e:Edge) => "pointerType" + e.getProperty[String]("pointer_type")
+    val paths = getTraverser(startNode,endNode,maxDepth).asScala
+    for(path:Path <- paths) {
+      println(path.nodes().iterator().asScala.toList map(_.getProperty("offset")) mkString(", "))
     }
-    ))
 
-
-    if(pipe.hasNext) {
-      val list: List[String] = pipe.next().asScala.toList.asInstanceOf[List[String]]
-      logger.debug(list mkString(" -> "))
-      list.filterNot(_.startsWith("pointerType"))
-    } else {
+    if(paths != null && paths.size > 0)
+      paths.head.nodes().asScala.toList.map(_.getProperty("synsetNames").asInstanceOf[Array[String]](0))
+    else
       Nil
+
+
+  }
+
+  protected def getSynsetNode(synsetName: String): Node = {
+    val synset: Synset = getSynset(synsetName)
+    val synsetNodeIterator: java.util.Iterator[Node] = graphDb.getRawGraph().index.forNodes("synset").get("offset", synset.getOffset).iterator
+    
+    while (synsetNodeIterator.hasNext) {
+      val node: Node = synsetNodeIterator.next
+      if (synset.getPOS.getKey == node.getProperty("pos")) {
+        return node
+      }
     }
+    return null
+  }
 
-
+  protected def getTraverser(startNode: Node, endNode: Node, maxDepth: Int): Traverser = {
+    val td: TraversalDescription = Traversal.description.relationships(synsetRelationshipType, Direction.OUTGOING).evaluator(new Evaluator {
+      override def evaluate(path: Path): Evaluation = {
+        val iterator: java.util.Iterator[Relationship] = path.relationships.iterator
+        while (iterator.hasNext) {
+          val rel: Relationship = iterator.next
+          if (!rel.isType(synsetRelationshipType)) {
+            return Evaluation.EXCLUDE_AND_PRUNE
+          }
+        }
+        return Evaluation.INCLUDE_AND_CONTINUE
+      }
+    }).evaluator(Evaluators.includeWhereEndNodeIs(endNode)).evaluator(Evaluators.toDepth(maxDepth)).uniqueness(Uniqueness.NODE_PATH).sort(new Comparator[Path] {
+      override def compare(o1: Path, o2: Path): Int = o1.length().compareTo(o2.length())
+    })
+    td.traverse(startNode)
   }
 
 }

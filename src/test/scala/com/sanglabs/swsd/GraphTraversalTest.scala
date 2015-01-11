@@ -15,14 +15,14 @@ import scala.collection.JavaConverters._
  * @author Sang Venkatraman
  *
  */
-class GraphTraversalTest  extends FunSpec with ShouldMatchers with BeforeAndAfter with BeforeAndAfterAll {
+class GremlinGraphTraversalTest  extends FunSpec with ShouldMatchers with BeforeAndAfter with BeforeAndAfterAll {
 
-  val gs: ScalaGraph = WordnetGraphService.gs
+  val gs: ScalaGraph = GremlinGraphService.gs
 
   it("should be able to find vertices based on synset offsets") {
 
-    val synset1 = WordnetGraphService.getSynset("swim#v#1")
-    val synset2 = WordnetGraphService.getSynset("travel#v#1")
+    val synset1 = GremlinGraphService.getSynset("swim#v#1")
+    val synset2 = GremlinGraphService.getSynset("travel#v#1")
 
     val v1: ScalaVertex = gs.V.has("pos",synset1.getPOS.getKey).has("offset",synset1.getOffset).iterator().next() //TODO guard against multiple (or no) matches
     val v2: ScalaVertex = gs.V.has("pos",synset2.getPOS.getKey).has("offset",synset2.getOffset).iterator().next()
@@ -40,8 +40,8 @@ class GraphTraversalTest  extends FunSpec with ShouldMatchers with BeforeAndAfte
 
   it("should be able to find paths between synsets") {
 
-    val synset1 = WordnetGraphService.getSynset("swim#v#1")
-    val synset2 = WordnetGraphService.getSynset("travel#v#1")
+    val synset1 = GremlinGraphService.getSynset("swim#v#1")
+    val synset2 = GremlinGraphService.getSynset("travel#v#1")
 
     val v1: ScalaVertex = gs.V.has("pos",synset1.getPOS.getKey).has("offset",synset1.getOffset).iterator().next() //TODO guard against multiple (or no) matches
     val v2: ScalaVertex = gs.V.has("pos",synset2.getPOS.getKey).has("offset",synset2.getOffset).iterator().next()
@@ -67,8 +67,8 @@ class GraphTraversalTest  extends FunSpec with ShouldMatchers with BeforeAndAfte
 
   it("should be able to find paths between synsets filter relationships pass") {
 
-    val synset1 = WordnetGraphService.getSynset("swim#v#1")
-    val synset2 = WordnetGraphService.getSynset("travel#v#1")
+    val synset1 = GremlinGraphService.getSynset("swim#v#1")
+    val synset2 = GremlinGraphService.getSynset("travel#v#1")
 
     val v1: ScalaVertex = gs.V.has("pos",synset1.getPOS.getKey).has("offset",synset1.getOffset).iterator().next() //TODO guard against multiple (or no) matches
     val v2: ScalaVertex = gs.V.has("pos",synset2.getPOS.getKey).has("offset",synset2.getOffset).iterator().next()
@@ -97,8 +97,8 @@ class GraphTraversalTest  extends FunSpec with ShouldMatchers with BeforeAndAfte
 
   it("should be able to find paths between synsets filter relationships fail") {
 
-    val synset1 = WordnetGraphService.getSynset("fish#n#1")
-    val synset2 = WordnetGraphService.getSynset("sea#n#1")
+    val synset1 = GremlinGraphService.getSynset("fish#n#1")
+    val synset2 = GremlinGraphService.getSynset("sea#n#1")
 
     val v1: ScalaVertex = gs.V.has("pos",synset1.getPOS.getKey).has("offset",synset1.getOffset).iterator().next() //TODO guard against multiple (or no) matches
     val v2: ScalaVertex = gs.V.has("pos",synset2.getPOS.getKey).has("offset",synset2.getOffset).iterator().next()
@@ -122,8 +122,8 @@ class GraphTraversalTest  extends FunSpec with ShouldMatchers with BeforeAndAfte
 
   it("should be able to find paths between synsets filter relationships non-adjacent pass") {
 
-    val synset1 = WordnetGraphService.getSynset("king#n#1")
-    val synset2 = WordnetGraphService.getSynset("ruler#n#1")
+    val synset1 = GremlinGraphService.getSynset("king#n#1")
+    val synset2 = GremlinGraphService.getSynset("ruler#n#1")
 
     val v1: ScalaVertex = gs.V.has("pos",synset1.getPOS.getKey).has("offset",synset1.getOffset).iterator().next() //TODO guard against multiple (or no) matches
     val v2: ScalaVertex = gs.V.has("pos",synset2.getPOS.getKey).has("offset",synset2.getOffset).iterator().next()
