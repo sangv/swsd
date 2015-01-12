@@ -2,10 +2,11 @@ package com.sanglabs.swsd
 
 import java.util.Comparator
 
-import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph
 import grizzled.slf4j.Logger
 import net.sf.extjwnl.data.{POS, Synset}
+import org.neo4j.cypher.{ExecutionEngine, ExecutionResult}
 import org.neo4j.graphdb._
+import org.neo4j.graphdb.factory.GraphDatabaseFactory
 import org.neo4j.graphdb.traversal.{Traverser, _}
 import org.neo4j.kernel.{Traversal, Uniqueness}
 
@@ -21,9 +22,13 @@ import scala.collection._
  */
 object Neo4JGraphService {
 
-  private val graphDb: Neo4jGraph = new Neo4jGraph("data/wordnetgraph.db")
+  private val graphDb = new GraphDatabaseFactory().newEmbeddedDatabase("data/wordnetgraph.db")
 
   private val logger = Logger[this.type]
+
+  val acceptedRelationships = List("Hypernym","Holonym")
+
+  val executionEngine = new ExecutionEngine(graphDb)
 
   private val synsetRelationshipType = new RelationshipType {
     override def name(): String = "Synset"
@@ -43,19 +48,28 @@ object Neo4JGraphService {
   }
 
   def getHypernymTree(synsetName: String): Long = {
-    val synset: Synset = getSynset(synsetName)
-    var node: Node = graphDb.getRawGraph().index.forNodes("synset").get("offset", synset.getOffset).getSingle
-    var parentNode: Node = null
-    while ((({
-      parentNode = getHypernymNode(node); parentNode
-    })) != null) {
-      node = parentNode
+    val tx = graphDb.beginTx()
+    try {
+      val synset: Synset = getSynset(synsetName)
+      var node: Node = graphDb.index.forNodes("synset").get("offset", synset.getOffset).getSingle
+      var parentNode: Node = null
+      while ((({
+        parentNode = getHypernymNode(node);
+        parentNode
+      })) != null) {
+        node = parentNode
+      }
+      return if (parentNode != null) parentNode.getProperty("offset").asInstanceOf[Long] else node.getProperty("offset").asInstanceOf[Long]
     }
-    return if (parentNode != null) parentNode.getProperty("offset").asInstanceOf[Long] else node.getProperty("offset").asInstanceOf[Long]
+    finally {
+      tx.close()
+    }
+
   }
 
   def getHypernymNode(node: Node): Node = {
     printSynsetNode(node)
+    val tx = graphDb.beginTx()
     if (node.hasRelationship(synsetRelationshipType)) {
       val iter: java.util.Iterator[Relationship] = node.getRelationships(synsetRelationshipType, Direction.OUTGOING).iterator
       while (iter.hasNext) {
@@ -65,10 +79,12 @@ object Neo4JGraphService {
         }
       }
     }
+    tx.close()
     return null
   }
 
   protected def printSynsetNode(node: Node): Long = {
+    val tx = graphDb.beginTx()
     val synsetWordsString: StringBuilder = new StringBuilder("(")
     val parentSynset: Synset = WordnetDictionaryService.getSynsetAt(node.getProperty("pos").asInstanceOf[String], node.getProperty("offset").asInstanceOf[Long])
     import scala.collection.JavaConversions._
@@ -77,6 +93,7 @@ object Neo4JGraphService {
     }
     synsetWordsString.append(parentSynset.getOffset + ")")
     logger.info(synsetWordsString.toString)
+    tx.close()
     return parentSynset.getOffset
   }
 
@@ -89,7 +106,7 @@ object Neo4JGraphService {
     //TODO account for multiple occurances
     for ( f <- optionValues) {
       for(s <- optionValues) {
-        if(!f.equals(s)) {
+        if(!f.equals(s) && f.split("#")(1).equals(s.split("#")(1))) {
           logger.info(s"Computing $f and $s")
           occurences ++= shortestPath(f, s)
         }
@@ -98,6 +115,16 @@ object Neo4JGraphService {
 
     //TODO add WordAnalysis to the result
     occurences.groupBy(l => l).map(t => (t._1, t._2.length)).toList.sortBy({_._2}).reverse
+  }
+
+  def findNodes(options: mutable.Map[WordAnalysis,List[String]]): List[Node] = {
+
+    val synsets = options.values.flatten.toSet map ((s: String) => getSynset(s).getOffset)
+    println(synsets)
+    val result: ExecutionResult = executionEngine.execute("MATCH (p:Synset) where p.offset in [9426788, 7775375] return p;")
+
+    result.columnAs[Node]("p").toList
+
   }
 
 
@@ -109,7 +136,7 @@ object Neo4JGraphService {
 
     val paths = getTraverser(startNode,endNode,maxDepth).asScala
     for(path:Path <- paths) {
-      println(path.nodes().iterator().asScala.toList map(_.getProperty("offset")) mkString(", "))
+      println(path.nodes().iterator().asScala.toList map(_.getProperty("synsetNames").asInstanceOf[Array[String]](0)) mkString(", "))
     }
 
     if(paths != null && paths.size > 0)
@@ -121,8 +148,9 @@ object Neo4JGraphService {
   }
 
   protected def getSynsetNode(synsetName: String): Node = {
+    val tx = graphDb.beginTx()
     val synset: Synset = getSynset(synsetName)
-    val synsetNodeIterator: java.util.Iterator[Node] = graphDb.getRawGraph().index.forNodes("synset").get("offset", synset.getOffset).iterator
+    val synsetNodeIterator: java.util.Iterator[Node] = graphDb.index.forNodes("synset").get("offset", synset.getOffset).iterator
     
     while (synsetNodeIterator.hasNext) {
       val node: Node = synsetNodeIterator.next
@@ -130,6 +158,7 @@ object Neo4JGraphService {
         return node
       }
     }
+    tx.close()
     return null
   }
 
@@ -139,7 +168,7 @@ object Neo4JGraphService {
         val iterator: java.util.Iterator[Relationship] = path.relationships.iterator
         while (iterator.hasNext) {
           val rel: Relationship = iterator.next
-          if (!rel.isType(synsetRelationshipType)) {
+          if (!rel.isType(synsetRelationshipType)){ // && acceptedRelationships.contains(rel.getProperty("pointer_type"))) {
             return Evaluation.EXCLUDE_AND_PRUNE
           }
         }

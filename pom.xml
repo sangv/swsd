@@ -23,16 +23,6 @@
 			<version>${scala.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.tinkerpop.blueprints</groupId>
-			<artifactId>blueprints-neo4j-graph</artifactId>
-			<version>2.5.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.michaelpollmeier</groupId>
-			<artifactId>gremlin-scala</artifactId>
-			<version>2.4.1</version>
-		</dependency>
-		<dependency>
 			<groupId>net.sf.extjwnl</groupId>
 			<artifactId>extjwnl</artifactId>
 			<version>1.6.10</version>
@@ -42,6 +32,21 @@
 			<artifactId>scalatest_2.10</artifactId>
 			<version>1.9.2</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>3.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
 		</dependency>
 		<dependency>
 			<groupId>edu.stanford.nlp</groupId>
@@ -71,8 +76,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.neo4j</groupId>
-			<artifactId>neo4j-lucene-index</artifactId>
-			<version>1.9.6</version>
+			<artifactId>neo4j</artifactId>
+			<version>2.1.6</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

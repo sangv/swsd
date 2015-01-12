@@ -80,8 +80,18 @@ public class Neo4jWordnetDataLoader {
 		deleteFileOrDirectory( new File( DEST ) );
 		graphDb = new GraphDatabaseFactory().newEmbeddedDatabase(DEST);
 		registerShutdownHook( graphDb );
-		indexWordIndex = graphDb.index().forNodes("indexword");
-		synsetIndex = graphDb.index().forNodes("synset");
+		Transaction tx = graphDb.beginTx();
+		try {
+			indexWordIndex = graphDb.index().forNodes("indexword");
+			synsetIndex = graphDb.index().forNodes("synset");
+
+			tx.success();
+		} catch (Exception e) {
+			tx.failure();
+			LOGGER.error(e.getLocalizedMessage(),e);
+		} finally {
+			tx.close();
+		}
 
 		pointerTypeSymbolMultiMap.put(POS.NOUN, SynsetPointerMapping.nounPointerTypeMap);
 		pointerTypeSymbolMultiMap.put(POS.VERB, SynsetPointerMapping.verbPointerTypeMap);
@@ -161,7 +171,7 @@ public class Neo4jWordnetDataLoader {
 			tx.failure();
 			LOGGER.error(e.getLocalizedMessage(),e);
 		} finally {
-			tx.finish();
+			tx.close();
 		}
 
 		LOGGER.info("Stored Index words: " + count);
@@ -243,7 +253,7 @@ public class Neo4jWordnetDataLoader {
 			tx.failure();
 			LOGGER.error(e.getLocalizedMessage(),e);
 		} finally {
-			tx.finish();
+			tx.close();
 		}
 		LOGGER.info("Stored Synsets: " + count);
 	}
@@ -312,7 +322,7 @@ public class Neo4jWordnetDataLoader {
 			tx.failure();
 			LOGGER.error(e.getLocalizedMessage(),e);
 		} finally {
-			tx.finish();
+			tx.close();
 		}
 
 		LOGGER.info("Stored relationships between Synsets");
@@ -362,7 +372,7 @@ public class Neo4jWordnetDataLoader {
 			tx.failure();
 			LOGGER.error(e.getLocalizedMessage(),e);
 		} finally {
-			tx.finish();
+			tx.close();
 		}
 
 
@@ -388,7 +398,7 @@ public class Neo4jWordnetDataLoader {
 			tx.failure();
 			LOGGER.error(e.getLocalizedMessage(),e);
 		} finally {
-			tx.finish();
+			tx.close();
 		}
 
 		LOGGER.info("Stored Exceptions");

@@ -33,7 +33,7 @@ class Neo4JGraphServiceTest extends FlatSpec with ShouldMatchers with BeforeAndA
   "Test traversal of non-adjacent synsets" should "result" in {
     val shortestPath = Neo4JGraphService.shortestPath("fish#n#1","sea#n#1")
     println(shortestPath.mkString(" -> "))
-    shortestPath should not be Nil
+    shortestPath should not be Nil //FIXME
     shortestPath.size shouldEqual(8)
   }
 

@@ -47,7 +47,7 @@ class SimpleDisamiguationServiceTest extends FlatSpec with ShouldMatchers with B
     //options.get(WordAnalysis("bank","bank",POS.NOUN)).get shouldEqual List("bank#n#1", "bank#n#2", "bank#n#3", "bank#n#4", "bank#n#5", "bank#n#6", "bank#n#7", "bank#n#8", "bank#n#9", "bank#n#10")
   }*/
 
-  "Plethora of fish at sea" should "have 1 simple disambiguation" in {
+  /*"Plethora of fish at sea" should "have 1 simple disambiguation" in {
     val options = scala.collection.mutable.Map(WordAnalysis("Plethora","plethora",POS.NOUN,"NN") -> List("plethora#n#1"),
       WordAnalysis("fish","fish",POS.NOUN,"NN") -> List("fish#n#1", "fish#n#2", "fish#n#3", "fish#n#4"),
       WordAnalysis("sea","sea",POS.NOUN,"NN") -> List("sea#n#1", "sea#n#2", "sea#n#3"))
@@ -56,12 +56,23 @@ class SimpleDisamiguationServiceTest extends FlatSpec with ShouldMatchers with B
     result.size shouldEqual(26)
     result.take(5) foreach (println)
     //result.get(WordAnalysis("Plethora","plethora",POS.NOUN,"NN")).get shouldEqual("plethora#n#1")
-  }
+  } */
 
   /*"Test Fake Plastic tree" should "return " in {
     val options = SimpleDisambiguationService.lookupOptions("Her green plastic watering can\nFor her fake Chinese rubber plant\nIn the fake plastic earth\nThat she bought from a rubber man\nIn a town full of rubber plans\nTo get rid of itself")
-    val result = WordnetGraphService.disambiguate(options)
+    val result = Neo4JGraphService.disambiguate(options)
     println(result.mkString(", "))
-  } */
+  }*/
+
+  "Plethora of fish at sea" should "have 1 simple disambiguation" in {
+    val options = scala.collection.mutable.Map(WordAnalysis("Plethora","plethora",POS.NOUN,"NN") -> List("plethora#n#1"),
+      WordAnalysis("fish","fish",POS.NOUN,"NN") -> List("fish#n#1", "fish#n#2", "fish#n#3", "fish#n#4"),
+      WordAnalysis("sea","sea",POS.NOUN,"NN") -> List("sea#n#1", "sea#n#2", "sea#n#3"))
+    val result =  Neo4JGraphService.findNodes(options)
+    println(result.mkString(", "))
+    result.size shouldEqual(26)
+    result.take(5) foreach (println)
+    //result.get(WordAnalysis("Plethora","plethora",POS.NOUN,"NN")).get shouldEqual("plethora#n#1")
+  }
 
 }
