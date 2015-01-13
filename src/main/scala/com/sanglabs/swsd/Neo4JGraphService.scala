@@ -4,7 +4,7 @@ import java.util.Comparator
 
 import grizzled.slf4j.Logger
 import net.sf.extjwnl.data.{POS, Synset}
-import org.neo4j.cypher.{ExecutionEngine, ExecutionResult}
+import org.neo4j.cypher.ExecutionEngine
 import org.neo4j.graphdb._
 import org.neo4j.graphdb.factory.GraphDatabaseFactory
 import org.neo4j.graphdb.traversal.{Traverser, _}
@@ -99,31 +99,53 @@ object Neo4JGraphService {
 
   def preprocessLemma (lemma: String):String = lemma.trim.toLowerCase
 
-  def disambiguate(options: mutable.Map[WordAnalysis,List[String]]): List[(String,Int)] = {
+  def disambiguate(options: mutable.Map[WordAnalysis,List[String]]): Map[String,String] = {
 
-    var occurences = List[String]()
-    val optionValues: List[String] = options.values.toList.flatten
-    //TODO account for multiple occurances
-    for ( f <- optionValues) {
-      for(s <- optionValues) {
-        if(!f.equals(s) && f.split("#")(1).equals(s.split("#")(1))) {
-          logger.info(s"Computing $f and $s")
-          occurences ++= shortestPath(f, s)
-        }
-      }
-    }
+    var result = Map[String,String]()
+    val (resolvedMap, unresolvedMap) = options.partition(x => x._2.length == 1)
 
-    //TODO add WordAnalysis to the result
-    occurences.groupBy(l => l).map(t => (t._1, t._2.length)).toList.sortBy({_._2}).reverse
+    resolvedMap foreach (x => { result += (x._1.word -> x._2.head) } )
+    val synsetScores = findNodes(options) //don't send just the unresolved map because everything is needed to create the graph
+    unresolvedMap.keys foreach (x => { result += ( x.word -> {synsetScores.filter(y => unresolvedMap.get(x).get.contains(y._1))}.head._1)})
+
+    //Add a step that puts a minimum threshold on the score and use that to just get the most frequent usage
+
+    result
   }
 
-  def findNodes(options: mutable.Map[WordAnalysis,List[String]]): List[Node] = {
+  def findNodes(options: mutable.Map[WordAnalysis,List[String]]): List[(String,Int)] = {
 
-    val synsets = options.values.flatten.toSet map ((s: String) => getSynset(s).getOffset)
-    println(synsets)
-    val result: ExecutionResult = executionEngine.execute("MATCH (p:Synset) where p.offset in [9426788, 7775375] return p;")
+    val tx = graphDb.beginTx()
+    val synsetNames = options.values.flatten.toSet
+    val synsetsOffsets = synsetNames map ((s: String) => getSynset(s).getOffset) mkString(",")
 
-    result.columnAs[Node]("p").toList
+    val nodes = synsetNames map ((s: String) => getSynsetNode(s))
+
+    var mapOfSynsetOffset = Map[Long,String]()
+
+    (nodes zip synsetNames) foreach (e =>  { mapOfSynsetOffset+=(e._1.getProperty("offset").asInstanceOf[Long] -> e._2) })
+
+    val tm = scala.collection.mutable.Map[Long,Int]()
+
+    //filter out nodes that have only 1 synset
+    for(x <- nodes) {
+      tm(x.getProperty("offset").asInstanceOf[Long]) = 0
+      for(y <- nodes) {
+        //don't connect node to self and also don't bother comparing different pos (performance optimization)
+         if( (x.getProperty("offset") != (y.getProperty("offset")) )){ //&& (x.getProperty("pos").asInstanceOf[String].equals(y.getProperty("pos").asInstanceOf[String]))){
+           val paths = getTraverser(x,y,6).asScala
+           if(paths.size > 0){
+             tm(x.getProperty("offset").asInstanceOf[Long]) += 1
+           }
+         }
+      }
+    }
+    tx.close()
+
+
+    val result = tm.map(t => (mapOfSynsetOffset.get(t._1).get, t._2)).toList.sortBy({_._2}).reverse
+    result foreach println
+    result
 
   }
 
