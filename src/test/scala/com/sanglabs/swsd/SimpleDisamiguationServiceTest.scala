@@ -59,6 +59,7 @@ class SimpleDisamiguationServiceTest extends FlatSpec with ShouldMatchers with B
 
   /*"Test Fake Plastic tree" should "return " in {
     val options = SimpleDisambiguationService.lookupOptions("Her green plastic watering can\nFor her fake Chinese rubber plant\nIn the fake plastic earth\nThat she bought from a rubber man\nIn a town full of rubber plans\nTo get rid of itself")
+    options mkString(", ")
     val result = Neo4JGraphService.disambiguate(options)
     println(result.mkString(", "))
   }*/
@@ -101,6 +102,7 @@ class SimpleDisamiguationServiceTest extends FlatSpec with ShouldMatchers with B
     result foreach (println)
     result.size shouldEqual (3)
     //add asserts (people,people#n#4)  (large,large#a#4) (sea,sea#n#2)
+    //with progressive removal algorithm: (people,people#n#4) (large,large#a#1) (sea,sea#n#3)
   }
 
 }

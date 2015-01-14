@@ -102,24 +102,40 @@ object Neo4JGraphService {
   def disambiguate(options: mutable.Map[WordAnalysis,List[String]]): Map[String,String] = {
 
     var result = Map[String,String]()
-    val (resolvedMap, unresolvedMap) = options.partition(x => x._2.length == 1)
+    var (resolvedMap, unresolvedMap) = options.partition(x => x._2.length == 1)
 
-    resolvedMap foreach (x => { result += (x._1.word -> x._2.head) } )
-    val synsetScores = findNodes(options) //don't send just the unresolved map because everything is needed to create the graph
-    unresolvedMap.keys foreach (x => { result += ( x.word -> {synsetScores.filter(y => unresolvedMap.get(x).get.contains(y._1))}.head._1)})
 
+     //don't send just the unresolved map because everything is needed to create the graph
+
+    //TODO after every step of resolving, run it with that with the other options for that node removed
+    //Get the top scored analysis and rerun the whole thing again (add it to resolvedmap) - recursively
+    //unresolvedMap.keys foreach (x => { result += ( x.word -> {synsetScores.filter(y => unresolvedMap.get(x).get.contains(y._1))}.head._1)})
+
+
+    while (unresolvedMap != null && unresolvedMap.size > 0) {
+      val synsetScores = findNodes(resolvedMap,unresolvedMap)
+      unresolvedMap = unresolvedMap.filterNot(_._2.contains(synsetScores.head._1))
+
+      //check the scores - if max is equal to min, use most frequent usage or mark it as unresolved
+      //synsetScores.groupBy(_._1)
+
+      (options.filter(_._2.contains(synsetScores.head._1))) foreach (x => { resolvedMap += (x._1 -> List(synsetScores.head._1))})
+      println(s"Done resolving ${synsetScores.head} for ${options.filter(_._2.contains(synsetScores.head._1))}")
+    }
     //Add a step that puts a minimum threshold on the score and use that to just get the most frequent usage
-
+    resolvedMap foreach (x => { result += (x._1.word -> x._2.head) } )
     result
   }
 
-  def findNodes(options: mutable.Map[WordAnalysis,List[String]]): List[(String,Int)] = {
+  def findNodes(resolvedMap: mutable.Map[WordAnalysis,List[String]], options: mutable.Map[WordAnalysis,List[String]]): List[(String,Int)] = {
 
     val tx = graphDb.beginTx()
     val synsetNames = options.values.flatten.toSet
     val synsetsOffsets = synsetNames map ((s: String) => getSynset(s).getOffset) mkString(",")
 
     val nodes = synsetNames map ((s: String) => getSynsetNode(s))
+    val resolvedNodes = resolvedMap.values.flatten.toSet map ((s: String) => getSynsetNode(s))
+
 
     var mapOfSynsetOffset = Map[Long,String]()
 
@@ -130,18 +146,18 @@ object Neo4JGraphService {
     //filter out nodes that have only 1 synset
     for(x <- nodes) {
       tm(x.getProperty("offset").asInstanceOf[Long]) = 0
-      for(y <- nodes) {
+      for(y <- nodes ++ resolvedNodes) {
         //don't connect node to self and also don't bother comparing different pos (performance optimization)
          if( (x.getProperty("offset") != (y.getProperty("offset")) )){ //&& (x.getProperty("pos").asInstanceOf[String].equals(y.getProperty("pos").asInstanceOf[String]))){
-           val paths = getTraverser(x,y,6).asScala
+           val paths = getTraverser(x,y,5).asScala
            if(paths.size > 0){
              tm(x.getProperty("offset").asInstanceOf[Long]) += 1
+             println(s"${x.getProperty("synsetNames").asInstanceOf[Array[String]](0)} -- ${paths.head.length()} -> ${y.getProperty("synsetNames").asInstanceOf[Array[String]](0)}")
            }
          }
       }
     }
     tx.close()
-
 
     val result = tm.map(t => (mapOfSynsetOffset.get(t._1).get, t._2)).toList.sortBy({_._2}).reverse
     result foreach println
