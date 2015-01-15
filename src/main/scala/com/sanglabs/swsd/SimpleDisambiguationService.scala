@@ -41,7 +41,7 @@ object SimpleDisambiguationService {
       val compoundedWords = ListBuffer[WordAnalysis]()
       var index = 0
       for ( (f,s) <- sentence.words zip sentence.words.drop(1) ) {
-        println(f.word + "  " + s.word)
+        logger.trace(f.word + "  " + s.word)
         index+=1
         if (f.pos != null && s.pos != null && f.stanfordPOS.startsWith("NN") && s.stanfordPOS.startsWith("NN") && f.stanfordPOS.equals(s.stanfordPOS)) {
           val compoundWord = StringBuilder.newBuilder.append(f.word).append(" ").append(s.word).toString()
@@ -85,7 +85,7 @@ object SimpleDisambiguationService {
           }
 
         }
-        logger.info(s"$wordAnalysis => ${options.mkString(", ")}")
+        logger.debug(s"$wordAnalysis => ${options.mkString(", ")}")
         mapOfOptions += (wordAnalysis -> options)
         options = List[String]()
       }

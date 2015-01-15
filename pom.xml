@@ -23,6 +23,16 @@
 			<version>${scala.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.wsd</groupId>
+			<artifactId>de.tudarmstadt.ukp.dkpro.wsd.core</artifactId>
+			<version>1.2.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.wsd</groupId>
+			<artifactId>de.tudarmstadt.ukp.dkpro.wsd.si.wordnet</artifactId>
+			<version>1.2.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>net.sf.extjwnl</groupId>
 			<artifactId>extjwnl</artifactId>
 			<version>1.6.10</version>

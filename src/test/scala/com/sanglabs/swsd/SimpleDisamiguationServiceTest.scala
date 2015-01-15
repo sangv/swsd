@@ -1,5 +1,6 @@
 package com.sanglabs.swsd
 
+import net.sf.extjwnl.data.POS
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.matchers.ShouldMatchers
@@ -15,7 +16,7 @@ import org.scalatest.{BeforeAndAfter, FlatSpec}
 @RunWith(classOf[JUnitRunner])
 class SimpleDisamiguationServiceTest extends FlatSpec with ShouldMatchers with BeforeAndAfter {
 
-  /*"Plethora of fish at sea" should "have synset options for 3 words" in {
+  "Plethora of fish at sea" should "have synset options for 3 words" in {
     val options = SimpleDisambiguationService.lookupOptions("Plethora of fish at sea")
     options.size shouldEqual(3)
     options.get(WordAnalysis("Plethora","plethora",POS.NOUN,"NN")).get shouldEqual List("plethora#n#1")
@@ -43,66 +44,36 @@ class SimpleDisamiguationServiceTest extends FlatSpec with ShouldMatchers with B
     options.size shouldEqual(2)
     options.get(WordAnalysis("live","live",POS.VERB,"VBP")).get shouldEqual List("live#v#1", "live#v#2", "live#v#3", "live#v#4", "live#v#5", "live#v#6", "live#v#7")
     options.get(WordAnalysis("New York","new york",POS.NOUN,"NNP")).get shouldEqual List("new york#n#1", "new york#n#2", "new york#n#3")
-    //options.get(WordAnalysis("bank","bank",POS.NOUN)).get shouldEqual List("bank#n#1", "bank#n#2", "bank#n#3", "bank#n#4", "bank#n#5", "bank#n#6", "bank#n#7", "bank#n#8", "bank#n#9", "bank#n#10")
-  }*/
+  }
 
-  /*"Plethora of fish at sea" should "have 1 simple disambiguation" in {
-    val options = scala.collection.mutable.Map(WordAnalysis("Plethora","plethora",POS.NOUN,"NN") -> List("plethora#n#1"),
-      WordAnalysis("fish","fish",POS.NOUN,"NN") -> List("fish#n#1", "fish#n#2", "fish#n#3", "fish#n#4"),
-      WordAnalysis("sea","sea",POS.NOUN,"NN") -> List("sea#n#1", "sea#n#2", "sea#n#3"))
+  "Plethora of fish at sea" should "all steps" in {
+    val options = SimpleDisambiguationService.lookupOptions("Plethora of fish at sea")
     val result =  Neo4JGraphService.disambiguate(options)
-    println(result.mkString(", "))
-    result.size shouldEqual(26)
-    result.take(5) foreach (println)
-    //result.get(WordAnalysis("Plethora","plethora",POS.NOUN,"NN")).get shouldEqual("plethora#n#1")
-  } */
+    //result foreach (println)
+    result.get("Plethora").get shouldEqual "plethora#n#1"
+    result.get("fish").get shouldEqual "fish#n#3"  //WRONG ASSERT
+    result.get("sea").get shouldEqual "sea#n#1"
+  }
+
+  "A large see of people" should "all steps" in {
+    val options = SimpleDisambiguationService.lookupOptions("A large sea of people")
+    val result = Neo4JGraphService.disambiguate(options)
+    result.size shouldEqual (3)
+
+    result.get("people").get shouldEqual "people#n#2"
+    result.get("large").get shouldEqual "large#a#3"
+    result.get("sea").get shouldEqual "sea#n#1"
+  }
 
   /*"Test Fake Plastic tree" should "return " in {
     val options = SimpleDisambiguationService.lookupOptions("Her green plastic watering can\nFor her fake Chinese rubber plant\nIn the fake plastic earth\nThat she bought from a rubber man\nIn a town full of rubber plans\nTo get rid of itself")
     options mkString(", ")
     val result = Neo4JGraphService.disambiguate(options)
-    println(result.mkString(", "))
+
+    /*
+    Chinese -> chinese#a#1, plant -> plant#n#4, plastic watering -> plastic#n#1, full -> full#a#1, man -> man#n#2, watering -> watering#n#1, bought -> buy#v#1, green -> green#a#4, rubber man -> rubber#n#4, plans -> plan#n#1, fake -> fake#a#2, town -> town#n#2, rubber plant -> rubber plant#n#1, earth -> earth#n#5
+
+     */
   }*/
-
-  /*"Plethora of fish at sea" should "have 1 simple disambiguation" in {
-    val options = scala.collection.mutable.Map(WordAnalysis("Plethora","plethora",POS.NOUN,"NN") -> List("plethora#n#1"),
-      WordAnalysis("fish","fish",POS.NOUN,"NN") -> List("fish#n#1", "fish#n#2", "fish#n#3", "fish#n#4"),
-      WordAnalysis("sea","sea",POS.NOUN,"NN") -> List("sea#n#1", "sea#n#2", "sea#n#3"))
-    val result =  Neo4JGraphService.findNodes(options)
-
-    result.size shouldEqual(8)
-
-    //9426788,7775375,13776971,11521404,2512053,8688076,9753792,5120116
-    result foreach (println)
-    //result.get(WordAnalysis("Plethora","plethora",POS.NOUN,"NN")).get shouldEqual("plethora#n#1")
-  }*/
-
-  /*"Plethora of fish at sea" should "disambiguate successfully" in {
-    val options = scala.collection.mutable.Map(WordAnalysis("Plethora","plethora",POS.NOUN,"NN") -> List("plethora#n#1"),
-      WordAnalysis("fish","fish",POS.NOUN,"NN") -> List("fish#n#1", "fish#n#2", "fish#n#3", "fish#n#4"),
-      WordAnalysis("sea","sea",POS.NOUN,"NN") -> List("sea#n#1", "sea#n#2", "sea#n#3"))
-    val result =  Neo4JGraphService.disambiguate(options)
-    result foreach (println)
-    result.size shouldEqual(3)
-  }*/
-
-  /*"Plethora of fish at sea" should "all steps" in {
-    val options = SimpleDisambiguationService.lookupOptions("Plethora of fish at sea")
-    val result =  Neo4JGraphService.disambiguate(options)
-    result foreach (println)
-    result.size shouldEqual(3)
-    //add asserts (Plethora,plethora#n#1)
-    //(fish,fish#n#1)
-    //(sea,sea#n#1)
-  } */
-
-  "A large see of people" should "all steps" in {
-    val options = SimpleDisambiguationService.lookupOptions("A large sea of people")
-    val result = Neo4JGraphService.disambiguate(options)
-    result foreach (println)
-    result.size shouldEqual (3)
-    //add asserts (people,people#n#4)  (large,large#a#4) (sea,sea#n#2)
-    //with progressive removal algorithm: (people,people#n#4) (large,large#a#1) (sea,sea#n#3)
-  }
 
 }

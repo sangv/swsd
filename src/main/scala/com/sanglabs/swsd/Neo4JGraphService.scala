@@ -30,6 +30,8 @@ object Neo4JGraphService {
 
   val executionEngine = new ExecutionEngine(graphDb)
 
+  var cacheMap = Map[String,Int]() //FIXME bad idea to put a shared mutable variable
+
   private val synsetRelationshipType = new RelationshipType {
     override def name(): String = "Synset"
   }
@@ -68,7 +70,7 @@ object Neo4JGraphService {
   }
 
   def getHypernymNode(node: Node): Node = {
-    printSynsetNode(node)
+
     val tx = graphDb.beginTx()
     if (node.hasRelationship(synsetRelationshipType)) {
       val iter: java.util.Iterator[Relationship] = node.getRelationships(synsetRelationshipType, Direction.OUTGOING).iterator
@@ -106,25 +108,25 @@ object Neo4JGraphService {
 
     var revMap = Map[String,WordAnalysis]()
     options.keys foreach{ k => {val values = options.get(k).get; values foreach {(v:String) => revMap += (v -> k)}}}
-    //val revMap: Map[String,WordAnalysis] = options.map({(x) => {x.swap._1 map (y => {(y -> x._1)})}})
-
-
-    //don't send just the unresolved map because everything is needed to create the graph
-
-    //TODO after every step of resolving, run it with that with the other options for that node removed
-    //Get the top scored analysis and rerun the whole thing again (add it to resolvedmap) - recursively
-    //unresolvedMap.keys foreach (x => { result += ( x.word -> {synsetScores.filter(y => unresolvedMap.get(x).get.contains(y._1))}.head._1)})
-
 
     while (unresolvedMap != null && unresolvedMap.size > 0) {
       val synsetScores = findNodes(resolvedMap,unresolvedMap)
+      val topSynsetScoreMap = unresolvedMap.filter(_._2.contains(synsetScores.head._1))
+
+
+      val scoresOfTopSynset: List[Int] = synsetScores.filter(y =>  { topSynsetScoreMap.values.flatten.toList.contains(y._1) }).map(_._2)
+
+      logger.info(s"${scoresOfTopSynset.mkString(", ")} for ${revMap.get(synsetScores.head._1).get}")
+      if(scoresOfTopSynset.min == scoresOfTopSynset.max) {
+        //if max is equal to min, use most frequent usage because there is nothing to be determined from the map
+        logger.warn(s"Max is same as min") //FIXME
+      } else {
+        resolvedMap += (revMap.get(synsetScores.head._1).get -> List(synsetScores.head._1))
+      }
+
       unresolvedMap = unresolvedMap.filterNot(_._2.contains(synsetScores.head._1))
 
-      //check the scores - if max is equal to min, use most frequent usage or mark it as unresolved
-      //synsetScores.groupBy(_._1)
-
-      resolvedMap += (revMap.get(synsetScores.head._1).get -> List(synsetScores.head._1))
-      println(s"Done resolving ${synsetScores.head} for ${revMap.get(synsetScores.head._1).get}")
+      logger.debug(s"Done resolving ${synsetScores.head} for ${revMap.get(synsetScores.head._1).get}")
     }
     //Add a step that puts a minimum threshold on the score and use that to just get the most frequent usage
     resolvedMap foreach (x => { result += (x._1.word -> x._2.head) } )
@@ -152,11 +154,21 @@ object Neo4JGraphService {
       tm(x.getProperty("offset").asInstanceOf[Long]) = 0
       for(y <- nodes ++ resolvedNodes) {
         //don't connect node to self and also don't bother comparing different pos (performance optimization)
-         if( (x.getProperty("offset") != (y.getProperty("offset")) )){ //&& (x.getProperty("pos").asInstanceOf[String].equals(y.getProperty("pos").asInstanceOf[String]))){
-           val paths = getTraverser(x,y,5).asScala
-           if(paths.size > 0){
-             tm(x.getProperty("offset").asInstanceOf[Long]) += 1
-             println(s"${x.getProperty("synsetNames").asInstanceOf[Array[String]](0)} -- ${paths.head.length()} -> ${y.getProperty("synsetNames").asInstanceOf[Array[String]](0)}")
+         val xoffset = x.getProperty("offset").asInstanceOf[Long]
+         val yoffset = y.getProperty("offset").asInstanceOf[Long]
+         if( (xoffset != yoffset ) && (x.getProperty("pos").asInstanceOf[String].equals(y.getProperty("pos").asInstanceOf[String]))){
+           val cacheKey = xoffset + "_" + yoffset
+           if(cacheMap.contains(cacheKey) && cacheMap.get(cacheKey).get >= 0) {
+             tm(xoffset) += 1
+           } else {
+             val paths = getTraverser(x, y, 5).asScala
+             if (paths.size > 0) {
+               tm(xoffset) += 1
+               logger.debug(s"${x.getProperty("synsetNames").asInstanceOf[Array[String]](0)} -- ${paths.head.length()} -> ${y.getProperty("synsetNames").asInstanceOf[Array[String]](0)}")
+               cacheMap += (cacheKey -> paths.head.length())
+             } else {
+               cacheMap += (cacheKey -> -1)
+             }
            }
          }
       }
@@ -164,7 +176,7 @@ object Neo4JGraphService {
     tx.close()
 
     val result = tm.map(t => (mapOfSynsetOffset.get(t._1).get, t._2)).toList.sortBy({_._2}).reverse
-    result foreach println
+
     result
 
   }
@@ -178,7 +190,7 @@ object Neo4JGraphService {
 
     val paths = getTraverser(startNode,endNode,maxDepth).asScala
     for(path:Path <- paths) {
-      println(path.nodes().iterator().asScala.toList map(_.getProperty("synsetNames").asInstanceOf[Array[String]](0)) mkString(", "))
+      logger.debug(path.nodes().iterator().asScala.toList map(_.getProperty("synsetNames").asInstanceOf[Array[String]](0)) mkString(", "))
     }
 
     if(paths != null && paths.size > 0)
