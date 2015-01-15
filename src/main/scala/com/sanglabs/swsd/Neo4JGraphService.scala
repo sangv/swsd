@@ -104,8 +104,12 @@ object Neo4JGraphService {
     var result = Map[String,String]()
     var (resolvedMap, unresolvedMap) = options.partition(x => x._2.length == 1)
 
+    var revMap = Map[String,WordAnalysis]()
+    options.keys foreach{ k => {val values = options.get(k).get; values foreach {(v:String) => revMap += (v -> k)}}}
+    //val revMap: Map[String,WordAnalysis] = options.map({(x) => {x.swap._1 map (y => {(y -> x._1)})}})
 
-     //don't send just the unresolved map because everything is needed to create the graph
+
+    //don't send just the unresolved map because everything is needed to create the graph
 
     //TODO after every step of resolving, run it with that with the other options for that node removed
     //Get the top scored analysis and rerun the whole thing again (add it to resolvedmap) - recursively
@@ -119,8 +123,8 @@ object Neo4JGraphService {
       //check the scores - if max is equal to min, use most frequent usage or mark it as unresolved
       //synsetScores.groupBy(_._1)
 
-      (options.filter(_._2.contains(synsetScores.head._1))) foreach (x => { resolvedMap += (x._1 -> List(synsetScores.head._1))})
-      println(s"Done resolving ${synsetScores.head} for ${options.filter(_._2.contains(synsetScores.head._1))}")
+      resolvedMap += (revMap.get(synsetScores.head._1).get -> List(synsetScores.head._1))
+      println(s"Done resolving ${synsetScores.head} for ${revMap.get(synsetScores.head._1).get}")
     }
     //Add a step that puts a minimum threshold on the score and use that to just get the most frequent usage
     resolvedMap foreach (x => { result += (x._1.word -> x._2.head) } )
