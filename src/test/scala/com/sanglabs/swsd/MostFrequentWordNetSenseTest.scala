@@ -1,4 +1,3 @@
-// Copyright (c) 2012 Kenzie Lane Mosaic, LLC. All rights reserved.
 package com.sanglabs.swsd
 
 import java.net.URL
