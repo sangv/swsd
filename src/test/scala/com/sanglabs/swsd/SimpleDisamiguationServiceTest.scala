@@ -6,6 +6,8 @@ import org.scalatest.junit.JUnitRunner
 import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.{BeforeAndAfter, FlatSpec}
 
+import scala.collection.JavaConverters._
+
 /**
  *
  * The SimpleDisamiguationServiceTestSpec 
@@ -63,6 +65,19 @@ class SimpleDisamiguationServiceTest extends FlatSpec with ShouldMatchers with B
     result.get("people").get shouldEqual "people#n#2"
     result.get("large").get shouldEqual "large#a#3"
     result.get("sea").get shouldEqual "sea#n#1"
+  }
+
+
+  "Going to deposit some money at the bank" should "disambiguate correctly" in {
+    var list: List[WordAnalysis] = List[WordAnalysis]()
+    list :+= WordAnalysis("deposit","deposit",POS.VERB,"VB")
+    list :+= WordAnalysis("money","money",POS.NOUN,"NN")
+    //list :+= WordAnalysis("river","river",POS.NOUN,"NN")
+    list :+= WordAnalysis("bank","bank",POS.NOUN,"NN")
+    val result = DKProWSDService.disambiguate(list).asScala
+
+    result foreach (a => a._2.asScala foreach(b => println(s"${a._1} => ${b._1} with score ${b._2}")))
+    println("Done")
   }
 
   /*"Test Fake Plastic tree" should "return " in {

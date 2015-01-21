@@ -1,7 +1,7 @@
 package com.sanglabs.swsd
 
 import edu.uci.ics.jung.algorithms.scoring.PageRank
-import edu.uci.ics.jung.graph.{DirectedSparseGraph, Graph}
+import edu.uci.ics.jung.graph.{Graph, UndirectedSparseGraph}
 import net.sf.extjwnl.data.POS
 
 import scala.collection.immutable.ListMap
@@ -18,7 +18,8 @@ object TextRankImpl {
   def calculate(text: String): ListMap[WordAnalysis,Double] =
   {
 
-    val graph: Graph[WordAnalysis, String] = new DirectedSparseGraph[WordAnalysis, String]();
+    //switch between directed and undirected
+    val graph: Graph[WordAnalysis, String] = new UndirectedSparseGraph[WordAnalysis, String]()
 
     var outerEdgeMap = Map[WordAnalysis, WordAnalysis]()
 
