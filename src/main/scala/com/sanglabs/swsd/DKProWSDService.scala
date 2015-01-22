@@ -6,6 +6,10 @@ import de.tudarmstadt.ukp.dkpro.wsd.graphconnectivity.algorithm.{DegreeCentralit
 import de.tudarmstadt.ukp.dkpro.wsd.si.wordnet.WordNetSenseKeySenseInventory
 import de.tudarmstadt.ukp.dkpro.wsd.{Pair, UnorderedPair}
 import edu.uci.ics.jung.graph.UndirectedGraph
+import grizzled.slf4j.Logger
+
+import scala.collection.JavaConverters._
+import scala.collection.immutable.Map
 
 /**
  *
@@ -16,12 +20,16 @@ import edu.uci.ics.jung.graph.UndirectedGraph
  */
 object DKProWSDService {
 
-  lazy val graph = deserializeGraph("/Users/sang/Temp/swsd/data/DKProWSD_SK_graph.ser")
+  val graph = deserializeGraph("/Users/sang/Temp/swsd/data/DKProWSD_SK_graph.ser")
 
   val inventory: WordNetSenseKeySenseInventory = new WordNetSenseKeySenseInventory(new FileInputStream("/Users/sang/Temp/swsd/data/file_properties.xml"))
   inventory.setUndirectedGraph(graph)
 
   val wsdAlgorithm: DegreeCentralityWSD = new DegreeCentralityWSD(inventory)
+
+  val SenseIdRegex =  "([0-9]+)([n|v|a|r])".r
+
+  val logger = Logger[this.type]
 
   val posConverter = Map[net.sf.extjwnl.data.POS,de.tudarmstadt.ukp.dkpro.wsd.si.POS](
     net.sf.extjwnl.data.POS.ADJECTIVE -> de.tudarmstadt.ukp.dkpro.wsd.si.POS.ADJ,
@@ -41,7 +49,7 @@ object DKProWSDService {
   //wsdAlgorithm.setGraphVisualizer(g)
   wsdAlgorithm.setSearchDepth(4)
 
-  def disambiguate(text: List[WordAnalysis]) = {
+  def disambiguate(text: List[WordAnalysis]): Map[String,String] = {
 
 
     val sentence: java.util.Collection[Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS]] = new java.util.ArrayList[Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS]]
@@ -51,14 +59,31 @@ object DKProWSDService {
     }
 
 
-    val dabMap = wsdAlgorithm.getDisambiguation(sentence);
-    dabMap
+    val dabMap = wsdAlgorithm.getDisambiguation(sentence).asScala
+
+    var result = Map[String,String]()
+
+    dabMap foreach (a => a._2.asScala foreach(b => {
+      logger.info(s"${a._1} => ${b._1} with score ${b._2}")
+    }))
+
+    dabMap foreach(a => {
+      val synset = a._2.asScala.maxBy(_._2)._1
+      result += (a._1.getFirst -> synset)
+    })
+
+    result.values.foreach(senseId => {
+      val SenseIdRegex(offset,pos) = inventory.getWordNetSynsetAndPos(senseId)
+      logger.info("{} => {}",senseId,WordnetDictionaryService.getSynsetAt(pos,offset.toLong))
+    })
+
+    result
   }
 
 
   def deserializeGraph (serializedGraphFilename: String): UndirectedGraph[String, UnorderedPair[String]] = {
 
-    println("Reading graph...")
+    println("Reading graph...") //TODO use logger
     val graphfile: File = new File(serializedGraphFilename)
     if (graphfile.exists == false) {
       return null

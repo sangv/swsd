@@ -23,6 +23,10 @@ object WordnetDictionaryService {
     dictionary.getSynsetAt(POS.getPOSForKey(pos), offset)
   }
 
+  def getSynsetAt(pos: POS, offset: Long): Synset = {
+    dictionary.getSynsetAt(pos, offset)
+  }
+
   def indexWord(synsetPOS: POS, synsetWord:String) = {
     dictionary.getIndexWord(synsetPOS, synsetWord)
   }
