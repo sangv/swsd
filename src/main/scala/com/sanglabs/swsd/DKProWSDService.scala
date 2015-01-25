@@ -7,6 +7,7 @@ import de.tudarmstadt.ukp.dkpro.wsd.si.wordnet.WordNetSenseKeySenseInventory
 import de.tudarmstadt.ukp.dkpro.wsd.{Pair, UnorderedPair}
 import edu.uci.ics.jung.graph.UndirectedGraph
 import grizzled.slf4j.Logger
+import net.sf.extjwnl.data.Word
 
 import scala.collection.JavaConverters._
 import scala.collection.immutable.Map
@@ -54,8 +55,10 @@ object DKProWSDService {
 
     val sentence: java.util.Collection[Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS]] = new java.util.ArrayList[Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS]]
 
-    for(wordAnalysis <- text) {
-        sentence.add(new Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS](wordAnalysis.word, posConverter.get(wordAnalysis.pos).get))
+    //val baseFormText = text map ( w => WordAnalysis(w.word,WordnetDictionaryService.getBaseForm(w.pos,w.lemma),w.pos,w.stanfordPOS))
+    for(w <- text) {
+        sentence.add(new Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS](WordnetDictionaryService.getBaseForm(w.pos,w.word), posConverter.get(w.pos).get))
+        //TODO reset lemma in WordAnalysis as well
     }
 
 
@@ -63,21 +66,27 @@ object DKProWSDService {
 
     var result = Map[String,String]()
 
-    dabMap foreach (a => a._2.asScala foreach(b => {
-      logger.info(s"${a._1} => ${b._1} with score ${b._2}")
-    }))
-
     dabMap foreach(a => {
       val synset = a._2.asScala.maxBy(_._2)._1
       result += (a._1.getFirst -> synset)
     })
 
-    result.values.foreach(senseId => {
+    def synsetFormatForSenseId(senseId: String): String = {
       val SenseIdRegex(offset,pos) = inventory.getWordNetSynsetAndPos(senseId)
-      logger.info("{} => {}",senseId,WordnetDictionaryService.getSynsetAt(pos,offset.toLong))
-    })
 
-    result
+      val synset = WordnetDictionaryService.getSynsetAt(pos,offset.toLong)
+
+      val indexWord = WordnetDictionaryService.indexWord(synset.getPOS,senseId.split("%")(0))
+      var words = List[String]()
+      for(s <- indexWord.getSenses.asScala.find(synset.equals)) {
+        for (w: Word <- synset.getWords.asScala.find(_.getLemma.equalsIgnoreCase(indexWord.getLemma))) {
+            words :+= w.getLemma + "#" + synset.getPOS.getKey + "#" + w.getIndex
+        }
+      }
+      words(0)
+      }
+
+    result mapValues (synsetFormatForSenseId)
   }
 
 

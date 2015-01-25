@@ -65,27 +65,4 @@ class SimpleDisamiguationServiceTest extends FlatSpec with ShouldMatchers with B
     result.get("sea").get shouldEqual "sea#n#1"
   }
 
-
-  "Going to deposit some money at the bank" should "disambiguate correctly" in {
-    var list: List[WordAnalysis] = List[WordAnalysis]()
-    list :+= WordAnalysis("deposit","deposit",POS.VERB,"VB")
-    //list :+= WordAnalysis("money","money",POS.NOUN,"NN")
-    list :+= WordAnalysis("river","river",POS.NOUN,"NN")
-    list :+= WordAnalysis("bank","bank",POS.NOUN,"NN")
-    val result = DKProWSDService.disambiguate(list)
-
-  }
-
-  "Test Fake Plastic tree" should "return " in {
-    val options = SimpleDisambiguationService.lookupOptions("Her green plastic watering can\nFor her fake Chinese rubber plant\nIn the fake plastic earth\nThat she bought from a rubber man\nIn a town full of rubber plans\nTo get rid of itself")
-
-    val result = DKProWSDService.disambiguate(options.keys.toList)
-
-    result.keys.size shouldEqual 9
-
-    //Chinese -> chinese#a#1, plant -> plant#n#4, plastic watering -> plastic#n#1, full -> full#a#1, man -> man#n#2, watering -> watering#n#1, bought -> buy#v#1, green -> green#a#4, rubber man -> rubber#n#4, plans -> plan#n#1, fake -> fake#a#2, town -> town#n#2, rubber plant -> rubber plant#n#1, earth -> earth#n#5
-
-
-  }
-
 }
