@@ -31,6 +31,18 @@ object StanfordNLPService {
 
   val logger = Logger[this.type]
 
+  def sentences(text: String): List[String] = {
+
+    val document: Annotation = new Annotation(text)
+
+    // run all Annotators on this text
+    stanfordCoreNLPPipeline.annotate(document)
+
+    //document.get(classOf[SentencesAnnotation]).asScala map (p => {p.get(classOf[TokensAnnotation]).asScala.flatten.mkString(" ")})
+
+    document.get(classOf[SentencesAnnotation]).asScala map (_.toString) toList
+  }
+
 
   def analyze(documentText: String): List[Sentence] =
   {
