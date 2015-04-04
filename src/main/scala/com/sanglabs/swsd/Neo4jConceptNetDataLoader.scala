@@ -3,7 +3,7 @@ package com.sanglabs.swsd
 import grizzled.slf4j.Logger
 import org.neo4j.cypher.ExecutionEngine
 import org.neo4j.graphdb.factory.GraphDatabaseFactory
-import org.neo4j.graphdb.{Node, RelationshipType, Transaction}
+import org.neo4j.graphdb.{Direction, Node, RelationshipType, Transaction}
 
 import scala.io.Source
 
@@ -22,7 +22,7 @@ object Neo4jConceptNetDataLoader extends App {
 
   val logger = Logger[this.type]
 
-  val DEST: String = "data/conceptnetgraph.db"
+  val DEST: String = "data/conceptnetlightgraph.db"
 
   val graphDb = new GraphDatabaseFactory().newEmbeddedDatabase(DEST)
 
@@ -57,6 +57,7 @@ object Neo4jConceptNetDataLoader extends App {
             newNode.setProperty("name",name)
             newNode.setProperty("source",source)
             conceptNetIndex.add(newNode,"name",name)
+            conceptNetIndex.add(newNode,"source",source)
             logger.debug(s"${newNode.getProperty("name")} created")
             newNode
           }
@@ -82,24 +83,19 @@ object Neo4jConceptNetDataLoader extends App {
         val srcNode = getOrCreateConceptNetNode(src,source)
         val destNode = getOrCreateConceptNetNode(dest,source)
 
-        val relRelation = srcNode.createRelationshipTo(destNode,relRelationshipType)
-        relRelation.setProperty("name",rel)
-        relRelation.setProperty("weight",weight)
-        logger.debug(s"Done persisting ${src} => ${rel} => ${dest}")
-
         //srcNode.getRelationships(Direction.OUTGOING,relRelationshipType).asScala find {_.getEndNode == destNode}
-        /*import scala.collection.JavaConverters._
+        import scala.collection.JavaConverters._
         srcNode.getRelationships(Direction.OUTGOING,relRelationshipType).asScala find {_.getEndNode == destNode} match {
           case None => {
-            val rel = srcNode.createRelationshipTo(destNode,relRelationshipType)
-            rel.setProperty("name",rel)
-            rel.setProperty("weight",weight)
+            val relRelationship = srcNode.createRelationshipTo(destNode,relRelationshipType)
+            relRelationship.setProperty("name",rel)
+            relRelationship.setProperty("weight",weight)
             logger.debug(s"Done persisting ${src} => ${rel} => ${dest}")
           }
           case _ => {
             logger.debug(s"${src} => ${rel} => ${dest} already exists")
           }
-        }*/
+        }
         tx.success()
       }
       catch {
@@ -130,15 +126,25 @@ object Neo4jConceptNetDataLoader extends App {
       })
 
 
-      val (wordNetEnglishLines, wikiEnglishLines) = otherEnglishLines partition (l => {
+      val (wordNetEnglishLines, wikiAndOtherEnglishLines) = otherEnglishLines partition (l => {
         l._1.startsWith("/d/wordnet/")
       })
 
-      println(s"${conceptNetEnglishLines.length}+${wordNetEnglishLines.length}+${wikiEnglishLines.length}=${englishLinesList.length}")
+      val dbpediaEnglishLines = wikiAndOtherEnglishLines filter (l => {
+        l._1.startsWith("/d/dbpedia/")
+      })
+
+      val wiktionaryEnglishLines = wikiAndOtherEnglishLines filter (l => {
+        l._1.startsWith("/d/wiktionary/en/")
+      })
+
+      println(s"${conceptNetEnglishLines.length}+${wordNetEnglishLines.length}+${dbpediaEnglishLines.length}+${wiktionaryEnglishLines.length}+${wikiAndOtherEnglishLines.length}=${englishLinesList.length}")
 
       wordNetEnglishLines foreach { l => {saveTriple(l._2,l._3,l._4,l._5.toDouble,l._1)} }
 
-      //wordNetEnglishLines foreach { l => {saveTriple(l._2,l._3,l._4)} }
+      conceptNetEnglishLines foreach { l => {saveTriple(l._2,l._3,l._4,l._5.toDouble,l._1)} }
+
+      //wiktionaryEnglishLines foreach { l => {saveTriple(l._2,l._3,l._4,l._5.toDouble,l._1)} }
 
       println(f)
     }

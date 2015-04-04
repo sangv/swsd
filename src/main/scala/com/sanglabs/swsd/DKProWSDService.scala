@@ -1,12 +1,9 @@
 package com.sanglabs.swsd
 
-import java.io._
-
-import de.tudarmstadt.ukp.dkpro.wsd.graphconnectivity.algorithm.{DegreeCentralityWSD, JungGraphVisualizer}
-import de.tudarmstadt.ukp.dkpro.wsd.si.wordnet.WordNetSenseKeySenseInventory
+import de.tudarmstadt.ukp.dkpro.wsd.graphconnectivity.algorithm.DegreeCentralityWSD
+import de.tudarmstadt.ukp.dkpro.wsd.si.POS
 import de.tudarmstadt.ukp.dkpro.wsd.{Pair, UnorderedPair}
-import edu.uci.ics.jung.graph.UndirectedGraph
-import grizzled.slf4j.Logger
+import edu.uci.ics.jung.graph.Graph
 import net.sf.extjwnl.data.Word
 
 import scala.collection.JavaConverters._
@@ -19,18 +16,13 @@ import scala.collection.immutable.Map
  * @author Sang Venkatraman
  *
  */
-object DKProWSDService {
-
-  val graph = deserializeGraph("/Users/sang/Temp/swsd/data/DKProWSD_SK_graph.ser")
-
-  val inventory: WordNetSenseKeySenseInventory = new WordNetSenseKeySenseInventory(new FileInputStream("/Users/sang/Temp/swsd/data/file_properties.xml"))
-  inventory.setUndirectedGraph(graph)
+object DKProWSDService extends JungGraphConnectivityService {
 
   val wsdAlgorithm: DegreeCentralityWSD = new DegreeCentralityWSD(inventory)
 
   val SenseIdRegex =  "([0-9]+)([n|v|a|r])".r
 
-  val logger = Logger[this.type]
+  val minDegree = 1
 
   val posConverter = Map[net.sf.extjwnl.data.POS,de.tudarmstadt.ukp.dkpro.wsd.si.POS](
     net.sf.extjwnl.data.POS.ADJECTIVE -> de.tudarmstadt.ukp.dkpro.wsd.si.POS.ADJ,
@@ -39,35 +31,31 @@ object DKProWSDService {
     net.sf.extjwnl.data.POS.ADVERB -> de.tudarmstadt.ukp.dkpro.wsd.si.POS.ADV
   )
 
-  // Set up a graph visualizer
-  val g: JungGraphVisualizer = new JungGraphVisualizer
-  inventory.setSenseDescriptionFormat("<html><b>%w</b><br />%d</html>")
-  g.setAnimationDimensions(1000, 700)
-  g.setAnimationDelay(0)
-  g.setInteractive(false)
 
   // Bind the visualizer to the algorithm
   //wsdAlgorithm.setGraphVisualizer(g)
   wsdAlgorithm.setSearchDepth(4)
 
-  def disambiguate(text: List[WordAnalysis]): Map[String,String] = {
+  def disambiguate(text: List[WordAnalysis], useOwn: Boolean = false): Map[String,String] = {
 
 
     val sentence: java.util.Collection[Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS]] = new java.util.ArrayList[Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS]]
 
     //val baseFormText = text map ( w => WordAnalysis(w.word,WordnetDictionaryService.getBaseForm(w.pos,w.lemma),w.pos,w.stanfordPOS))
     for(w <- text) {
-        sentence.add(new Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS](WordnetDictionaryService.getBaseForm(w.pos,w.word), posConverter.get(w.pos).get))
+        sentence.add(new Pair[String, POS](WordnetDictionaryService.getBaseForm(w.pos,w.word), posConverter.get(w.pos).get))
         //TODO reset lemma in WordAnalysis as well
     }
 
-
-    val dabMap = wsdAlgorithm.getDisambiguation(sentence).asScala
+    val dabMap: Map[Pair[String, POS], Map[String, Double]] = useOwn match {
+      case true => ownDisambiguation(sentence)
+      case false => wsdAlgorithm.getDisambiguation(sentence).asScala.toMap mapValues(_.asScala.toMap mapValues(_.toDouble))
+    }
 
     var result = Map[String,String]()
 
     dabMap foreach(a => {
-      val synset = a._2.asScala.maxBy(_._2)._1
+      val synset = a._2.maxBy(_._2)._1
       result += (a._1.getFirst -> synset)
     })
 
@@ -90,33 +78,53 @@ object DKProWSDService {
   }
 
 
-  def deserializeGraph (serializedGraphFilename: String): UndirectedGraph[String, UnorderedPair[String]] = {
+  ///
 
-    println("Reading graph...") //TODO use logger
-    val graphfile: File = new File(serializedGraphFilename)
-    if (graphfile.exists == false) {
-      return null
+  def ownDisambiguation(sods: java.util.Collection[Pair[String, POS]], dGraph: Graph[String, UnorderedPair[String]]) : Map[Pair[String, POS], Map[String, Double]] = {
+
+    var solutions: Map[Pair[String, POS], Map[String, Double]] = Map[Pair[String, POS], Map[String, Double]]()
+    var disambiguatedCount: Int = 0
+
+
+    for (wsdItem <- sods.asScala) {
+      val senses: List[String] = inventory.getSenses(wsdItem.getFirst, wsdItem.getSecond).asScala.toList
+      var highestDegree: String = null
+
+      for (sense <- senses) {
+
+        (dGraph.degree(sense) < minDegree) match {
+          case false => {
+            if (highestDegree == null || (dGraph.degree(sense) > dGraph.degree(highestDegree))) {
+              highestDegree = sense
+            }
+          }
+          case true =>
+        }
+
+      }
+      if (highestDegree == null) {
+        logger.error("Failed to disambiguate " + wsdItem)
+      }
+
+      // Note that instead of returning a single mapping to the sense
+      // with the highest score, we could instead return a map of all
+      // senses weighted by their degree (normalized to the maximum
+      // degree). In this case falling back to the most frequent sense
+      // would not be necessary.
+      disambiguatedCount += 1
+      var senseScores: Map[String, Double] = Map[String, Double]()
+      senseScores += (highestDegree -> 1.0)
+      solutions += (wsdItem -> senseScores)
+      logger.info("\"" + wsdItem.getFirst + "\" = " + highestDegree + ": " + inventory.getSenseDescription(highestDegree))
+
     }
-    val fileIn: FileInputStream = new FileInputStream(graphfile)
-    val in: ObjectInputStream = new ObjectInputStream(fileIn)
-    var g: UndirectedGraph[String, UnorderedPair[String]] = null
-    g = in.readObject.asInstanceOf[UndirectedGraph[String, UnorderedPair[String]]]
-    in.close
-    fileIn.close
-    println("Read a graph with " + g.getEdgeCount + " edges and " + g.getVertexCount + " vertices")
-    g
+    logger.info("Disambiguated " + (disambiguatedCount) + " of " + sods.size + " items")
+    return solutions
   }
+  ///
 
-  def produceSerVersion(): Unit ={
-    val si = new WordNetSenseKeySenseInventory(new
-        FileInputStream("/Users/sang/Temp/swsd/data/file_properties.xml"));
-    val g = si.getUndirectedGraph();
-    val fileOut = new
-        FileOutputStream("/Users/sang/Temp/swsd/data/DKProWSD_SK_graph.ser");
-    val out = new ObjectOutputStream(fileOut);
-    out.writeObject(g);
-    out.close();
-    fileOut.close();
-  }
+
+
+
 
 }

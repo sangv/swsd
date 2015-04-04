@@ -67,6 +67,7 @@ object StanfordNLPService {
     for(stanfordSentence: CoreMap <- stanfordSentences) {
 
       val sentence = mutable.ListBuffer[WordAnalysis]()
+
       for (token: CoreLabel <- stanfordSentence.get(classOf[TokensAnnotation]).asScala) {
 
         val pos = convertPOS(token.get(classOf[PartOfSpeechAnnotation]))
@@ -85,4 +86,4 @@ object StanfordNLPService {
 
 case class WordAnalysis(word: String, lemma: String, pos: POS, stanfordPOS: String)
 
-case class Sentence(words: List[WordAnalysis])
+case class Sentence(words: List[WordAnalysis], raw: String = "")
