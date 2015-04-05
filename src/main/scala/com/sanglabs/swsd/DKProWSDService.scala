@@ -31,12 +31,27 @@ object DKProWSDService extends JungGraphConnectivityService {
     net.sf.extjwnl.data.POS.ADVERB -> de.tudarmstadt.ukp.dkpro.wsd.si.POS.ADV
   )
 
+  def synsetFormatForSenseId(senseId: String): String = {
+    val SenseIdRegex(offset,pos) = inventory.getWordNetSynsetAndPos(senseId)
+
+    val synset = WordnetDictionaryService.getSynsetAt(pos,offset.toLong)
+
+    val indexWord = WordnetDictionaryService.indexWord(synset.getPOS,senseId.split("%")(0))
+    var words = List[String]()
+    for(s <- indexWord.getSenses.asScala.find(synset.equals)) {
+      for (w: Word <- synset.getWords.asScala.find(_.getLemma.equalsIgnoreCase(indexWord.getLemma))) {
+        words :+= w.getLemma + "#" + synset.getPOS.getKey + "#" + w.getIndex
+      }
+    }
+    words(0)
+  }
+
 
   // Bind the visualizer to the algorithm
-  //wsdAlgorithm.setGraphVisualizer(g)
+  //wsdAlgorithm.setGraphVisualizer(graphVisualizer)
   wsdAlgorithm.setSearchDepth(4)
 
-  def disambiguate(text: List[WordAnalysis], useOwn: Boolean = false): Map[String,String] = {
+  def rawDisambiguate(text: List[WordAnalysis], useOwn: Boolean = false): Map[String,String] = {
 
 
     val sentence: java.util.Collection[Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS]] = new java.util.ArrayList[Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS]]
@@ -59,21 +74,13 @@ object DKProWSDService extends JungGraphConnectivityService {
       result += (a._1.getFirst -> synset)
     })
 
-    def synsetFormatForSenseId(senseId: String): String = {
-      val SenseIdRegex(offset,pos) = inventory.getWordNetSynsetAndPos(senseId)
 
-      val synset = WordnetDictionaryService.getSynsetAt(pos,offset.toLong)
+    result
+  }
 
-      val indexWord = WordnetDictionaryService.indexWord(synset.getPOS,senseId.split("%")(0))
-      var words = List[String]()
-      for(s <- indexWord.getSenses.asScala.find(synset.equals)) {
-        for (w: Word <- synset.getWords.asScala.find(_.getLemma.equalsIgnoreCase(indexWord.getLemma))) {
-            words :+= w.getLemma + "#" + synset.getPOS.getKey + "#" + w.getIndex
-        }
-      }
-      words(0)
-      }
+  def disambiguate(text: List[WordAnalysis], useOwn: Boolean = false): Map[String,String] = {
 
+    val result = rawDisambiguate(text,useOwn)
     result mapValues (synsetFormatForSenseId)
   }
 
@@ -115,7 +122,7 @@ object DKProWSDService extends JungGraphConnectivityService {
       var senseScores: Map[String, Double] = Map[String, Double]()
       senseScores += (highestDegree -> 1.0)
       solutions += (wsdItem -> senseScores)
-      logger.info("\"" + wsdItem.getFirst + "\" = " + highestDegree + ": " + inventory.getSenseDescription(highestDegree))
+      logger.debug("\"" + wsdItem.getFirst + "\" = " + highestDegree + ": " + inventory.getSenseDescription(highestDegree))
 
     }
     logger.info("Disambiguated " + (disambiguatedCount) + " of " + sods.size + " items")
@@ -123,7 +130,28 @@ object DKProWSDService extends JungGraphConnectivityService {
   }
   ///
 
+  def getCenters(wsds: List[String], dGraph: Graph[String, UnorderedPair[String]]) : Map[String, Double] = {
 
+    var solutions: Map[String, Double] = Map[String, Double]()
+    var disambiguatedCount: Int = 0
+    var highestDegree: String = null
+
+      for (sense <- wsds) {
+        solutions += (sense -> 0.0)
+        (dGraph.degree(sense) < minDegree) match {
+          case false => {
+            if (highestDegree == null || (dGraph.degree(sense) > dGraph.degree(highestDegree))) {
+              highestDegree = sense
+              solutions += (sense -> dGraph.degree(sense))
+            }
+          }
+          case true =>
+        }
+
+      }
+
+    return solutions
+  }
 
 
 

@@ -1,8 +1,9 @@
 package com.sanglabs.swsd
 
-import net.sf.extjwnl.data.POS
 import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.{BeforeAndAfter, FlatSpec}
+
+import scala.collection.immutable.ListMap
 
 /**
  *
@@ -60,7 +61,7 @@ class ConceptExtractionServiceTest extends FlatSpec with ShouldMatchers with Bef
     assert(result === result2)
   }*/
 
-  "Going to deposit some money at the bank" should "disambiguate correctly" in {
+  /*"Going to deposit some money at the bank" should "disambiguate correctly" in {
     var moneybanklist: List[WordAnalysis] = List[WordAnalysis]()
     moneybanklist :+= WordAnalysis("acquirer","acquirer",POS.NOUN,"NN")
     moneybanklist :+= WordAnalysis("bank","bank",POS.NOUN,"NN")
@@ -84,6 +85,40 @@ class ConceptExtractionServiceTest extends FlatSpec with ShouldMatchers with Bef
 
     assert(result2 === result2own)
 
+  } */
+
+  /*"Going to deposit some money at the bank" should "disambiguate correctly" in {
+    var moneybanklist: List[WordAnalysis] = List[WordAnalysis]()
+    moneybanklist :+= WordAnalysis("acquirer","acquirer",POS.NOUN,"NN")
+    moneybanklist :+= WordAnalysis("bank","bank",POS.NOUN,"NN")
+    val result1 = DKProWSDService.rawDisambiguate(moneybanklist)
+    println(result1)
+    result1.get("acquirer").get shouldEqual "acquirer%1:14:02::"
+    result1.get("bank").get shouldEqual "bank%1:14:00::"
+    val centers: Map[String,Double] = DKProWSDService.getCenters(result1.values.toList)
+    println(centers)
+    println("======================================")
+    val sortedCenters = ListMap(centers.toList.sortBy(_._2): _*).toList.reverse
+    println(sortedCenters)
+    println("======================================")
+    println(sortedCenters.take(5))
+    println("Done")
+  }*/
+
+  "Extract concepts from IBM sentence" should "return " in {
+
+
+    val options = SimpleDisambiguationService.lookupOptions(text)
+    val result1 = DKProWSDService.rawDisambiguate(options.keys.toList)
+    println(result1)
+    val centers: Map[String,Double] = DKProWSDService.getCenters(result1.values.toList)
+    println(centers)
+    println("======================================")
+    val sortedCenters = ListMap(centers.toList.sortBy(_._2): _*).toList.reverse
+    println(sortedCenters)
+    println("======================================")
+    println(sortedCenters.take(5))
+    println("Done")
   }
 
 

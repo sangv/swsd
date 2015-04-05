@@ -33,7 +33,7 @@ trait JungGraphConnectivityService {
   val searchDepth: Int = 4 //default 3
 
   // Set up a graph visualizer
-  val graphVisualizer: JungGraphVisualizer = null //new JungGraphVisualizer
+  val graphVisualizer: JungGraphVisualizer = null// new JungGraphVisualizer
   inventory.setSenseDescriptionFormat("<html><b>%w</b><br />%d</html>")
 
   if(graphVisualizer != null) {
@@ -98,6 +98,54 @@ trait JungGraphConnectivityService {
     // Repaint the frame to show the disambiguated senses
     if (graphVisualizer != null) {
       graphVisualizer.refresh
+      Thread.sleep(10000) //TODO do an onmouse click
+    }
+
+
+    return solutions
+  }
+
+  def getCenters(wsds: List[String]): Map[String, Double] = {
+
+    val t0 = System.nanoTime()
+    val siGraph: Graph[String, UnorderedPair[String]] = inventory.getUndirectedGraph
+    val dGraph: Graph[String, UnorderedPair[String]] = new UndirectedSparseGraph[String, UnorderedPair[String]]
+    var sodCount: Int = 0
+
+    if (graphVisualizer != null) {
+      graphVisualizer.initializeColorMap(wsds.size)
+      graphVisualizer.setVertexToolTipTransformer(new VertexToolTipTransformer)
+    }
+
+
+      for (sense <- wsds) {
+        if (graphVisualizer != null) {
+          graphVisualizer.setColor(sense, sodCount)
+        }
+        dGraph.addVertex(sense)
+      }
+
+
+    val s: util.Collection[String] = new util.HashSet[String](dGraph.getVertices)
+
+    for (v <- s.asScala) {
+      logger.debug("Beginning DFS from " + v)
+      val t: util.Collection[String] = new util.HashSet[String](s)
+      t.remove(v)
+      val synsetPath: util.Stack[String] = new util.Stack[String]
+      synsetPath.push(v)
+      dfs(v, t, siGraph, dGraph, synsetPath, new util.Stack[UnorderedPair[String]], searchDepth)
+    }
+    logger.debug(dGraph.toString)
+    val solutions: Map[String, Double] = getCenters(wsds, dGraph)
+
+    val timeElapsed = (System.nanoTime() - t0)/1000000000
+    println(s"Disambiguation took ${timeElapsed} secs")
+
+    // Repaint the frame to show the disambiguated senses
+    if (graphVisualizer != null) {
+      graphVisualizer.refresh
+      Thread.sleep(10000) //TODO do an onmouse click
     }
 
 
@@ -163,7 +211,7 @@ trait JungGraphConnectivityService {
       if (graph.containsEdge(edge) == false) {
         graph.addEdge(edge, edge.getFirst, edge.getSecond)
         if (graphVisualizer != null) {
-          graphVisualizer.animate(graph, edge, edge.getFirst, edge.getSecond)
+          //graphVisualizer.animate(graph, edge, edge.getFirst, edge.getSecond)
         }
       }
     }
@@ -213,4 +261,6 @@ trait JungGraphConnectivityService {
       }
     }
   }
+
+  def getCenters(wsds: List[String], dGraph: Graph[String, UnorderedPair[String]]) : Map[String, Double]
 }
