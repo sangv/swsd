@@ -31,4 +31,16 @@ class TextRankImplTest extends JUnitSuite with ShouldMatchersForJUnit {
 
   }
 
+  @Test
+  def test2() {
+    val result: ListMap[WordAnalysis,Double] = TextRankImpl.calculate(TestText.beautifulDayLyrics)
+
+    println(result.values.foldLeft(0.0)(_ + _))
+
+    val topWords = result.take(5).map(_._1.word).toList
+    println(topWords)
+
+
+  }
+
 }

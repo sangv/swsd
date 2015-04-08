@@ -69,6 +69,39 @@ object Neo4JGraphService {
 
   }
 
+  def getHypernymSynsetNodes(synsetName: String, maxDepth: Int = 20): List[(Long,Array[String])] = {
+    val tx = graphDb.beginTx()
+    var results = List[(Long,Array[String])]()
+
+    try {
+      val nodeOpt = Option(graphDb.index.forNodes("synset").get("synsetNames", synsetName).getSingle)
+      nodeOpt match {
+        case Some(x:Node) => {
+          var node = x
+          results :+= (node.getProperty("offset").asInstanceOf[Long], node.getProperty("synsetNames").asInstanceOf[Array[String]])
+          var parentNode: Node = null
+          var currentDepth = 1
+          while (currentDepth <= maxDepth && (({
+            parentNode = getHypernymNode(node);
+            parentNode
+          })) != null) {
+            currentDepth += 1
+            node = parentNode
+            results :+= (node.getProperty("offset").asInstanceOf[Long], node.getProperty("synsetNames").asInstanceOf[Array[String]])
+          }
+        }
+        case None => return results //return empty results
+      }
+
+      return results
+
+    }
+    finally {
+      tx.close()
+    }
+
+  }
+
   def getHypernymNode(node: Node): Node = {
 
     val tx = graphDb.beginTx()

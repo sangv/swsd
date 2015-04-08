@@ -105,20 +105,77 @@ class ConceptExtractionServiceTest extends FlatSpec with ShouldMatchers with Bef
     println("Done")
   }*/
 
-  "Extract concepts from IBM sentence" should "return " in {
+  /*"Extract concepts from IBM sentence" should "return " in {
 
 
     val options = SimpleDisambiguationService.lookupOptions(text)
-    val result1 = DKProWSDService.rawDisambiguate(options.keys.toList)
-    println(result1)
-    val centers: Map[String,Double] = DKProWSDService.getCenters(result1.values.toList)
-    println(centers)
+    val wsds = DKProWSDService.disambiguate(options.keys.toList).values.toList
+    //TODO keep track of count of occurances
+
+    val listOfLists: List[List[String]] = wsds map {Neo4JGraphService.getHypernymSynsetNodes(_,3) map {_._2.head}}
+
+    //scala it linearly from 1 to 0 and recurse without a search depth - divide 1 by length of list and keep adding
+    var scores = Map[String,Double]()
+
+    //results foreach {r => {println(r._1,r._2 mkString(", "))} }
+    //results.indices.foreach(i => {scores += (results(i) -> (scores.getOrElse(results(i),0.0) + scores(i)))})
+    listOfLists foreach { results =>
+      results.indices.foreach(i => {
+        scores += (results(i) -> (scores.getOrElse(results(i), 0.0) + ((results.length - i) * 1.0 / results.length)))
+      })
+    }
+
+    val sortedScores = ListMap(scores.toList.sortBy(_._2): _*).toList.reverse
+    println(sortedScores.length)
     println("======================================")
-    val sortedCenters = ListMap(centers.toList.sortBy(_._2): _*).toList.reverse
-    println(sortedCenters)
+    println(sortedScores.take(10))
+    println("Done1")
+    println(sortedScores.takeRight(10))
+    println("Done2")
+
+  } */
+
+  implicit def iterebleWithAvg(data:Iterable[Double]) = new {
+    def avg:Double = data.sum / data.size
+  }
+
+  "Beautiful Day song" should "return " in {
+
+
+    val options = SimpleDisambiguationService.lookupOptions(TestText.beautifulDayLyrics)
+    val wsds = DKProWSDService.disambiguate(options.keys.toList).values.toList
+    //TODO keep track of count of occurances
+
+    val listOfLists: List[List[String]] = wsds map {Neo4JGraphService.getHypernymSynsetNodes(_,3) map {_._2.head}}
+
+    //scala it linearly from 1 to 0 and recurse without a search depth - divide 1 by length of list and keep adding
+    var scores = Map[String,List[Double]]()
+
+    //results foreach {r => {println(r._1,r._2 mkString(", "))} }
+    //results.indices.foreach(i => {scores += (results(i) -> (scores.getOrElse(results(i),0.0) + scores(i)))})
+    listOfLists foreach { results =>
+      results.indices.foreach(i => {
+        val currentList: List[Double] = scores.getOrElse(results(i), List[Double]())
+        val score: Double = (results.length - i) * 1.0 / results.length
+        val newList: List[Double] = currentList :+ score
+        scores += (results(i) -> newList)
+      })
+    }
+
+    val sortedScoresByCount = ListMap(scores.toList.sortBy(_._2.length): _*).toList.reverse
     println("======================================")
-    println(sortedCenters.take(5))
-    println("Done")
+    println(sortedScoresByCount.take(5))
+    println("Done1")
+    println(sortedScoresByCount.takeRight(5))
+    println("Done2")
+    val sortedScores = ListMap(scores.toList.sortBy(_._2.avg): _*).toList.reverse
+    println(sortedScores.length,sortedScores)
+    println("======================================")
+    println(sortedScores.take(5))
+    println("Done1")
+    println(sortedScores.takeRight(5))
+    println("Done2")
+   //step 1 relate this to concept net concepts
   }
 
 

@@ -37,6 +37,8 @@ object Neo4jConceptNetDataLoader extends App {
   loadData
   //uri, rel, start, end, context, weight, sources, id, dataset, surfaceText
 
+  case class Relation(source: String, start: String, rel: String, end: String, weight: Double)
+
   graphDb.shutdown()
 
   def loadData = {
@@ -76,24 +78,24 @@ object Neo4jConceptNetDataLoader extends App {
     }
 
 
-    def saveTriple(src: String,rel: String, dest: String, weight: Double, source: String) = {
+    def saveTriple(relation: Relation) = {
       val tx: Transaction = graphDb.beginTx
 
       try {
-        val srcNode = getOrCreateConceptNetNode(src,source)
-        val destNode = getOrCreateConceptNetNode(dest,source)
+        val srcNode = getOrCreateConceptNetNode(relation.start,relation.source)
+        val destNode = getOrCreateConceptNetNode(relation.end,relation.source)
 
         //srcNode.getRelationships(Direction.OUTGOING,relRelationshipType).asScala find {_.getEndNode == destNode}
         import scala.collection.JavaConverters._
         srcNode.getRelationships(Direction.OUTGOING,relRelationshipType).asScala find {_.getEndNode == destNode} match {
           case None => {
             val relRelationship = srcNode.createRelationshipTo(destNode,relRelationshipType)
-            relRelationship.setProperty("name",rel)
-            relRelationship.setProperty("weight",weight)
-            logger.debug(s"Done persisting ${src} => ${rel} => ${dest}")
+            relRelationship.setProperty("name",relation.rel)
+            relRelationship.setProperty("weight",relation.weight)
+            logger.debug(s"Done persisting ${relation.start} => ${relation.rel} => ${relation.end}")
           }
           case _ => {
-            logger.debug(s"${src} => ${rel} => ${dest} already exists")
+            logger.debug(s"${relation.start} => ${relation.rel} => ${relation.end} already exists")
           }
         }
         tx.success()
@@ -116,35 +118,38 @@ object Neo4jConceptNetDataLoader extends App {
         line <- Source.fromFile(directory + f).getLines()
         parts = line.split("\t")
         if (parts.length >= 4 && parts(2).startsWith("/c/en/") && parts(3).startsWith("/c/en/"))
-      } yield (parts(8), parts(2), parts(1), parts(3), parts(5))
+      } yield Relation(parts(8), parts(2), parts(1), parts(3), parts(5).toDouble)
 
       val englishLinesList = List() ++ englishLines
       println(englishLinesList.length)
 
       val (conceptNetEnglishLines, otherEnglishLines) = englishLinesList partition (l => {
-        l._1.startsWith("/d/conceptnet/")
+        l.source.startsWith("/d/conceptnet/")
       })
 
 
       val (wordNetEnglishLines, wikiAndOtherEnglishLines) = otherEnglishLines partition (l => {
-        l._1.startsWith("/d/wordnet/")
+        l.source.startsWith("/d/wordnet/")
       })
 
       val dbpediaEnglishLines = wikiAndOtherEnglishLines filter (l => {
-        l._1.startsWith("/d/dbpedia/")
+        l.source.startsWith("/d/dbpedia/")
       })
 
       val wiktionaryEnglishLines = wikiAndOtherEnglishLines filter (l => {
-        l._1.startsWith("/d/wiktionary/en/")
+        l.source.startsWith("/d/wiktionary/en/")
       })
 
       println(s"${conceptNetEnglishLines.length}+${wordNetEnglishLines.length}+${dbpediaEnglishLines.length}+${wiktionaryEnglishLines.length}+${wikiAndOtherEnglishLines.length}=${englishLinesList.length}")
 
-      wordNetEnglishLines foreach { l => {saveTriple(l._2,l._3,l._4,l._5.toDouble,l._1)} }
+      wordNetEnglishLines foreach { saveTriple }
 
-      conceptNetEnglishLines foreach { l => {saveTriple(l._2,l._3,l._4,l._5.toDouble,l._1)} }
+      conceptNetEnglishLines foreach { saveTriple }
 
-      //wiktionaryEnglishLines foreach { l => {saveTriple(l._2,l._3,l._4,l._5.toDouble,l._1)} }
+      //wordNetEnglishLines.take(50) foreach println
+      //conceptNetEnglishLines.take(50) foreach println
+
+      wiktionaryEnglishLines foreach { saveTriple }
 
       println(f)
     }
