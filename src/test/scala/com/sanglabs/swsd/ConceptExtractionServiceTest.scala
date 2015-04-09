@@ -3,8 +3,6 @@ package com.sanglabs.swsd
 import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.{BeforeAndAfter, FlatSpec}
 
-import scala.collection.immutable.ListMap
-
 /**
  *
  * The ConceptExtractionServiceTest 
@@ -142,10 +140,16 @@ class ConceptExtractionServiceTest extends FlatSpec with ShouldMatchers with Bef
   "Beautiful Day song" should "return " in {
 
 
-    val options = SimpleDisambiguationService.lookupOptions(TestText.beautifulDayLyrics)
-    val wsds = DKProWSDService.disambiguate(options.keys.toList).values.toList
+    var options = SimpleDisambiguationService.lookupOptions(TestText.beautifulDayLyrics)
+    var wsds = DKProWSDService.rawDisambiguate(options.keys.toList).values.toList
+    DKProWSDService.getCenters(wsds).take(10) foreach { f => {println(DKProWSDService.synsetFormatForSenseId(f._1),f._2)}}
+
+    options = SimpleDisambiguationService.lookupOptions(TestText.fakePlasticTrees)
+    wsds = DKProWSDService.rawDisambiguate(options.keys.toList).values.toList
+    DKProWSDService.getCenters(wsds).take(10) foreach { f => {println(DKProWSDService.synsetFormatForSenseId(f._1),f._2)}}
     //TODO keep track of count of occurances
 
+    /*wsds = DKProWSDService.disambiguate(options.keys.toList).values.toList
     val listOfLists: List[List[String]] = wsds map {Neo4JGraphService.getHypernymSynsetNodes(_,3) map {_._2.head}}
 
     //scala it linearly from 1 to 0 and recurse without a search depth - divide 1 by length of list and keep adding
@@ -175,7 +179,7 @@ class ConceptExtractionServiceTest extends FlatSpec with ShouldMatchers with Bef
     println("Done1")
     println(sortedScores.takeRight(5))
     println("Done2")
-   //step 1 relate this to concept net concepts
+   //step 1 relate this to concept net concepts*/
   }
 
 

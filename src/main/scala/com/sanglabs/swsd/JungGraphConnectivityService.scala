@@ -7,12 +7,13 @@ import de.tudarmstadt.ukp.dkpro.wsd.graphconnectivity.algorithm.JungGraphVisuali
 import de.tudarmstadt.ukp.dkpro.wsd.si.wordnet.WordNetSenseKeySenseInventory
 import de.tudarmstadt.ukp.dkpro.wsd.si.{POS, SenseInventoryException}
 import de.tudarmstadt.ukp.dkpro.wsd.{Pair, UnorderedPair}
+import edu.uci.ics.jung.algorithms.scoring.HITS
 import edu.uci.ics.jung.graph.{Graph, UndirectedGraph, UndirectedSparseGraph}
 import grizzled.slf4j.Logger
 import org.apache.commons.collections15.Transformer
 
 import scala.collection.JavaConverters._
-import scala.collection.immutable.Map
+import scala.collection.immutable.{ListMap, Map}
 
 /**
  *
@@ -105,23 +106,13 @@ trait JungGraphConnectivityService {
     return solutions
   }
 
-  def getCenters(wsds: List[String]): Map[String, Double] = {
+  def getCenters(wsds: List[String]): List[(String,Double)] = {
 
     val t0 = System.nanoTime()
     val siGraph: Graph[String, UnorderedPair[String]] = inventory.getUndirectedGraph
     val dGraph: Graph[String, UnorderedPair[String]] = new UndirectedSparseGraph[String, UnorderedPair[String]]
-    var sodCount: Int = 0
-
-    if (graphVisualizer != null) {
-      graphVisualizer.initializeColorMap(wsds.size)
-      graphVisualizer.setVertexToolTipTransformer(new VertexToolTipTransformer)
-    }
-
 
       for (sense <- wsds) {
-        if (graphVisualizer != null) {
-          graphVisualizer.setColor(sense, sodCount)
-        }
         dGraph.addVertex(sense)
       }
 
@@ -137,19 +128,17 @@ trait JungGraphConnectivityService {
       dfs(v, t, siGraph, dGraph, synsetPath, new util.Stack[UnorderedPair[String]], searchDepth)
     }
     logger.debug(dGraph.toString)
-    val solutions: Map[String, Double] = getCenters(wsds, dGraph)
-
-    val timeElapsed = (System.nanoTime() - t0)/1000000000
-    println(s"Disambiguation took ${timeElapsed} secs")
-
-    // Repaint the frame to show the disambiguated senses
-    if (graphVisualizer != null) {
-      graphVisualizer.refresh
-      Thread.sleep(10000) //TODO do an onmouse click
-    }
 
 
-    return solutions
+    val hitsRanker: HITS[String,UnorderedPair[String]] = new HITS(dGraph)
+    hitsRanker.evaluate();
+    var scoresMap = Map[String,Double]()
+    wsds foreach { v => {scoresMap += (v -> hitsRanker.getVertexScore(v).hub)}}
+
+
+    //println(scoresMap)
+
+    return ListMap(scoresMap.toList.sortBy(_._2): _*).toList.reverse
   }
 
   def dfs (startVertex: String, goalVertices: util.Collection[String], siGraph: Graph[String, UnorderedPair[String]], dGraph: Graph[String, UnorderedPair[String]], vertexPath: util.Stack[String], edgePath: util.Stack[UnorderedPair[String]], maxDepth: Int) : Boolean = {
