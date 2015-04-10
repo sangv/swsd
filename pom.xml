@@ -13,7 +13,7 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<encoding>UTF-8</encoding>
-		<scala.version>2.10.4</scala.version>
+		<scala.version>2.11.5</scala.version>
 		<gremlinVersion>3.0.0.M6</gremlinVersion>
 	</properties>
 	<dependencies>
@@ -21,6 +21,11 @@
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
 			<version>${scala.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-scala_2.11</artifactId>
+			<version>2.5.1</version>
 		</dependency>
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.wsd</groupId>
@@ -44,8 +49,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.scalatest</groupId>
-			<artifactId>scalatest_2.10</artifactId>
-			<version>1.9.2</version>
+			<artifactId>scalatest_2.11</artifactId>
+			<version>2.2.3</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -76,7 +81,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.clapper</groupId>
-			<artifactId>grizzled-slf4j_2.10</artifactId>
+			<artifactId>grizzled-slf4j_2.11</artifactId>
 			<version>1.0.2</version>
 		</dependency>
 		<dependency>
@@ -93,6 +98,11 @@
 			<groupId>org.neo4j</groupId>
 			<artifactId>neo4j</artifactId>
 			<version>2.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.1</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

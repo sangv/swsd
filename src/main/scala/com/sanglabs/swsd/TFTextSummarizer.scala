@@ -98,7 +98,7 @@ object TFTextSummarizer {
 
   def summarize(text: String, sentences: Int = 2) = {
     //call the sentence parser and split to sentences (maybe use opennlp sentence detecter)
-    val rawSentences = StanfordNLPService.sentences(text)
+    val rawSentences = StanfordNLPService.getSentences(text)
     val sentences = StanfordNLPService.analyze(text)
 
     val filteredSentences: List[List[String]] = sentences map(s => s.words filterNot(w => stopWords.contains(w.word)) map (_.word))
