@@ -7,7 +7,8 @@ import de.tudarmstadt.ukp.dkpro.wsd.si.POS
 import de.tudarmstadt.ukp.dkpro.wsd.si.wordnet.WordNetSynsetSenseInventory
 import org.junit.Assert._
 import org.junit.Test
-import org.scalatest.junit.{JUnitSuite, ShouldMatchersForJUnit}
+import org.scalatest.Matchers
+import org.scalatest.junit.{AssertionsForJUnit, JUnitSuite}
 
 /**
  *
@@ -16,7 +17,7 @@ import org.scalatest.junit.{JUnitSuite, ShouldMatchersForJUnit}
  * @author Sang Venkatraman
  *
  */
-class MostFrequentWordNetSenseTest extends JUnitSuite with ShouldMatchersForJUnit {
+class MostFrequentWordNetSenseTest extends JUnitSuite with Matchers with AssertionsForJUnit {
 
 
   val extJWNLPropertiesFile: String = "file:///Users/sang/Temp/swsd/data/file_properties.xml"

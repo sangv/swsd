@@ -48,6 +48,11 @@
 			<version>1.6.10</version>
 		</dependency>
 		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-xml</artifactId>
+			<version>2.11.0-M4</version>
+		</dependency>
+		<dependency>
 			<groupId>org.scalatest</groupId>
 			<artifactId>scalatest_2.11</artifactId>
 			<version>2.2.3</version>
@@ -57,6 +62,11 @@
 			<groupId>edu.stanford.nlp</groupId>
 			<artifactId>stanford-corenlp</artifactId>
 			<version>3.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.opennlp</groupId>
+			<artifactId>opennlp-tools</artifactId>
+			<version>1.5.3</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-collections</groupId>

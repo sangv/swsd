@@ -1,7 +1,6 @@
 package com.sanglabs.swsd
 
-import org.scalatest.{BeforeAndAfter, FlatSpec}
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 /**
  *
@@ -10,7 +9,7 @@ import org.scalatest.matchers.ShouldMatchers
  * @author Sang Venkatraman
  *
  */
-class DbpediaNamedEntityTest extends FlatSpec with ShouldMatchers with BeforeAndAfter {
+class DbpediaNamedEntityTest extends FlatSpec with Matchers with BeforeAndAfter {
 
   val testSentences = Array("I go to school at Stanford University, which is located in California.",
     "schooled at the Philippines",
@@ -24,11 +23,20 @@ class DbpediaNamedEntityTest extends FlatSpec with ShouldMatchers with BeforeAnd
     "You told me I was like the Dead Sea")
 
   "Test ner spots" should "return 3 sentences" in {
-    testSentences foreach {sentence =>
+    Option("""
+      |President Obama called Wednesday on Congress to extend a tax break
+      |for students included in last year's economic stimulus package, arguing
+      |that the policy provides more generous assistance.
+    """.stripMargin) foreach {sentence =>
       println(sentence)
-      val result = DbpediaSpotlightService.getDbpediaEntities(sentence)//StanfordNLPService.nerSpots(sentence)
+      val result = DbpediaSpotlightService.getEntities(sentence)//StanfordNLPService.nerSpots(sentence)
       println(result)
     }
+  }
+
+  "Test evaluate " should "return 3 sentences" in {
+    val result = FMeasureCalculator.calculate(Array("Concept1"),Array("Concept1","Concept2"))
+    println(result)
   }
 
 }

@@ -2,8 +2,7 @@ package com.sanglabs.swsd
 
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-import org.scalatest.matchers.ShouldMatchers
-import org.scalatest.{BeforeAndAfter, FlatSpec}
+import org.scalatest.{Matchers, BeforeAndAfter, FlatSpec}
 
 /**
  *
@@ -13,7 +12,7 @@ import org.scalatest.{BeforeAndAfter, FlatSpec}
  *
  */
 @RunWith(classOf[JUnitRunner])
-class StanfordNLPSentenceTest extends FlatSpec with ShouldMatchers with BeforeAndAfter {
+class StanfordNLPSentenceTest extends FlatSpec with Matchers with BeforeAndAfter {
 
   "Test sentence splitting" should "return 3 sentences" in {
     val sentences = StanfordNLPService.getSentences("There are multiple sentences in this text. The first one, is this. And this is the second one.")

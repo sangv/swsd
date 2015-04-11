@@ -2,8 +2,7 @@ package com.sanglabs.swsd
 
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-import org.scalatest.matchers.ShouldMatchers
-import org.scalatest.{BeforeAndAfter, FlatSpec}
+import org.scalatest.{Matchers, BeforeAndAfter, FlatSpec}
 
 import scala.collection.immutable.ListMap
 
@@ -15,7 +14,7 @@ import scala.collection.immutable.ListMap
  *
  */
 @RunWith(classOf[JUnitRunner])
-class Neo4JGraphServiceTest extends FlatSpec with ShouldMatchers with BeforeAndAfter {
+class Neo4JGraphServiceTest extends FlatSpec with Matchers with BeforeAndAfter {
 
   /*"Querying the graph database for hypernym trees" should "return correct parent offsets" in {
     Neo4JGraphService.getHypernymTree("travel#v#1") shouldEqual(1835496)

@@ -2,7 +2,8 @@ package com.sanglabs.swsd
 
 import org.junit.Assert._
 import org.junit.Test
-import org.scalatest.junit.{ShouldMatchersForJUnit, JUnitSuite}
+import org.scalatest.Matchers
+import org.scalatest.junit.{AssertionsForJUnit, JUnitSuite}
 
 /**
  *
@@ -11,7 +12,7 @@ import org.scalatest.junit.{ShouldMatchersForJUnit, JUnitSuite}
  * @author Sang Venkatraman
  *
  */
-class TFTextSummarizerTest extends JUnitSuite with ShouldMatchersForJUnit {
+class TFTextSummarizerTest extends JUnitSuite with Matchers with AssertionsForJUnit {
 
   @Test
   def test1() {

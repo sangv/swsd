@@ -1,7 +1,6 @@
 package com.sanglabs.swsd
 
-import org.scalatest.matchers.ShouldMatchers
-import org.scalatest.{BeforeAndAfter, FlatSpec}
+import org.scalatest.{Matchers, BeforeAndAfter, FlatSpec}
 
 /**
  *
@@ -10,7 +9,7 @@ import org.scalatest.{BeforeAndAfter, FlatSpec}
  * @author Sang Venkatraman
  *
  */
-class ConceptExtractionServiceTest extends FlatSpec with ShouldMatchers with BeforeAndAfter {
+class ConceptExtractionServiceTest extends FlatSpec with Matchers with BeforeAndAfter {
 
   //http://watson-um-demo.mybluemix.net/
   val text =

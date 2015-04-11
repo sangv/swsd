@@ -3,8 +3,7 @@ package com.sanglabs.swsd
 import net.sf.extjwnl.data.POS
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-import org.scalatest.matchers.ShouldMatchers
-import org.scalatest.{BeforeAndAfter, FlatSpec}
+import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 /**
  *
@@ -14,7 +13,7 @@ import org.scalatest.{BeforeAndAfter, FlatSpec}
  *
  */
 @RunWith(classOf[JUnitRunner])
-class DKProWSDServiceTest extends FlatSpec with ShouldMatchers with BeforeAndAfter {
+class DKProWSDServiceTest extends FlatSpec with Matchers with BeforeAndAfter {
 
   "Going to deposit some money at the bank" should "disambiguate correctly" in {
     var moneybanklist: List[WordAnalysis] = List[WordAnalysis]()

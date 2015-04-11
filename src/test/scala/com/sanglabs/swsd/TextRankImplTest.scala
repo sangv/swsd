@@ -2,7 +2,8 @@ package com.sanglabs.swsd
 
 import org.junit.Assert._
 import org.junit.Test
-import org.scalatest.junit.{JUnitSuite, ShouldMatchersForJUnit}
+import org.scalatest.Matchers
+import org.scalatest.junit.{AssertionsForJUnit, JUnitSuite}
 
 import scala.collection.immutable.ListMap
 
@@ -13,7 +14,7 @@ import scala.collection.immutable.ListMap
  * @author Sang Venkatraman
  *
  */
-class TextRankImplTest extends JUnitSuite with ShouldMatchersForJUnit {
+class TextRankImplTest extends JUnitSuite with Matchers with AssertionsForJUnit {
 
 
   @Test

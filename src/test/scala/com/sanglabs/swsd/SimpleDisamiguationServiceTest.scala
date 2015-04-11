@@ -3,8 +3,7 @@ package com.sanglabs.swsd
 import net.sf.extjwnl.data.POS
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-import org.scalatest.matchers.ShouldMatchers
-import org.scalatest.{BeforeAndAfter, FlatSpec}
+import org.scalatest.{Matchers, BeforeAndAfter, FlatSpec}
 
 /**
  *
@@ -14,7 +13,7 @@ import org.scalatest.{BeforeAndAfter, FlatSpec}
  *
  */
 @RunWith(classOf[JUnitRunner])
-class SimpleDisamiguationServiceTest extends FlatSpec with ShouldMatchers with BeforeAndAfter {
+class SimpleDisamiguationServiceTest extends FlatSpec with Matchers with BeforeAndAfter {
 
   "Plethora of fish at sea" should "have synset options for 3 words" in {
     val options = SimpleDisambiguationService.lookupOptions("Plethora of fish at sea")
