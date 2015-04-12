@@ -1,6 +1,7 @@
 package com.sanglabs.swsd
 
-import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
+import junit.framework.TestCase
+import org.junit.Test
 
 /**
  *
@@ -9,7 +10,7 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
  * @author Sang Venkatraman
  *
  */
-class DbpediaNamedEntityTest extends FlatSpec with Matchers with BeforeAndAfter {
+class DbpediaNamedEntityTest extends TestCase {
 
   val testSentences = Array("I go to school at Stanford University, which is located in California.",
     "schooled at the Philippines",
@@ -22,7 +23,8 @@ class DbpediaNamedEntityTest extends FlatSpec with Matchers with BeforeAndAfter 
     "fixing a General Motors car",
     "You told me I was like the Dead Sea")
 
-  "Test ner spots" should "return 3 sentences" in {
+  /*@Test
+  def testNerSpots() {
     Option("""
       |President Obama called Wednesday on Congress to extend a tax break
       |for students included in last year's economic stimulus package, arguing
@@ -34,9 +36,22 @@ class DbpediaNamedEntityTest extends FlatSpec with Matchers with BeforeAndAfter 
     }
   }
 
-  "Test evaluate " should "return 3 sentences" in {
+  @Test
+  def testFMeasureScore() {
     val result = FMeasureCalculator.calculate(Array("Concept1"),Array("Concept1","Concept2"))
     println(result)
+  } */
+
+  @Test
+  def testIsBrand() {
+    val isBrand = DbpediaSpotlightService.isBrand("http://dbpedia.org/resource/Fendi")
+    assert(isBrand)
+  }
+
+  @Test
+  def testSong(): Unit = {
+    DbpediaSpotlightService.getEntities(TestText.beautifulDayLyrics)
+    println("Done")
   }
 
 }

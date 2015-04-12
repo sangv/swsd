@@ -1,0 +1,444 @@
+{
+  "directed": true,
+  "graph": [],
+  "nodes": [
+    {
+      "color": "#da991c",
+      "id": "Brain Part"
+    },
+    {
+      "color": "#b94431",
+      "size": 9,
+      "id": "Corpus Callosum",
+      "URI": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#Corpus_Callosum"
+    },
+    {
+      "color": "#333333",
+      "id": "Diagnostic Procedure"
+    },
+    {
+      "color": "#b94431",
+      "size": 6,
+      "id": "Cerebral Fornix",
+      "URI": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#Cerebral_Fornix"
+    },
+    {
+      "id": "Cerebral Hemisphere"
+    },
+    {
+      "id": "Cerebral Gyrus"
+    },
+    {
+      "color": "#b94431",
+      "size": 7,
+      "id": "Magnetic Resonance Imaging",
+      "URI": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#Magnetic_Resonance_Imaging"
+    },
+    {
+      "color": "#b94431",
+      "size": 6,
+      "id": "Thalamus",
+      "URI": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#Thalamus"
+    },
+    {
+      "color": "#333333",
+      "id": "Imaging Technique"
+    },
+    {
+      "color": "#b94431",
+      "size": 3,
+      "id": "Sagittal Plane",
+      "URI": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#Sagittal_Plane"
+    },
+    {
+      "color": "#333333",
+      "id": "Plane"
+    },
+    {
+      "color": "#b94431",
+      "size": 6,
+      "id": "White Matter",
+      "URI": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#White_Matter"
+    },
+    {
+      "color": "#333333",
+      "id": "Nerve Tissue and Nerve Sheaths"
+    },
+    {
+      "id": "Brain White Matter"
+    },
+    {
+      "id": "Brain Ventricle"
+    },
+    {
+      "id": "Technique"
+    },
+    {
+      "id": "Physical Chemical Technique"
+    },
+    {
+      "id": "Diagnostic Imaging"
+    },
+    {
+      "id": "Organ"
+    },
+    {
+      "color": "#333333",
+      "id": "Splenium of the Corpus Callosum"
+    },
+    {
+      "color": "#333333",
+      "id": "Central Nervous System Part"
+    },
+    {
+      "color": "#333333",
+      "id": "Clinical or Research Activity"
+    },
+    {
+      "color": "#333333",
+      "id": "Cerebral White Matter"
+    },
+    {
+      "color": "#333333",
+      "id": "Nerve Tissue, Neuroepithelial Tissue, and Nerve Sheaths"
+    },
+    {
+      "id": "Thing"
+    },
+    {
+      "id": "Infratentorial Brain"
+    },
+    {
+      "id": "Spectroscopy"
+    },
+    {
+      "id": "Forebrain"
+    },
+    {
+      "id": "Thalamencephalon"
+    },
+    {
+      "color": "#da991c",
+      "id": "Anatomic Structure, System, or Substance"
+    },
+    {
+      "color": "#da991c",
+      "id": "Nerve Tissue"
+    },
+    {
+      "id": "Activity"
+    },
+    {
+      "color": "#333333",
+      "id": "Nervous System Part"
+    },
+    {
+      "color": "#333333",
+      "id": "Cerebral Cortex"
+    },
+    {
+      "color": "#333333",
+      "id": "Intervention or Procedure"
+    },
+    {
+      "id": "Brain"
+    },
+    {
+      "color": "#333333",
+      "id": "Body Part"
+    },
+    {
+      "color": "#333333",
+      "id": "Tissue"
+    },
+    {
+      "color": "#b94431",
+      "size": 7,
+      "id": "Lateral Ventricle",
+      "URI": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#Lateral_Ventricle"
+    },
+    {
+      "color": "#b94431",
+      "size": 7,
+      "id": "Cingulate Gyrus",
+      "URI": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#Cingulate_Gyrus"
+    },
+    {
+      "color": "#b94431",
+      "size": 6,
+      "id": "Mamillary Body",
+      "URI": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#Mamillary_Body"
+    },
+    {
+      "color": "#333333",
+      "id": "Conceptual Entity"
+    },
+    {
+      "color": "#333333",
+      "id": "Occipital Horn of the Lateral Ventricle"
+    },
+    {
+      "id": "Research Technique"
+    }
+  ],
+  "links": [
+    {
+      "source": 0,
+      "target": 20
+    },
+    {
+      "color": "#b94431",
+      "source": 1,
+      "target": 4
+    },
+    {
+      "color": "#b94431",
+      "source": 1,
+      "target": 22
+    },
+    {
+      "source": 2,
+      "target": 34
+    },
+    {
+      "color": "#b94431",
+      "source": 3,
+      "target": 0
+    },
+    {
+      "color": "#b94431",
+      "source": 3,
+      "target": 4
+    },
+    {
+      "color": "#b94431",
+      "source": 4,
+      "target": 27
+    },
+    {
+      "color": "#b94431",
+      "source": 5,
+      "target": 0
+    },
+    {
+      "color": "#b94431",
+      "source": 5,
+      "target": 33
+    },
+    {
+      "color": "#b94431",
+      "source": 6,
+      "target": 17
+    },
+    {
+      "color": "#b94431",
+      "source": 7,
+      "target": 0
+    },
+    {
+      "color": "#b94431",
+      "source": 7,
+      "target": 28
+    },
+    {
+      "source": 8,
+      "target": 2
+    },
+    {
+      "color": "#b94431",
+      "source": 9,
+      "target": 10
+    },
+    {
+      "color": "#b94431",
+      "source": 10,
+      "target": 41
+    },
+    {
+      "source": 11,
+      "target": 30
+    },
+    {
+      "source": 12,
+      "target": 23
+    },
+    {
+      "color": "#b94431",
+      "source": 13,
+      "target": 35
+    },
+    {
+      "color": "#b94431",
+      "source": 13,
+      "target": 11
+    },
+    {
+      "color": "#b94431",
+      "source": 13,
+      "target": 0
+    },
+    {
+      "color": "#b94431",
+      "source": 14,
+      "target": 35
+    },
+    {
+      "source": 14,
+      "target": 0
+    },
+    {
+      "color": "#b94431",
+      "source": 15,
+      "target": 31
+    },
+    {
+      "color": "#b94431",
+      "source": 16,
+      "target": 43
+    },
+    {
+      "source": 17,
+      "target": 8
+    },
+    {
+      "color": "#b94431",
+      "source": 18,
+      "target": 29
+    },
+    {
+      "color": "#b94431",
+      "source": 19,
+      "target": 0
+    },
+    {
+      "color": "#b94431",
+      "source": 19,
+      "target": 1
+    },
+    {
+      "source": 20,
+      "target": 32
+    },
+    {
+      "source": 21,
+      "target": 31
+    },
+    {
+      "color": "#b94431",
+      "source": 22,
+      "target": 13
+    },
+    {
+      "source": 23,
+      "target": 37
+    },
+    {
+      "color": "#b94431",
+      "source": 25,
+      "target": 35
+    },
+    {
+      "color": "#b94431",
+      "source": 25,
+      "target": 0
+    },
+    {
+      "color": "#b94431",
+      "source": 26,
+      "target": 16
+    },
+    {
+      "color": "#b94431",
+      "source": 26,
+      "target": 17
+    },
+    {
+      "color": "#b94431",
+      "source": 27,
+      "target": 35
+    },
+    {
+      "color": "#b94431",
+      "source": 28,
+      "target": 35
+    },
+    {
+      "source": 29,
+      "target": 24
+    },
+    {
+      "source": 30,
+      "target": 12
+    },
+    {
+      "source": 31,
+      "target": 24
+    },
+    {
+      "source": 32,
+      "target": 36
+    },
+    {
+      "color": "#b94431",
+      "source": 33,
+      "target": 4
+    },
+    {
+      "source": 34,
+      "target": 21
+    },
+    {
+      "color": "#b94431",
+      "source": 35,
+      "target": 18
+    },
+    {
+      "source": 36,
+      "target": 29
+    },
+    {
+      "source": 37,
+      "target": 29
+    },
+    {
+      "color": "#b94431",
+      "source": 38,
+      "target": 4
+    },
+    {
+      "color": "#b94431",
+      "source": 38,
+      "target": 14
+    },
+    {
+      "color": "#b94431",
+      "source": 39,
+      "target": 5
+    },
+    {
+      "color": "#b94431",
+      "source": 40,
+      "target": 0
+    },
+    {
+      "source": 41,
+      "target": 24
+    },
+    {
+      "color": "#b94431",
+      "source": 42,
+      "target": 0
+    },
+    {
+      "color": "#b94431",
+      "source": 42,
+      "target": 38
+    },
+    {
+      "color": "#b94431",
+      "source": 43,
+      "target": 15
+    }
+  ],
+  "multigraph": false
+}

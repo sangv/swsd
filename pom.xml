@@ -13,18 +13,19 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<encoding>UTF-8</encoding>
-		<scala.version>2.11.5</scala.version>
+		<scala.fullversion>2.11.5</scala.fullversion>
+		<scala.version>2.11</scala.version>
 		<gremlinVersion>3.0.0.M6</gremlinVersion>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
-			<version>${scala.version}</version>
+			<version>${scala.fullversion}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.module</groupId>
-			<artifactId>jackson-module-scala_2.11</artifactId>
+			<artifactId>jackson-module-scala_${scala.version}</artifactId>
 			<version>2.5.1</version>
 		</dependency>
 		<dependency>
@@ -54,7 +55,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.scalatest</groupId>
-			<artifactId>scalatest_2.11</artifactId>
+			<artifactId>scalatest_${scala.version}</artifactId>
 			<version>2.2.3</version>
 			<scope>test</scope>
 		</dependency>
@@ -91,7 +92,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.clapper</groupId>
-			<artifactId>grizzled-slf4j_2.11</artifactId>
+			<artifactId>grizzled-slf4j_${scala.version}</artifactId>
 			<version>1.0.2</version>
 		</dependency>
 		<dependency>
@@ -113,6 +114,16 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json4s</groupId>
+			<artifactId>json4s-native_${scala.version}</artifactId>
+			<version>3.2.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json4s</groupId>
+			<artifactId>json4s-jackson_${scala.version}</artifactId>
+			<version>3.2.11</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

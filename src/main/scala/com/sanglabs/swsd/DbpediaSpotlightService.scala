@@ -47,7 +47,7 @@ object DbpediaSpotlightService {
   def getEntitiesFromResponse(response: String, supportThreshold: Double): Set[NamedEntity] = {
     val responseMap = mapper.readValue(response, classOf[Map[String,Any]])
     var namedEntities = Set[NamedEntity]()
-    println(responseMap)
+
     val resources: List[Map[String,String]] = responseMap.getOrElse("Resources",Nil).asInstanceOf[List[Map[String,String]]]
     for (resource <- resources) {
       val uri: String = resource.getOrElse("@URI","")
@@ -82,8 +82,10 @@ object DbpediaSpotlightService {
       }
     }
     namedEntities = namedEntities ++ getDbpediaEntities(text) //defaults to using new map - not the one with SpotterXML
-
-    return namedEntities
+    println(namedEntities)
+    val filteredResults = namedEntities filter {n => isBrand(n.uri)}
+    println(filteredResults)
+    return filteredResults
   }
 
   def buildSpotXmlParserPayload(text: String, namedEntities: Set[String]): String = {
@@ -138,6 +140,7 @@ object DbpediaSpotlightService {
   }
 
   def getRestContent(url:String): Option[String] = {
+
     val httpClient = HttpClientBuilder.create().build()
     val httpResponse = httpClient.execute(new HttpGet(url))
     val entity = httpResponse.getEntity()
@@ -148,39 +151,42 @@ object DbpediaSpotlightService {
       inputStream.close
     }
     httpClient.getConnectionManager.shutdown()
+
     return Option(content)
   }
 
   def isBrand(dbpediaUri: String) : Boolean = {
 
-    val distributorOfQuery = s"SELECT ?distributor  WHERE { ?distributor dbpprop:distributor <${dbpediaUri}> }"
+    val industryQuery = s"SELECT ?industry  WHERE { <${dbpediaUri}> dbpprop:industry ?industry}"
 
 
     val builder = new URIBuilder();
-    builder.setScheme("http").setHost("sparqlHost").setPath("/sparql")
+    builder.setScheme("http").setHost(sparqlHost).setPath("/sparql")
       .setParameter("default-graph-uri", "http://dbpedia.org")
       .setParameter("format", "application/json")
-      .setParameter("query", distributorOfQuery)
+      .setParameter("query", industryQuery)
 
-    val result = getRestContent(builder.build().toString) match {
-      case Some(response:String) => {
-        val jsonObject = mapper.readValue(response, classOf[Map[String,Any]])
-        jsonObject.get("results") match {
-          case Some(x:Any) => {
-            /*if (jsonObject.getJSONObject("results") != null && jsonObject.getJSONObject("results").getJSONArray("bindings") != null && !jsonObject.getJSONObject("results").getJSONArray("bindings").isEmpty()) {
-              String distributor = jsonObject.getJSONObject("results").getJSONArray("bindings").getJSONObject(0).getJSONObject("distributor").getString("value");
-              if (StringUtils.isNotBlank(distributor)) {
-                return true;
-              }
-            }*/
-            return false
+    //SELECT ?industry  WHERE { <http://dbpedia.org/resource/Ford_Motor_Company> dbpedia-owl:industry ?industry}
+    //SELECT ?industry  WHERE { <http://dbpedia.org/resource/Fendi> dbpprop:industry ?industry}
+    //SELECT ?distributor  WHERE { ?distributor dbpprop:distributor <${dbpediaUri}> }
+
+    getRestContent(builder.build().toString()) match {
+      case Some(response: String) => {
+
+        import org.json4s._
+        import org.json4s.jackson.JsonMethods._
+
+        parseOpt(response) match {
+          case Some(x: JObject) => {
+            x \ "results" \\ "bindings" children match {
+              case (head :: tail) => { val JString(x) = head \ "industry" \ "value"; StringUtils.isNotBlank(x)}
+              case _ => false
+            }
           }
+          case None => false
         }
-
       }
       case None => false
     }
-    false
   }
-
 }

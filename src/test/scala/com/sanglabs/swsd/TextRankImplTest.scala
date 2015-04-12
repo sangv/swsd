@@ -32,7 +32,7 @@ class TextRankImplTest extends JUnitSuite with Matchers with AssertionsForJUnit 
 
   }
 
-  @Test
+  /*@Test
   def test2() {
     val result: ListMap[WordAnalysis,Double] = TextRankImpl.calculate(TestText.beautifulDayLyrics)
 
@@ -42,6 +42,6 @@ class TextRankImplTest extends JUnitSuite with Matchers with AssertionsForJUnit 
     println(topWords)
 
 
-  }
+  }*/
 
 }
