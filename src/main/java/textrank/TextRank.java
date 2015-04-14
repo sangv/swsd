@@ -32,11 +32,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package textrank;
 
-import net.sf.extjwnl.data.*;
+import net.sf.extjwnl.data.POS;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.PropertyConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -58,8 +57,8 @@ public class
 {
     // logging
 
-    private final static Log LOG =
-        LogFactory.getLog(TextRank.class.getName());
+    private final static Logger LOG =
+        LoggerFactory.getLogger(TextRank.class.getName());
 
 
     /**
@@ -375,7 +374,7 @@ public class
 
         final OutputStreamWriter fw =
 	    new OutputStreamWriter(new FileOutputStream(graph_file), "UTF-8");
-						   
+
         try {
 	    for (String entry : entries) {
 		fw.write(entry, 0, entry.length());
@@ -425,15 +424,17 @@ public class
 	    new File(System.getProperty(NLP_RESOURCES)).getPath();
 	/* */
 
-	final String log4j_conf = args[0];
-	final String res_path = args[1];
-	final String lang_code = args[2];
-	final String data_file = args[3];
-	final String graph_file = args[4];
+	//final String log4j_conf = args[0];
+	final String res_path = "/Users/sang/Temp/swsd/";//args[1];
+	final String lang_code = "en";
+	final String data_file = "/Users/sang/Temp/swsd/src/test/resources/testSentences.txt";//args[3];
+	//final String graph_file = args[4];
+
+
 
         // set up logging for debugging and instrumentation
-        
-        PropertyConfigurator.configure(log4j_conf);
+
+        //PropertyConfigurator.configure(log4j_conf);
 
 	// load the sample text from a file
 
