@@ -1,6 +1,8 @@
 package com.sanglabs.swsd
 
 
+import java.net.URLEncoder
+
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import grizzled.slf4j.Logger
@@ -22,14 +24,26 @@ import org.apache.http.message.BasicNameValuePair
  *
  */
 
-case class NamedEntity(surfaceForm: String, uri: String, support: Int, types: List[String], offset: Int, similarityScore: Double, percentageOfSecondRank: Double)
+case class NamedEntity(surfaceForm: String, uri: String, support: Int, types: List[String], offset: Int, similarityScore: Double, percentageOfSecondRank: Double) {
+  override def equals(other: Any): Boolean = other match {
+    case that: NamedEntity =>
+      (that canEqual this) &&
+        uri == that.uri
+    case _ => false
+  }
+
+  override def hashCode(): Int = {
+    val state = Seq(uri)
+    state.filterNot(_ == null).map(_.hashCode()).foldLeft(0)((a, b) => 31 * a + b)
+  }
+}
 
 object DbpediaSpotlightService {
 
   val dbpediaSpotlightServiceUrl = "http://spotlight.dbpedia.org/rest/"
   val SPARQL_QUERY: String = ""
   val sparqlHost = "dbpedia.org"
-  val DEFAULT_SUPPORT: String = "20"
+  val DEFAULT_SUPPORT: String = "100"
   val DEFAULT_CONFIDENCE: String = "0.2"
 
   val logger = Logger[this.type]
@@ -74,7 +88,7 @@ object DbpediaSpotlightService {
     options += ("spotter" -> "SpotXmlParser")
     var namedEntities = Set[NamedEntity]()
     try {
-      namedEntities ++= getDbpediaEntities(buildSpotXmlParserPayload(text, spots), options)
+      namedEntities ++= getDbpediaEntities(buildSpotXmlParserPayload(text.substring(0,1200), spots), options)
     }
     catch {
       case (e: Exception) => {
@@ -83,6 +97,7 @@ object DbpediaSpotlightService {
     }
     namedEntities = namedEntities ++ getDbpediaEntities(text) //defaults to using new map - not the one with SpotterXML
     println(namedEntities)
+    println(" ======================================= ")
     val filteredResults = namedEntities filter {n => isBrand(n.uri)}
     println(filteredResults)
     return filteredResults
@@ -117,10 +132,10 @@ object DbpediaSpotlightService {
     nvps.add(new BasicNameValuePair("disambiguator", options.getOrElse("disambiguator", "Default")))
     nvps.add(new BasicNameValuePair("confidence", options.getOrElse("confidence", DEFAULT_CONFIDENCE)))
     nvps.add(new BasicNameValuePair("support", options.getOrElse("support", DEFAULT_SUPPORT)))
-    nvps.add(new BasicNameValuePair("text", options.getOrElse("text", text)))
+    nvps.add(new BasicNameValuePair("text", URLEncoder.encode(text,"utf-8")))
     nvps.add(new BasicNameValuePair("spotter", options.getOrElse("spotter", "Default")))
     nvps.add(new BasicNameValuePair("sparql", options.getOrElse("sparql", SPARQL_QUERY)))
-    //nvps.add(new BasicNameValuePair("types", options.getOrElse("types", "Place,Person,Organization")))
+    //nvps.add(new BasicNameValuePair("types", options.getOrElse("types", "Place,Organization"))) //Person
     val formEntity = new UrlEncodedFormEntity(nvps, "UTF-8")
     httpPost.setEntity(formEntity)
 

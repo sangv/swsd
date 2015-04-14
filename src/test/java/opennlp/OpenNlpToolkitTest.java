@@ -132,7 +132,7 @@ public class OpenNlpToolkitTest {
 
 		// reading content from file
 		final File testFile = new File(
-				getClass().getResource("/testSentences.txt").getFile());
+				getClass().getResource("/beautifulDay.txt").getFile());
 		final String[] sentences = toolkit.detectSentences(
 				testFile, Charset.forName("UTF-8"));
 

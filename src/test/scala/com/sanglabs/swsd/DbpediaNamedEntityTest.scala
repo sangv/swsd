@@ -42,7 +42,7 @@ class DbpediaNamedEntityTest extends TestCase {
     println(result)
   } */
 
-  @Test
+  /*@Test
   def testIsBrand() {
     val isBrand = DbpediaSpotlightService.isBrand("http://dbpedia.org/resource/Fendi")
     assert(isBrand)
@@ -51,6 +51,18 @@ class DbpediaNamedEntityTest extends TestCase {
   @Test
   def testSong(): Unit = {
     DbpediaSpotlightService.getEntities(TestText.beautifulDayLyrics)
+    println("Done")
+  }*/
+
+  @Test
+  def testNERSong2(): Unit = {
+    DbpediaSpotlightService.getEntities(NERTest.Fashion_LadyGaga)
+    println("Done")
+  }
+
+  @Test
+  def testNERSong3(): Unit = {
+    DbpediaSpotlightService.getEntities(NERTest.ItsAllAboutThePentiums_WeirdAl)
     println("Done")
   }
 

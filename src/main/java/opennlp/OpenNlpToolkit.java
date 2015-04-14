@@ -106,6 +106,41 @@ public class OpenNlpToolkit {
 	}
 
 	/**
+	 * Read the content from the specified file and return a list of detected
+	 * sentences.
+	 *
+	 * @param text
+	 *           the text to read
+
+	 * @return the detected sentences
+	 *
+	 * @throws IOException
+	 *            If an error occurs while loading the file
+	 */
+	public String[] detectSentencesApplyNewlines(final String text) {
+		// reading individual lines instead of raw content because with news stories,
+		// some sentence lines don't end in punctuation (especially headings, etc.)
+		final List<String> lines = new ArrayList<String>(Arrays.asList(text.split("\n")));
+		final ArrayList<String> sentences = new ArrayList<String>();
+		for (final String content : lines) {
+			final String[] detected = detectSentences(content);
+			for (int idx=0; idx < detected.length; idx++) {
+				final String sentence = detected[idx].trim();
+				// check for ending with punctuation
+				if (sentence.matches(".*\\p{P}$")) {
+					sentences.add(sentence);
+				} else {
+					logger.warn("Sentence #" + idx
+							+ " does not end with punctuation: [" + sentence + "]");
+					logger.warn("Appending a . (period)");
+					sentences.add(sentence + ".");
+				}
+			}
+		}
+		return sentences.toArray(new String[0]);
+	}
+
+	/**
 	 * Break the given content into sentences.
 	 * <p>
 	 * The sentence detector is lazily initialized on first use.

@@ -427,7 +427,7 @@ public class
 	//final String log4j_conf = args[0];
 	final String res_path = "/Users/sang/Temp/swsd/";//args[1];
 	final String lang_code = "en";
-	final String data_file = "/Users/sang/Temp/swsd/src/test/resources/testSentences.txt";//args[3];
+	final String data_file = "/Users/sang/Temp/textrank/test/good.txt";//"/Users/sang/Temp/swsd/src/test/resources/testSentences.txt";//args[3];
 	//final String graph_file = args[4];
 
 
