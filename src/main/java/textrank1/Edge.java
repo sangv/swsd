@@ -1,4 +1,3 @@
-// Copyright (c) 2012 Kenzie Lane Mosaic, LLC. All rights reserved.
 package textrank1;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
