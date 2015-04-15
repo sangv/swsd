@@ -30,7 +30,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package textrank;
+package textrank1;
 
 import net.sf.extjwnl.data.POS;
 import org.apache.commons.io.FileUtils;
@@ -143,9 +143,10 @@ public class
 	    s.mapTokens(lang, graph);
 	    s_list.add(s);
 
-		LOG.info("s: " + s.text);
-		LOG.info(s.md5_hash);
-
+	    if (LOG.isDebugEnabled()) {
+		LOG.debug("s: " + s.text);
+		LOG.debug(s.md5_hash);
+	    }
 	}
 
 	markTime("construct_graph");
@@ -219,8 +220,7 @@ public class
 		graph.put(n.key, n);
 
 		for (Node keyword_node : gram.nodes) {
-			graph.connect(n,keyword_node);
-		    //n.connect(keyword_node);
+		    n.connect(keyword_node);
 		}
 	    }
 	}
@@ -286,7 +286,7 @@ public class
 	    if (gram.length < MAX_NGRAM_LENGTH) {
 		final double link_rank = (n.rank - link_min) / link_coeff;
 		final double count_rank = (gram.getCount() - count_min) / count_coeff;
-		final double synset_rank = use_wordnet ? n.maxNeighbor(ngram_subgraph,synset_min, synset_coeff) : 0.0D;
+		final double synset_rank = use_wordnet ? n.maxNeighbor(synset_min, synset_coeff) : 0.0D;
 
 		final MetricVector mv = new MetricVector(gram, link_rank, count_rank, synset_rank);
 		metric_space.put(gram, mv);
@@ -368,6 +368,7 @@ public class
 		sb.append(mv.render());
 		entries.add(sb.toString());
 
+		n.serializeGraph(entries);
 	    }
 	}
 

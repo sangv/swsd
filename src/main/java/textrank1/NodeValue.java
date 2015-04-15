@@ -30,23 +30,25 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package textrank;
+package textrank1;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 
 /**
+ * Implements a node value in a TextRank graph.
+ *
  * @author paco@sharethis.com
  */
 
 public class
-    Sentence
+    NodeValue
 {
     // logging
 
     private final static Log LOG =
-        LogFactory.getLog(Sentence.class.getName());
+        LogFactory.getLog(NodeValue.class.getName());
 
 
     /**
@@ -54,88 +56,26 @@ public class
      */
 
     public String text = null;
-    public String[] token_list = null;
-    public Node[] node_list = null;
-    public String md5_hash = null;
 
 
     /**
-     * Constructor.
+     * Create a description text for this value.
      */
 
-    public
-	Sentence (final String text)
+    public String
+	getDescription ()
     {
-	this.text = text;
+	return "GENERIC" + '\t' + getCollocation();
     }
 
 
     /**
-     * Return a byte array formatted as hexadecimal text.
+     * Create a collocation out of the text for lookup in WordNet.
      */
 
-    public static String
-	hexFormat (final byte[] b)
+    public String
+	getCollocation ()
     {
-	final StringBuilder sb = new StringBuilder(b.length * 2);
-
-	for (int i = 0; i < b.length; i++) {
-	    String h = Integer.toHexString(b[i]);
-
-	    if (h.length() == 1) {
-		sb.append("0");
-	    }
-	    else if (h.length() == 8) {
-		h = h.substring(6);
-	    }
-
-	    sb.append(h);
-	}
-
-	return sb.toString().toUpperCase();
-    }
-
-
-    /**
-     * Main processing per sentence.
-     */
-
-    public void
-	mapTokens (final LanguageModel lang, final Graph graph)
-	throws Exception
-    {
-	token_list = lang.tokenizeSentence(text);
-
-	// scan each token to determine part-of-speech
-
-	final String[] tag_list = lang.tagTokens(token_list);
-
-	// create nodes for the graph
-
-	Node last_node = null;
-	node_list = new Node[token_list.length];
-
-	for (int i = 0; i < token_list.length; i++) {
-	    final String pos = tag_list[i];
-
-	    if (LOG.isDebugEnabled()) {
-		LOG.debug("token: " + token_list[i] + " pos tag: " + pos);
-	    }
-
-	    if (lang.isRelevant(pos)) {
-		final String key = lang.getNodeKey(token_list[i], pos);
-		final KeyWord value = new KeyWord(token_list[i], pos);
-		final Node n = Node.buildNode(graph, key, value);
-
-		// emit nodes to construct the graph
-
-		if (last_node != null) {
-		    graph.connect(n,last_node);
-		}
-
-		last_node = n;
-		node_list[i] = n;
-	    }
-	}
+	return text.replace(' ', '_');
     }
 }

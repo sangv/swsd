@@ -30,112 +30,77 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package textrank;
+package textrank1;
 
+
+import net.sf.extjwnl.JWNLException;
+import net.sf.extjwnl.data.IndexWord;
+import net.sf.extjwnl.dictionary.Dictionary;
+import net.sf.extjwnl.dictionary.MorphologicalProcessor;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import net.sf.extjwnl.data.POS;
+
+import java.io.FileInputStream;
 
 
 /**
+ * Access to WordNet through JWNL.
  * @author paco@sharethis.com
+ * @author flo@leibert.de
  */
 
 public class
-    Sentence
+    WordNet
 {
     // logging
 
     private final static Log LOG =
-        LogFactory.getLog(Sentence.class.getName());
+        LogFactory.getLog(WordNet.class.getName());
 
 
     /**
-     * Public members.
+     * Protected members.
      */
 
-    public String text = null;
-    public String[] token_list = null;
-    public Node[] node_list = null;
-    public String md5_hash = null;
+    protected static Dictionary dictionary = null;
+    protected static MorphologicalProcessor mp = null;
 
 
     /**
-     * Constructor.
+     * Singleton
      */
 
-    public
-	Sentence (final String text)
-    {
-	this.text = text;
-    }
-
-
-    /**
-     * Return a byte array formatted as hexadecimal text.
-     */
-
-    public static String
-	hexFormat (final byte[] b)
-    {
-	final StringBuilder sb = new StringBuilder(b.length * 2);
-
-	for (int i = 0; i < b.length; i++) {
-	    String h = Integer.toHexString(b[i]);
-
-	    if (h.length() == 1) {
-		sb.append("0");
-	    }
-	    else if (h.length() == 8) {
-		h = h.substring(6);
-	    }
-
-	    sb.append(h);
-	}
-
-	return sb.toString().toUpperCase();
-    }
-
-
-    /**
-     * Main processing per sentence.
-     */
-
-    public void
-	mapTokens (final LanguageModel lang, final Graph graph)
+    public static void
+	buildDictionary (final String res_path, final String lang_code)
 	throws Exception
     {
-	token_list = lang.tokenizeSentence(text);
 
-	// scan each token to determine part-of-speech
 
-	final String[] tag_list = lang.tagTokens(token_list);
-
-	// create nodes for the graph
-
-	Node last_node = null;
-	node_list = new Node[token_list.length];
-
-	for (int i = 0; i < token_list.length; i++) {
-	    final String pos = tag_list[i];
-
-	    if (LOG.isDebugEnabled()) {
-		LOG.debug("token: " + token_list[i] + " pos tag: " + pos);
-	    }
-
-	    if (lang.isRelevant(pos)) {
-		final String key = lang.getNodeKey(token_list[i], pos);
-		final KeyWord value = new KeyWord(token_list[i], pos);
-		final Node n = Node.buildNode(graph, key, value);
-
-		// emit nodes to construct the graph
-
-		if (last_node != null) {
-		    graph.connect(n,last_node);
-		}
-
-		last_node = n;
-		node_list[i] = n;
-	    }
+	    dictionary = Dictionary.getInstance(new FileInputStream("/Users/sang/Temp/swsd/data/file_properties.xml"));
+	    mp = dictionary.getMorphologicalProcessor();
 	}
+
+
+    /**
+     * Access the Dictionary.
+     */
+
+    public static Dictionary
+	getDictionary ()
+    {
+	return dictionary;
+    }
+
+
+    /**
+     * Lookup the first lemma found.
+     */
+
+    public static IndexWord
+	getLemma (final POS pos, final String derivation)
+	throws JWNLException
+    {
+        return mp.lookupBaseForm(pos, derivation);
     }
 }

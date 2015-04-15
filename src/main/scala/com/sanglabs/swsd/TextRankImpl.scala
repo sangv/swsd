@@ -95,4 +95,6 @@ object TextRankImpl {
     result
   }
 
+  //Use n*n similarity matrix to calculate similarity across sentences and aggregate the results
+
 }

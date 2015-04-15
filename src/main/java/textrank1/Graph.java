@@ -30,14 +30,15 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package textrank;
+package textrank1;
 
-import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.TreeMap;
 
 
 /**
@@ -46,17 +47,14 @@ import java.util.*;
  * @author paco@sharethis.com
  */
 
-public class Graph
-
+public class
+    Graph
+    extends TreeMap<String, Node>
 {
     // logging
 
     private final static Log LOG =
         LogFactory.getLog(Graph.class.getName());
-
-	Map<String,Node> nodeMap = new TreeMap<String,Node>();
-
-	edu.uci.ics.jung.graph.Graph<Node,Edge> jungGraph = new UndirectedSparseGraph<Node,Edge>();
 
 
     /**
@@ -74,6 +72,12 @@ public class Graph
 
     public SummaryStatistics dist_stats = new SummaryStatistics();
 
+    /**
+     * Protected members.
+     */
+
+    protected Node[] node_list = null;
+
 
     /**
      * Run through N iterations of the TreeRank algorithm, or until
@@ -83,11 +87,17 @@ public class Graph
     public void
 	runTextRank ()
     {
-		for(Node node : jungGraph.getVertices()){
-			System.out.println(node);
-		}
-	final int max_iterations = this.jungGraph.getVertexCount();
+	final int max_iterations = this.size();
+	node_list = new Node[this.size()];
 
+	// load the node list
+
+	int j = 0;
+
+	for (Node n1 : this.values()) {
+	    node_list[j++] = n1;
+		System.out.println(n1);
+	}
 
 	// iterate, then sort and mark the top results
 
@@ -102,7 +112,7 @@ public class Graph
     protected void
 	iterateGraph (final int max_iterations)
     {
-	final double[] rank_list = new double[jungGraph.getVertexCount()];
+	final double[] rank_list = new double[node_list.length];
 
 	// either run through N iterations, or until the standard
 	// error converges below a threshold
@@ -111,13 +121,13 @@ public class Graph
 	    dist_stats.clear();
 
 	    // calculate the next rank for each node
-		Node[] node_list = jungGraph.getVertices().toArray(new Node[]{});
+
 	    for (int i = 0; i < node_list.length; i++) {
 		final Node n1 = node_list[i];
 		double rank = 0.0D;
 
-		for (Node n2 : this.edges(n1)) {
-		    rank += n2.rank / (double) jungGraph.getOutEdges(n2).size();
+		for (Node n2 : n1.edges) {
+		    rank += n2.rank / (double) n2.edges.size();
 		}
 
 		rank *= TEXTRANK_DAMPING_FACTOR;
@@ -154,7 +164,6 @@ public class Graph
     public void
 	sortResults (final long max_results)
     {
-		Node[] node_list = jungGraph.getVertices().toArray(new Node[]{});
 	Arrays.sort(node_list,
 		    new Comparator<Node>() {
 			public int compare (Node n1, Node n2) {
@@ -186,7 +195,7 @@ public class Graph
 	    if (LOG.isDebugEnabled()) {
 		LOG.debug("n: " + n1.key + " " + n1.rank + " " + n1.marked);
 
-		for (Node n2 : edges(n1)) {
+		for (Node n2 : n1.edges) {
 		    LOG.debug(" - " + n2.key);
 		}
 	    }
@@ -205,44 +214,4 @@ public class Graph
 	    (dist_stats.getStandardDeviation() * INCLUSIVE_COEFF)
 	    ;
     }
-
-	public Collection<Node> values() {
-		return nodeMap.values();
-	}
-
-	public Node get(String key) {
-		if(nodeMap.containsKey(key)){
-			nodeMap.get(key);
-		}
-		return null;
-	}
-
-	public void put(String key, Node node) {
-		if(!nodeMap.containsKey(key)) {
-			nodeMap.put(key, node);
-			jungGraph.addVertex(node);
-		}
-	}
-
-	public void connect(Node n1, Node n2) {
-		jungGraph.addEdge(new Edge(n1,n2),n1,n2);
-	}
-
-	public void disconnect(Node n1, Node n2) {
-		Edge e = new Edge(n1,n2);
-		jungGraph.removeEdge(e);
-	}
-
-	public int size() {
-		return jungGraph.getVertexCount();
-	}
-
-	public List<Node> edges(Node n) {
-		List<Node> nodes = new ArrayList<Node>();
-		for (Edge edge : jungGraph.getOutEdges(n)){
-			nodes.add(edge.getDest());
-		}
-		return nodes;
-	}
 }
-

@@ -30,11 +30,14 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package textrank;
+package textrank1;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.math3.util.Precision;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -54,6 +57,11 @@ public class
         LogFactory.getLog(Node.class.getName());
 
 
+    /**
+     * Public members.
+     */
+
+    public HashSet<Node> edges = new HashSet<Node>();
     public double rank = 0.0D;
     public String key = null;
     public boolean marked = false;
@@ -89,6 +97,31 @@ public class
 	else {
 	    return this.value.text.compareTo(that.value.text);
 	}
+    }
+
+
+    /**
+     * Connect two nodes with a bi-directional arc in the graph.
+     */
+
+    public void
+	connect (final Node that)
+    {
+	this.edges.add(that);
+	that.edges.add(this);
+    }
+
+
+    /**
+     * Disconnect two nodes removing their bi-directional arc in the
+     * graph.
+     */
+
+    public void
+	disconnect (final Node that)
+    {
+	this.edges.remove(that);
+	that.edges.remove(this);
     }
 
 
@@ -133,7 +166,7 @@ public class
      */
 
     public double
-	maxNeighbor (final Graph graph, final double min, final double coeff)
+	maxNeighbor (final double min, final double coeff)
     {
 	double adjusted_rank = 0.0D;
 
@@ -141,17 +174,17 @@ public class
 	    log_.debug("neighbor: " + value.text + " " + value);
 	    log_.debug("  edges:");
 
-	    for (Node n : graph.edges(this)) {
+	    for (Node n : edges) {
 		log_.debug(n.value);
 	    }
 	}
 
-	if (graph.edges(this).size() > 1) {
+	if (edges.size() > 1) {
 	    // consider the immediately adjacent synsets
 
 	    double max_rank = 0.0D;
 
-	    for (Node n : graph.edges(this)) {
+	    for (Node n : edges) {
 		if (n.value instanceof SynsetLink) {
 		    max_rank = Math.max(max_rank, n.rank);
 		}
@@ -165,10 +198,10 @@ public class
 	else {
 	    // consider the synsets of the one component keyword
 
-	    for (Node n : graph.edges(this)) {
+	    for (Node n : edges) {
 		if (n.value instanceof KeyWord) {
 		    // there will only be one
-		    adjusted_rank = n.maxNeighbor(graph, min, coeff);
+		    adjusted_rank = n.maxNeighbor(min, coeff);
 		}
 	    }
 	}
@@ -180,33 +213,39 @@ public class
 	return adjusted_rank;
     }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Node)) return false;
 
-		Node node = (Node) o;
+    /**
+     * Traverse the graph, serializing out the nodes and edges.
+     */
 
-		if (!key.equals(node.key)) return false;
-		if (!value.equals(node.value)) return false;
+    public void
+	serializeGraph (final Set<String> entries)
+    {
+	StringBuilder sb = new StringBuilder();
 
-		return true;
+	// emit text and ranks vector
+
+	marked = true;
+
+	sb.append("node").append('\t');
+	sb.append(getId()).append('\t');
+	sb.append(value.getDescription()).append('\t');
+	sb.append(Precision.round(rank, 3));
+	entries.add(sb.toString());
+
+	// emit edges
+
+	for (Node n : edges) {
+	    sb = new StringBuilder();
+	    sb.append("edge").append('\t');
+	    sb.append(getId()).append('\t');
+	    sb.append(n.getId());
+	    entries.add(sb.toString());
+
+	    if (!n.marked) {
+		// tail recursion on child
+		n.serializeGraph(entries);
+	    }
 	}
-
-	@Override
-	public int hashCode() {
-		int result = key.hashCode();
-		result = 31 * result + value.hashCode();
-		return result;
-	}
-
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this)
-				.append("rank", rank)
-				.append("key", key)
-				.append("marked", marked)
-				.append("value", value)
-				.toString();
-	}
+    }
 }

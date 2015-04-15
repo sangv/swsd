@@ -30,7 +30,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package textrank;
+package textrank1;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -130,7 +130,7 @@ public class
 		// emit nodes to construct the graph
 
 		if (last_node != null) {
-		    graph.connect(n,last_node);
+		    n.connect(last_node);
 		}
 
 		last_node = n;

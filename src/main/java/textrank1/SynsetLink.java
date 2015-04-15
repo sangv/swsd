@@ -30,7 +30,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package textrank;
+package textrank1;
 
 
 import net.sf.extjwnl.data.*;
@@ -175,7 +175,7 @@ public class
 	    final SynsetLink synset_link = new SynsetLink(synset_key, synset, parent, relation, hops);
 
 	    node = Node.buildNode(synset_subgraph, synset_key, synset_link);
-		synset_subgraph.connect(node,parent);
+	    node.connect(parent);
 
 	    return node;
 	}
@@ -187,7 +187,7 @@ public class
 		synset_link.hops = hops;
 	    }
 
-		synset_subgraph.connect(node,parent);
+	    node.connect(parent);
 
 	    if (LOG.isDebugEnabled()) {
 		LOG.debug("mark key on " + synset_key);
@@ -249,7 +249,7 @@ public class
 	    }
 	    else {
 		final SynsetLink s = (SynsetLink) n.value;
-		graph.disconnect(n,s.parent);
+		n.disconnect(s.parent);
 	    }
 	}
 

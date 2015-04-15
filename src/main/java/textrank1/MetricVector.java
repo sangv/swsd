@@ -30,33 +30,39 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package textrank;
+package textrank1;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.math3.util.Precision;
 
 
 /**
+ * Implements a point in the vector space representing the distance
+ * metric.
+ *
  * @author paco@sharethis.com
  */
 
 public class
-    Sentence
+    MetricVector
+    implements Comparable<MetricVector>
 {
     // logging
 
     private final static Log LOG =
-        LogFactory.getLog(Sentence.class.getName());
+        LogFactory.getLog(MetricVector.class.getName());
 
 
     /**
      * Public members.
      */
 
-    public String text = null;
-    public String[] token_list = null;
-    public Node[] node_list = null;
-    public String md5_hash = null;
+    public double metric = 0.0D;
+    public NodeValue value = null;
+    public double link_rank = 0.0D;
+    public double count_rank = 0.0D;
+    public double synset_rank = 0.0D;
 
 
     /**
@@ -64,78 +70,62 @@ public class
      */
 
     public
-	Sentence (final String text)
+	MetricVector (final NodeValue value, final double link_rank, final double count_rank, final double synset_rank)
     {
-	this.text = text;
+	this.value = value;
+
+	this.metric = Math.sqrt(((1.0D * link_rank * link_rank) +
+				 (0.5D * count_rank * count_rank) +
+				 (1.5D * synset_rank * synset_rank)
+				 ) / 3.0D
+				);
+
+	this.link_rank = Precision.round(link_rank, 2);
+	this.count_rank = Precision.round(count_rank, 2);
+	this.synset_rank = Precision.round(synset_rank, 2);
+
+	if (LOG.isDebugEnabled()) {
+	    LOG.debug("mv: " + metric + " " + link_rank + " " + count_rank + " " + synset_rank + " " + value.text);
+	}
     }
 
 
     /**
-     * Return a byte array formatted as hexadecimal text.
+     * Compare method for sort ordering.
      */
 
-    public static String
-	hexFormat (final byte[] b)
+    public int
+	compareTo (final MetricVector that)
     {
-	final StringBuilder sb = new StringBuilder(b.length * 2);
-
-	for (int i = 0; i < b.length; i++) {
-	    String h = Integer.toHexString(b[i]);
-
-	    if (h.length() == 1) {
-		sb.append("0");
-	    }
-	    else if (h.length() == 8) {
-		h = h.substring(6);
-	    }
-
-	    sb.append(h);
+        if (this.metric > that.metric) {
+	    return -1;
 	}
-
-	return sb.toString().toUpperCase();
+	else if (this.metric < that.metric) {
+	    return 1;
+	}
+	else {
+	    return this.value.text.compareTo(that.value.text);
+	}
     }
 
 
     /**
-     * Main processing per sentence.
+     * Serialize as text.
      */
 
-    public void
-	mapTokens (final LanguageModel lang, final Graph graph)
-	throws Exception
+    public String
+	render ()
     {
-	token_list = lang.tokenizeSentence(text);
+	final StringBuilder sb = new StringBuilder();
 
-	// scan each token to determine part-of-speech
+	sb.append(Precision.round(metric, 1));
+	sb.append(' ');
+	sb.append(link_rank);
+	sb.append(' ');
+	sb.append(count_rank);
+	sb.append(' ');
+	sb.append(synset_rank);
 
-	final String[] tag_list = lang.tagTokens(token_list);
-
-	// create nodes for the graph
-
-	Node last_node = null;
-	node_list = new Node[token_list.length];
-
-	for (int i = 0; i < token_list.length; i++) {
-	    final String pos = tag_list[i];
-
-	    if (LOG.isDebugEnabled()) {
-		LOG.debug("token: " + token_list[i] + " pos tag: " + pos);
-	    }
-
-	    if (lang.isRelevant(pos)) {
-		final String key = lang.getNodeKey(token_list[i], pos);
-		final KeyWord value = new KeyWord(token_list[i], pos);
-		final Node n = Node.buildNode(graph, key, value);
-
-		// emit nodes to construct the graph
-
-		if (last_node != null) {
-		    graph.connect(n,last_node);
-		}
-
-		last_node = n;
-		node_list[i] = n;
-	    }
-	}
+	return sb.toString();
     }
 }
