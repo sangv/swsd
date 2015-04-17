@@ -117,7 +117,7 @@ public class OpenNlpToolkit {
 	 * @throws IOException
 	 *            If an error occurs while loading the file
 	 */
-	public String[] detectSentencesApplyNewlines(final String text) {
+	public List<String> detectSentencesApplyNewlines(final String text) {
 		// reading individual lines instead of raw content because with news stories,
 		// some sentence lines don't end in punctuation (especially headings, etc.)
 		final List<String> lines = new ArrayList<String>(Arrays.asList(text.split("\n")));
@@ -137,7 +137,7 @@ public class OpenNlpToolkit {
 				}
 			}
 		}
-		return sentences.toArray(new String[0]);
+		return sentences;
 	}
 
 	/**

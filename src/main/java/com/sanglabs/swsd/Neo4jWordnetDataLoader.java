@@ -139,6 +139,7 @@ public class Neo4jWordnetDataLoader {
 		} catch (InterruptedException e) {
 			e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
 		}
+		System.out.println("Done");
 	}
 
 	/**

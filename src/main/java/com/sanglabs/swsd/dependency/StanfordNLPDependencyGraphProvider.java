@@ -117,7 +117,7 @@ public class StanfordNLPDependencyGraphProvider {
 
 		Set<Action> actions = new LinkedHashSet<Action>();
 
-		List<String> lines = Arrays.asList(openNLPSentenceDetector.detectSentencesApplyNewlines(text));
+		List<String> lines = openNLPSentenceDetector.detectSentencesApplyNewlines(text);
 
 		for(String line: lines){
 

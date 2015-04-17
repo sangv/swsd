@@ -2,7 +2,9 @@ package com.sanglabs.swsd
 
 /**
  *
- * The TestText 
+ * The TestText
+ *
+ * Song lyrics from http://www.azlyrics.com/
  *
  * @author Sang Venkatraman
  *
@@ -115,6 +117,70 @@ object TestText {
       |What you don't have you don't need it now
       |Don't need it now
       |It was a beautiful day
+    """.stripMargin
+
+  val fourFiveSecondsLyrics =
+    """
+      |[Verse 1 - Rihanna:]
+      |I think I've had enough
+      |I might get a little drunk
+      |I say what's on my mind
+      |I might do a little time
+      |'Cause all of my kindness
+      |Is taken for weakness
+      |
+      |[Hook - Rihanna:]
+      |Now I'm Four Five Seconds from wildin'
+      |And we got three more days 'til Friday
+      |I'm just tryna make it back home by Monday mornin'
+      |I swear I wish somebody would tell me
+      |Ooh, that's all I want
+      |
+      |[Verse 2 - Kanye West:]
+      |Woke up an optimist
+      |Sun was shinin', I'm positive
+      |Then I heard you was talkin' trash
+      |Hold me back, I'm 'bout to spaz
+      |
+      |[Hook - Rihanna and Kanye West:]
+      |Yeah I'm 'bout Four Five Seconds from wildin'
+      |And we got three more days 'til Friday
+      |I'm tryna make it back home by Monday mornin'
+      |I swear I wish somebody would drive me
+      |Ooh, that's all I want
+      |
+      |[Bridge - Rihanna:]
+      |And I know that you're up tonight
+      |Thinkin', "How could I be so selfish?"
+      |But you called 'bout a thousand times
+      |Wondering where I've been
+      |Now I know that you're up tonight
+      |Thinkin', "How could I be so reckless?"
+      |But I just can't apologize
+      |I hope you can understand
+      |
+      |[Verse 3 - Kanye West:]
+      |If I go to jail tonight
+      |Promise you'll pay my bail
+      |See they want to buy my pride
+      |But that just ain't up for sale
+      |[Rihanna and Kanye West:]
+      |See all of my kindness
+      |Is taken for weakness
+      |
+      |[Hook - Rihanna and Kanye West:]
+      |Now I'm Four Five Seconds from wildin'
+      |And we got three more days 'til Friday
+      |I'm tryna make it back home by Monday mornin'
+      |I swear I wish somebody would tell me
+      |Ooh, that's all I want
+      |
+      |Four Five Seconds from wildin'
+      |And we got three more days 'til Friday
+      |Just tryna make it back home by Monday mornin'
+      |I swear I wish somebody would tell me
+      |'Cause that's all I want
+      |
     """.stripMargin
 
 }

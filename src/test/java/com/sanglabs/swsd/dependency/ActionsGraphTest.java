@@ -4,7 +4,6 @@ package com.sanglabs.swsd.dependency;
 import opennlp.OpenNlpToolkit;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -39,7 +38,7 @@ public class ActionsGraphTest {
 	public void testLyrics(){
 
 		String lyrics = LyricsPointOfViewTestDataProvider.boyNamedSueJohnyCash;
-		List<String> sentences = Arrays.asList(openNLPSentenceDetector.detectSentencesApplyNewlines(lyrics));
+		List<String> sentences = openNLPSentenceDetector.detectSentencesApplyNewlines(lyrics);
 
 		for(String sentence: sentences) {
 

@@ -25,7 +25,7 @@ public class LanguageEnglish
 	public String[]
 	splitParagraph (final String text)
 	{
-		return openNlpToolkit.detectSentencesApplyNewlines(text);
+		return openNlpToolkit.detectSentencesApplyNewlines(text).toArray(new String[]{});
 	}
 
 

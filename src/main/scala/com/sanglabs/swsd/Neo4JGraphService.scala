@@ -4,7 +4,6 @@ import java.util.Comparator
 
 import grizzled.slf4j.Logger
 import net.sf.extjwnl.data.{POS, Synset}
-import org.neo4j.cypher.ExecutionEngine
 import org.neo4j.graphdb._
 import org.neo4j.graphdb.factory.GraphDatabaseFactory
 import org.neo4j.graphdb.traversal.{Traverser, _}
@@ -28,7 +27,7 @@ object Neo4JGraphService {
 
   val acceptedRelationships = List("Hypernym","Holonym")
 
-  val executionEngine = new ExecutionEngine(graphDb)
+  //val executionEngine = new ExecutionEngine(graphDb)
 
   var cacheMap = Map[String,Int]() //FIXME bad idea to put a shared mutable variable
 
