@@ -3,6 +3,8 @@ package com.sanglabs.swsd
 import edu.uci.ics.jung.algorithms.scoring.PageRank
 import edu.uci.ics.jung.graph.{Graph, UndirectedSparseGraph}
 import net.sf.extjwnl.data.POS
+import opennlp.OpenNlpToolkit
+import org.tartarus.snowball.ext.englishStemmer
 
 import scala.collection.immutable.ListMap
 
@@ -19,6 +21,12 @@ case class TREdge(source: Int, target: Int, color: String = "black")
 case class TRGraph(directed: Boolean = true, nodes: List[TRNode] = List[TRNode](), links: List[TREdge])
 
 object TextRankImpl {
+
+  val stopWords: List[String] = scala.io.Source.fromFile("data/stopwords.txt").getLines.toList
+
+  val openNlpToolkit = new OpenNlpToolkit
+
+  val stemmer_en = new englishStemmer
 
   def calculate(text: String): ListMap[WordAnalysis,Double] =
   {
@@ -95,6 +103,39 @@ object TextRankImpl {
     result
   }
 
+  def stemToken(token: String): Option[String] = {
+    token.matches("(?i)^[a-z0-9]+(?:[ -]?[a-z0-9]+)*$") match {
+      case (true) => {
+        stemmer_en.setCurrent(token)
+        stemmer_en.stem
+        Option(stemmer_en.getCurrent)
+      }
+      case (false) => None
+    }
+  }
+
   //Use n*n similarity matrix to calculate similarity across sentences and aggregate the results
+  def topSentences(text: String): List[String] = {
+    import scala.collection.JavaConverters._
+    val sentences = openNlpToolkit.detectSentencesApplyNewlines(text).asScala
+    /*sentences map {s => openNlpToolkit.tokenize(s)}
+    for(i <- 0 until sentences.size()){
+      for(j <- 0 until sentences.size()){
+      }
+    }*/
+    for(sentence <- sentences){
+      println(sentence)
+      var stems = List[String]()
+      openNlpToolkit.tokenize(sentence).filterNot(stopWords.contains) map {stemToken} foreach {f =>
+        f match {
+          case Some(x:String) => {stems :+= x}
+          case None =>
+        }
+      }
+      println(stems)
+    }
+
+    sentences.toList
+  }
 
 }

@@ -46,9 +46,24 @@ object DKProWSDService extends JungGraphConnectivityService {
     words(0)
   }
 
+  def synsetFormatForSenseIdWithGloss(senseId: String): (String,String) = {
+    val SenseIdRegex(offset,pos) = inventory.getWordNetSynsetAndPos(senseId)
+
+    val synset = WordnetDictionaryService.getSynsetAt(pos,offset.toLong)
+
+    val indexWord = WordnetDictionaryService.indexWord(synset.getPOS,senseId.split("%")(0))
+    var words = List[String]()
+    for(s <- indexWord.getSenses.asScala.find(synset.equals)) {
+      for (w: Word <- synset.getWords.asScala.find(_.getLemma.equalsIgnoreCase(indexWord.getLemma))) {
+        words :+= w.getLemma + "#" + synset.getPOS.getKey + "#" + w.getIndex
+      }
+    }
+    (words(0),synset.getGloss)
+  }
+
 
   // Bind the visualizer to the algorithm
-  //wsdAlgorithm.setGraphVisualizer(graphVisualizer)
+  wsdAlgorithm.setGraphVisualizer(graphVisualizer)
   wsdAlgorithm.setSearchDepth(4)
 
   def rawDisambiguate(text: List[WordAnalysis], useOwn: Boolean = false): Map[String,String] = {
@@ -68,13 +83,17 @@ object DKProWSDService extends JungGraphConnectivityService {
     }
 
     var result = Map[String,String]()
+    var resultWithPOS = Map[(POS,String),Int]()
 
     dabMap foreach(a => {
       val synset = a._2.maxBy(_._2)._1
       result += (a._1.getFirst -> synset)
+      resultWithPOS += ((a._1.getSecond,a._1.getFirst) -> a._2.size)  //a._2.size
     })
 
-
+    //run graph algorithm on i) only nouns and ii) with 6 search depth and iii) only hypernyms
+    //val conceptOptions = resultWithPOS.filterKeys(_._1 == POS.NOUN).values map (synsetFormatForSenseId)
+    //println(conceptOptions)
     result
   }
 
@@ -82,6 +101,12 @@ object DKProWSDService extends JungGraphConnectivityService {
 
     val result = rawDisambiguate(text,useOwn)
     result mapValues (synsetFormatForSenseId)
+  }
+
+  def disambiguateWithGloss(text: List[WordAnalysis], useOwn: Boolean = false): Map[String,(String,String)] = {
+
+    val result = rawDisambiguate(text,useOwn)
+    result mapValues (synsetFormatForSenseIdWithGloss)
   }
 
 

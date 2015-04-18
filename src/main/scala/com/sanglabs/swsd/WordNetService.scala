@@ -9,12 +9,12 @@ import scala.collection._
 
 /**
  *
- * The SimpleDisambiguationService 
+ * The WordNetService provides access to WordNet using the extJWNL library
  *
  * @author Sang Venkatraman
  *
  */
-object SimpleDisambiguationService {
+object WordNetService {
 
   //connect all possible options (synsets) filtered by pos and maintain a multimap
   //between the words and the possible synsets

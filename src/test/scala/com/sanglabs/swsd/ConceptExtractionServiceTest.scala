@@ -139,11 +139,11 @@ class ConceptExtractionServiceTest extends FlatSpec with Matchers with BeforeAnd
   "Beautiful Day song" should "return " in {
 
 
-    var options = SimpleDisambiguationService.lookupOptions(TestText.beautifulDayLyrics)
+    var options = WordNetService.lookupOptions(TestText.beautifulDayLyrics)
     var wsds = DKProWSDService.rawDisambiguate(options.keys.toList).values.toList
     DKProWSDService.getCenters(wsds).take(10) foreach { f => {println(DKProWSDService.synsetFormatForSenseId(f._1),f._2)}}
 
-    options = SimpleDisambiguationService.lookupOptions(TestText.fakePlasticTrees)
+    options = WordNetService.lookupOptions(TestText.fakePlasticTrees)
     wsds = DKProWSDService.rawDisambiguate(options.keys.toList).values.toList
     DKProWSDService.getCenters(wsds).take(10) foreach { f => {println(DKProWSDService.synsetFormatForSenseId(f._1),f._2)}}
     //TODO keep track of count of occurances

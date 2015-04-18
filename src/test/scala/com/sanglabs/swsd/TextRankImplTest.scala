@@ -1,11 +1,8 @@
 package com.sanglabs.swsd
 
-import org.junit.Assert._
 import org.junit.Test
 import org.scalatest.Matchers
 import org.scalatest.junit.{AssertionsForJUnit, JUnitSuite}
-
-import scala.collection.immutable.ListMap
 
 /**
  *
@@ -17,7 +14,7 @@ import scala.collection.immutable.ListMap
 class TextRankImplTest extends JUnitSuite with Matchers with AssertionsForJUnit {
 
 
-  @Test
+  /*@Test
   def test1() {
     val result: ListMap[WordAnalysis,Double] = TextRankImpl.calculate("Cassandra is a NoSQL database that provides extremely fast writes (and reads with the correct design). It also has availability and partitioning built into its design with tunable consistency. To achieve distribution as a fundamental construct, Cassandra recommends and imposes certain querying limitations. Cassandra like other NoSQL databases also encourages denormalization (allowing data duplication) and enforces a schema design that is in keeping with how the data would be queried.\n\nWhen building a system of record, it is not always possible to foresee all kinds of queries that need to be executed on the data. But, because we want to leverage all the built in distribution and scaling capabilities of Cassandra, it makes sense for the system of record data to live in Cassandra (especially as the volume of data is high or bound to increase).")
 
@@ -30,7 +27,7 @@ class TextRankImplTest extends JUnitSuite with Matchers with AssertionsForJUnit 
      // 0.06832425956935244
 
 
-  }
+  }*/
 
   /*@Test
   def test2() {
@@ -43,5 +40,9 @@ class TextRankImplTest extends JUnitSuite with Matchers with AssertionsForJUnit 
 
 
   }*/
+  @Test
+  def testSentences() {
+     TextRankImpl.topSentences("\"Cassandra is a NoSQL database that provides extremely fast writes (and reads with the correct design).")
+  }
 
 }

@@ -1,7 +1,6 @@
 package com.sanglabs.swsd
 
 import junit.framework.TestCase
-import org.junit.Test
 
 /**
  *
@@ -52,7 +51,7 @@ class DbpediaNamedEntityTest extends TestCase {
   def testSong(): Unit = {
     DbpediaSpotlightService.getEntities(TestText.beautifulDayLyrics)
     println("Done")
-  }*/
+  }
 
   @Test
   def testNERSong2(): Unit = {
@@ -64,6 +63,11 @@ class DbpediaNamedEntityTest extends TestCase {
   def testNERSong3(): Unit = {
     DbpediaSpotlightService.getEntities(NERTest.ItsAllAboutThePentiums_WeirdAl)
     println("Done")
+  }*/
+
+  def testNERSongs() = {
+    val results = DbpediaSpotlightService.getEntities(TextPreprocessor.preprocess(NERTest.ItsAllAboutThePentiums_WeirdAl))
+    println(results)
   }
 
 }
