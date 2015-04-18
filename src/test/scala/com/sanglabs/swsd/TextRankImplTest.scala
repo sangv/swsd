@@ -39,10 +39,24 @@ class TextRankImplTest extends JUnitSuite with Matchers with AssertionsForJUnit 
     println(topWords)
 
 
-  }*/
+  }
   @Test
   def testSentences() {
      TextRankImpl.topSentences("\"Cassandra is a NoSQL database that provides extremely fast writes (and reads with the correct design).")
+  }
+
+  @Test
+  def testSentences2() {
+    val results = TextRankImpl.topSentences(TestText.fourFiveSecondsLyrics)
+    println(results)
+    println("DONE")
+  }*/
+
+  @Test
+  def easySentences() {
+    val results = TextRankImpl.topSentences("one two three. one two. two four. three two")
+    println(results)
+    println("DONE")
   }
 
 }
