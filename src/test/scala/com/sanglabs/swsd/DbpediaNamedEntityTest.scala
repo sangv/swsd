@@ -63,11 +63,18 @@ class DbpediaNamedEntityTest extends TestCase {
   def testNERSong3(): Unit = {
     DbpediaSpotlightService.getEntities(NERTest.ItsAllAboutThePentiums_WeirdAl)
     println("Done")
-  }*/
+  }
 
   def testNERSongs() = {
     val results = DbpediaSpotlightService.getEntities(TextPreprocessor.preprocess(NERTest.ItsAllAboutThePentiums_WeirdAl))
     println(results)
+  }*/
+
+  def testFloridaGeorgiaLine() = {
+    val results = DbpediaSpotlightService.getEntities(TextPreprocessor.preprocess(NERTest.AnythingGoes_FloridaGeorgiaLine))
+    println(results)
   }
+
+
 
 }

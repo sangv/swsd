@@ -10,72 +10,6 @@ package com.sanglabs.swsd
 object NERTest {
 
 
-  val MyHumps_BlackEyedPeas = """I'm so official ya'll
-                                |You can check my record.
-                                |My dress code is elevated,
-                                |No one can do it better.
-                                |What kind of chick you know rock Louis from head to toe?
-                                |I'm Incredible.
-                                |So ATL what you know about me?
-                                |Frankie B jeans Jimmy Choos on my feet.
-                                |I walk up in the store they already know my name.
-                                |Now go into the back and give me one of errthang.
-                                |
-                                |Gucci this, Gucci that
-                                |Gucci everything [x3]
-                                |Louis this, Louis that
-                                |Louis errthang [x3]
-                                |Give me this, give me that
-                                |Give me errthang [x3]
-                                |Killing this, killing that
-                                |Killing errthang [x2]
-                                |
-                                |On my pretty hustle with the fashion,
-                                |The way I put my fists together.
-                                |Fendi bag compliment the Prada shoes and patten leather.
-                                |What kind of chick you know rocks Gucci from head to toe?
-                                |I'm impeccable!
-                                |See you might have the same outfit.
-                                |If you ain't got my swagg you can't rock it like this.
-                                |I'm a fashionista when it comes to doing this.
-                                |My taste is so exclusive and it's so expensive!
-                                |Oh!
-                                |
-                                |Gucci this, Gucci that
-                                |Gucci everything [x3]
-                                |Louis this, Louis that
-                                |Louis errthang [x3]
-                                |Give me this, give me that
-                                |Give me errthang [x3]
-                                |Killing this, killing that
-                                |Killing everything [x2]
-                                |That's on errthang
-                                |
-                                |When I walk into the store, I know what I want.
-                                |Want one of everything I don't care what it cost.
-                                |The hats, the scarfs, the shirt, the pants.
-                                |Unlock the case of the sunglasses.
-                                |Gotta, gotta make sure my bag matches.
-                                |My accessories gotta be flashy
-                                |Especially cause I'm classy
-                                |Babydoll, and my swagg sassy.
-                                |OMG we so live,
-                                |This is how we arrive.
-                                |My sneaker game is dynamite.
-                                |The young diva leggoh we ride
-                                |Beauty, Star and you got me my Betsy Johnson jewelry.
-                                |Three of the cutest things you ever seen!
-                                |OMG on errthang.
-                                |
-                                |Gucci this, Gucci that
-                                |Gucci errthang [x3]
-                                |Louis this, Louis that
-                                |Louis errthang [x3]
-                                |Give me this, give me that
-                                |Give me errthang [x3]
-                                |Killing this, killing that
-                                |Killing everything [x2]
-                                |That's on errthang!"""
 
   val TheBoysOfSummer_DonHenley = """"The Boys Of Summer"
                                     |
@@ -282,5 +216,71 @@ object NERTest {
                                          |Wastin' time with all the chatroom yakkers?
                                          |9 to 5, chillin' at Hewlett Packard?
                                          |What??"""
+
+  val AnythingGoes_FloridaGeorgiaLine =
+    """
+      |Alabama on the boombox, baby
+      |‘Bout to get a little boondock crazy
+      |
+      |Big stars breaking out through the indigo
+      |Chevy wind comin in and stereo
+      |Tail lights dissapear in bout a mile or so
+      |Down a county road
+      |Phone blowing up where you is
+      |Baby sayin baby, let's do this
+      |Rocket in a bottle with a fuse lit
+      |Bout to lift it off, I'm bout to twist it off
+      |
+      |[Chorus:]
+      |Lime on the rim of that dixie silver
+      |Smokin up a faded out 4x4
+      |Girls headin off to the river, yeah
+      |Victoria's Secret aint a secret no more
+      |I brought the songs and you brought the party
+      |Only one way to do it up right
+      |Everybody goes where eveybody knows
+      |That anything goes on a Friday night
+      |Get your party right, it's a Friday night
+      |Get your party right, it's a Friday night
+      |
+      |Well baby you aint nothin but a masterpiece
+      |Swayin and sippin that Dos Equis
+      |Losin yourself in the big loud beat, nothin but heat
+      |Somebody's rockin that bang box
+      |Everybody hittin that sweet spot
+      |Nobody mindin that tic toc
+      |Gettin all locked in with all my friends
+      |
+      |[Chorus:]
+      |Lime on the rim of that dixie silver
+      |Smokin up a faded out 4x4
+      |Girls headin off to the river, yeah
+      |Victoria's Secret aint a secret no more
+      |I brought the songs and you brought the party
+      |Only one way to do it up right
+      |Everybody goes where eveybody knows
+      |That anything goes on a Friday night
+      |Get your party right, it's a Friday night
+      |Get your party right, it's a Friday night
+      |
+      |[Bridge x2:]
+      |Alabama on the boombox baby
+      |Bout to get a little boondock crazy
+      |Hop on, it's a helluva ride
+      |Cuz anything goes on a Friday night
+      |
+      |[Chorus:]
+      |Lime on the rim of that dixie silver
+      |Smokin up a faded out 4x4
+      |Girls headin off to the river, yeah
+      |Victoria's Secret aint a secret no more
+      |I brought the songs and you brought the party
+      |Only one way to do it up right
+      |Everybody goes where eveybody knows
+      |That anything goes on a Friday Night
+      |Get your party right It's a Friday night
+      |Get your party right It's a Friday night
+      |
+    """.stripMargin
 
 }

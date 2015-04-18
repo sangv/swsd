@@ -34,9 +34,9 @@ object DKProWSDService extends JungGraphConnectivityService {
   def synsetFormatForSenseId(senseId: String): String = {
     val SenseIdRegex(offset,pos) = inventory.getWordNetSynsetAndPos(senseId)
 
-    val synset = WordnetDictionaryService.getSynsetAt(pos,offset.toLong)
+    val synset = WordNetDictionaryService.getSynsetAt(pos,offset.toLong)
 
-    val indexWord = WordnetDictionaryService.indexWord(synset.getPOS,senseId.split("%")(0))
+    val indexWord = WordNetDictionaryService.indexWord(synset.getPOS,senseId.split("%")(0))
     var words = List[String]()
     for(s <- indexWord.getSenses.asScala.find(synset.equals)) {
       for (w: Word <- synset.getWords.asScala.find(_.getLemma.equalsIgnoreCase(indexWord.getLemma))) {
@@ -49,9 +49,9 @@ object DKProWSDService extends JungGraphConnectivityService {
   def synsetFormatForSenseIdWithGloss(senseId: String): (String,String) = {
     val SenseIdRegex(offset,pos) = inventory.getWordNetSynsetAndPos(senseId)
 
-    val synset = WordnetDictionaryService.getSynsetAt(pos,offset.toLong)
+    val synset = WordNetDictionaryService.getSynsetAt(pos,offset.toLong)
 
-    val indexWord = WordnetDictionaryService.indexWord(synset.getPOS,senseId.split("%")(0))
+    val indexWord = WordNetDictionaryService.indexWord(synset.getPOS,senseId.split("%")(0))
     var words = List[String]()
     for(s <- indexWord.getSenses.asScala.find(synset.equals)) {
       for (w: Word <- synset.getWords.asScala.find(_.getLemma.equalsIgnoreCase(indexWord.getLemma))) {
@@ -71,9 +71,9 @@ object DKProWSDService extends JungGraphConnectivityService {
 
     val sentence: java.util.Collection[Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS]] = new java.util.ArrayList[Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS]]
 
-    //val baseFormText = text map ( w => WordAnalysis(w.word,WordnetDictionaryService.getBaseForm(w.pos,w.lemma),w.pos,w.stanfordPOS))
+    //val baseFormText = text map ( w => WordAnalysis(w.word,WordNetDictionaryService.getBaseForm(w.pos,w.lemma),w.pos,w.stanfordPOS))
     for(w <- text) {
-        sentence.add(new Pair[String, POS](WordnetDictionaryService.getBaseForm(w.pos,w.word), posConverter.get(w.pos).get))
+        sentence.add(new Pair[String, POS](WordNetDictionaryService.getBaseForm(w.pos,w.word), posConverter.get(w.pos).get))
         //TODO reset lemma in WordAnalysis as well
     }
 

@@ -48,7 +48,7 @@ class ConceptExtractionServiceTest extends FlatSpec with Matchers with BeforeAnd
   /*"Extract concepts from IBM sentence" should "return " in {
 
 
-    //val sentences = StanfordNLPService.sentences(text) mkString(" ")
+    //val getSentences = StanfordNLPService.getSentences(text) mkString(" ")
 
     val options = SimpleDisambiguationService.lookupOptions(text)
     val result = DKProWSDService.disambiguate(options.keys.toList)
@@ -139,11 +139,11 @@ class ConceptExtractionServiceTest extends FlatSpec with Matchers with BeforeAnd
   "Beautiful Day song" should "return " in {
 
 
-    var options = WordNetService.lookupOptions(TestText.beautifulDayLyrics)
+    var options = WordNetDictionaryService.lookupOptions(TestText.beautifulDayLyrics)
     var wsds = DKProWSDService.rawDisambiguate(options.keys.toList).values.toList
     DKProWSDService.getCenters(wsds).take(10) foreach { f => {println(DKProWSDService.synsetFormatForSenseId(f._1),f._2)}}
 
-    options = WordNetService.lookupOptions(TestText.fakePlasticTrees)
+    options = WordNetDictionaryService.lookupOptions(TestText.fakePlasticTrees)
     wsds = DKProWSDService.rawDisambiguate(options.keys.toList).values.toList
     DKProWSDService.getCenters(wsds).take(10) foreach { f => {println(DKProWSDService.synsetFormatForSenseId(f._1),f._2)}}
     //TODO keep track of count of occurances

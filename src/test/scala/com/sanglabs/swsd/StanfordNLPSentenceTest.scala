@@ -14,10 +14,10 @@ import org.scalatest.{Matchers, BeforeAndAfter, FlatSpec}
 @RunWith(classOf[JUnitRunner])
 class StanfordNLPSentenceTest extends FlatSpec with Matchers with BeforeAndAfter {
 
-  "Test sentence splitting" should "return 3 sentences" in {
-    val sentences = StanfordNLPService.getSentences("There are multiple sentences in this text. The first one, is this. And this is the second one.")
+  "Test sentence splitting" should "return 3 getSentences" in {
+    val sentences = StanfordNLPService.getSentences("There are multiple getSentences in this text. The first one, is this. And this is the second one.")
     sentences.size shouldEqual(3)
-    sentences(0) shouldEqual "There are multiple sentences in this text."
+    sentences(0) shouldEqual "There are multiple getSentences in this text."
     sentences(1) shouldEqual "The first one, is this."
     sentences(2) shouldEqual "And this is the second one."
   }
@@ -27,13 +27,13 @@ class StanfordNLPSentenceTest extends FlatSpec with Matchers with BeforeAndAfter
     "Where does Toyota have its factories?",
     "What does Mary produce?",
     "What does GM produce?",
-    "is GM moving its jobs to Atlanta.",
+    "is GM moving some of its jobs to Atlanta.",
     "work at Chevy.",
     "work at chevy.",
     "fixing a General Motors car",
     "You told me I was like the Dead Sea")
 
-  "Test ner spots" should "return 3 sentences" in {
+  "Test ner spots" should "return 3 getSentences" in {
     testSentences foreach {sentence =>
       println(sentence)
       val result = StanfordNLPService.nerSpots(sentence)

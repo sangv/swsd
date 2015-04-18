@@ -80,7 +80,7 @@ object StanfordNLPService {
 
         val pos = convertPOS(token.get(classOf[PartOfSpeechAnnotation]))
         val surfaceForm = token.get(classOf[OriginalTextAnnotation])
-        sentence += WordAnalysis(surfaceForm, WordnetDictionaryService.getBaseForm(pos, surfaceForm), pos, token.get(classOf[PartOfSpeechAnnotation]))
+        sentence += WordAnalysis(surfaceForm, WordNetDictionaryService.getBaseForm(pos, surfaceForm), pos, token.get(classOf[PartOfSpeechAnnotation]))
       }
       sentences += Sentence(sentence.toList)
     }

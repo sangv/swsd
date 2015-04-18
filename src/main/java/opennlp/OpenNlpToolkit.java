@@ -70,13 +70,13 @@ public class OpenNlpToolkit {
 
 	/**
 	 * Read the content from the specified file and return a list of detected
-	 * sentences.
+	 * getSentences.
 	 *
 	 * @param file
 	 *           the file to read
 	 * @param cs
 	 *           the file charset
-	 * @return the detected sentences
+	 * @return the detected getSentences
 	 *
 	 * @throws IOException
 	 *            If an error occurs while loading the file
@@ -107,12 +107,12 @@ public class OpenNlpToolkit {
 
 	/**
 	 * Read the content from the specified file and return a list of detected
-	 * sentences.
+	 * getSentences.
 	 *
 	 * @param text
 	 *           the text to read
 
-	 * @return the detected sentences
+	 * @return the detected getSentences
 	 *
 	 * @throws IOException
 	 *            If an error occurs while loading the file
@@ -141,13 +141,13 @@ public class OpenNlpToolkit {
 	}
 
 	/**
-	 * Break the given content into sentences.
+	 * Break the given content into getSentences.
 	 * <p>
 	 * The sentence detector is lazily initialized on first use.
 	 * </p>
 	 *
-	 * @param content the content to break into sentences
-	 * @return the detected sentences
+	 * @param content the content to break into getSentences
+	 * @return the detected getSentences
 	 */
 	public String[] detectSentences(final String content) {
 		if (_sentenceDetector == null) {
@@ -173,7 +173,7 @@ public class OpenNlpToolkit {
 			}
 		}
 
-		// detect sentences
+		// detect getSentences
 		return _sentenceDetector.sentDetect(content);
 	}
 
@@ -344,7 +344,7 @@ public class OpenNlpToolkit {
 	/**
 	 * Find Discourse entities (entity mentions) in a document.
 	 *
-	 * @param sentences the document sentences
+	 * @param sentences the document getSentences
 	 * @return the recognized discourse entities.
 	 */
 	public DiscourseEntity[] findEntityMentions(final String[] sentences) {

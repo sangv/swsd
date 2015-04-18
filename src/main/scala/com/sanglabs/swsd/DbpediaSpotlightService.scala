@@ -87,19 +87,20 @@ object DbpediaSpotlightService {
     var options: Map[String, String] = Map[String, String]()
     options += ("spotter" -> "SpotXmlParser")
     var namedEntities = Set[NamedEntity]()
-    try {
+    /*try {
       namedEntities ++= getDbpediaEntities(buildSpotXmlParserPayload(text.substring(0,1200), spots), options)
     }
     catch {
       case (e: Exception) => {
         logger.info(s"Unable to use NLP algorithms locally for named entity spotting. Using only Dbpedia spotlight + ${e.getLocalizedMessage}")
       }
-    }
+    } */
     namedEntities = namedEntities ++ getDbpediaEntities(text) //defaults to using new map - not the one with SpotterXML
     println(namedEntities)
     println(" ======================================= ")
     val filteredResults = namedEntities filter {n => isBrand(n.uri)}
     println(filteredResults)
+    println(" ======================================= ***** =======================================")
     return filteredResults
   }
 

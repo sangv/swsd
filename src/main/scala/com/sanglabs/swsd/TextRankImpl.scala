@@ -3,8 +3,6 @@ package com.sanglabs.swsd
 import edu.uci.ics.jung.algorithms.scoring.PageRank
 import edu.uci.ics.jung.graph.{Graph, UndirectedSparseGraph}
 import net.sf.extjwnl.data.POS
-import opennlp.OpenNlpToolkit
-import org.tartarus.snowball.ext.englishStemmer
 
 import scala.collection.immutable.ListMap
 
@@ -21,12 +19,6 @@ case class TREdge(source: Int, target: Int, color: String = "black")
 case class TRGraph(directed: Boolean = true, nodes: List[TRNode] = List[TRNode](), links: List[TREdge])
 
 object TextRankImpl {
-
-  val stopWords: List[String] = scala.io.Source.fromFile("data/stopwords.txt").getLines.toList
-
-  val openNlpToolkit = new OpenNlpToolkit
-
-  val stemmer_en = new englishStemmer
 
   def calculate(text: String): ListMap[WordAnalysis,Double] =
   {
@@ -103,32 +95,13 @@ object TextRankImpl {
     result
   }
 
-  def stemToken(token: String): Option[String] = {
-    token.matches("(?i)^[a-z0-9]+(?:[ -]?[a-z0-9]+)*$") match {
-      case (true) => {
-        stemmer_en.setCurrent(token)
-        stemmer_en.stem
-        Option(stemmer_en.getCurrent)
-      }
-      case (false) => None
-    }
-  }
-
-  //Use n*n similarity matrix to calculate similarity across sentences and aggregate the results
-  def topSentences(text: String): List[(String,Double)] = {
-    val sentences = openNlpToolkit.detectSentences(TextPreprocessor.preprocess(text)).toList
+  //Use n*n similarity matrix to calculate similarity across getSentences and aggregate the results
+  def topSentences(text: String, numberOfSentences: Int = 2): List[(String,Double)] = {
+    val sentences = TextPreprocessor.getSentences(text)
 
     var sentenceStems = Map[String,List[String]]()
     for(sentence <- sentences){
-      println(sentence)
-      var stems = List[String]()
-      openNlpToolkit.tokenize(sentence).filterNot(stopWords.contains) map {stemToken} foreach {f =>
-        f match {
-          case Some(x:String) => {stems :+= x}
-          case None =>
-        }
-      }
-      sentenceStems += (sentence -> stems)
+      sentenceStems += (sentence -> TextPreprocessor.removeStopWordsAndStem(sentence))
     }
 
     val stemArray = sentenceStems.values.toList
@@ -146,8 +119,8 @@ object TextRankImpl {
       }
       sentenceScores += (i -> score)
     }
-
-    val indexes = ListMap(sentenceScores.toList.sortBy{_._2}:_*).toList.reverse take(Math.round(0.3F*sentences.length))
+    //Math.round(0.3F*sentences.length)
+    val indexes = ListMap(sentenceScores.toList.sortBy{_._2}:_*).toList.reverse take(numberOfSentences)
     val results: List[(String,Double)] = indexes.map(s => (sentences(s._1),s._2)).toList
     results
   }

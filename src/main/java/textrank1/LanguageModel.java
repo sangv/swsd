@@ -79,7 +79,7 @@ public abstract class LanguageModel
 
 
     /**
-     * Split sentences within the paragraph text.
+     * Split getSentences within the paragraph text.
      */
 
     public abstract String[]

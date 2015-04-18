@@ -91,7 +91,7 @@ class  DKProWSDServiceTest extends FlatSpec with Matchers with BeforeAndAfter {
     //val fourFiveSecondsStanzas = TestText.fourFiveSecondsLyrics.split("\n\n")
     //println(fourFiveSecondsStanzas(0))
     //println(TextPreprocessor.preprocess(fourFiveSecondsStanzas(0)))
-    val options = WordNetService.lookupOptions(TestText.fourFiveSecondsLyrics)
+    val options = WordNetDictionaryService.lookupOptions(TestText.fourFiveSecondsLyrics)
     println(options)
     val result = DKProWSDService.disambiguateWithGloss(options.keys.toList)
     println(result.size)

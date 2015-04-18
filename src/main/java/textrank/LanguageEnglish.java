@@ -19,7 +19,7 @@ public class LanguageEnglish
 	public static englishStemmer stemmer_en = new englishStemmer();
 
 	/**
-	 * Split sentences within the paragraph text.
+	 * Split getSentences within the paragraph text.
 	 */
 
 	public String[]

@@ -13,7 +13,7 @@ import org.scalatest.{Matchers, FunSpec}
 class WordnetDictionaryServiceTest extends FunSpec with Matchers {
 
   it ("should be able to get base form") {
-     WordnetDictionaryService.getBaseForm(POS.NOUN,"Hard disk") shouldEqual  "hard disk"
+     WordNetDictionaryService.getBaseForm(POS.NOUN,"Hard disk") shouldEqual  "hard disk"
   }
 
 }

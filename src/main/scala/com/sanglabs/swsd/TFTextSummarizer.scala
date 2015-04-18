@@ -1,6 +1,6 @@
 package com.sanglabs.swsd
 
-import com.sanglabs.swsd.TFIDFCalculator.Document
+import com.sanglabs.swsd.TextPreprocessor.Document
 import grizzled.slf4j.Logger
 
 /**
@@ -18,7 +18,7 @@ object TFIDFCalculator {
 
     var map = Map[Document, List[(String,Double)]]()
 
-    val terms = documents flatMap {_.words} toSet
+    val terms = documents flatMap {d => TextPreprocessor.removeStopwordsAndStemDocument(d).map(_._2).flatten} toSet
     val documentTermFrequencies = documents map termFrequency
 
     val idfs: Map[String,Double] = {
@@ -46,8 +46,9 @@ object TFIDFCalculator {
   }
 
   def termFrequency(document: Document): DocumentTermFrequency = {
-    val countMap: Map[String,Int] = document.words groupBy(_.toString) mapValues(_.size)
-    val docLength = document.words.length
+    val terms = TextPreprocessor.removeStopwordsAndStemDocument(document).map(_._2).flatten
+    val countMap: Map[String,Int] = terms groupBy(_.toString) mapValues(_.size)
+    val docLength = terms.length
     var map = Map[String,Double]()
     for(term <- countMap.keySet) {
       map += (term -> countMap.get(term).getOrElse(0) * 1.0 / docLength)
@@ -59,7 +60,6 @@ object TFIDFCalculator {
   }
 
   case class DocumentTermFrequency(document: Document, termFrequencies: Map[String,Double])
-  case class Document(words: List[String])  //terms imply uniqueness while words can be repeated
 
 }
 
@@ -69,19 +69,20 @@ object TFTextSummarizer {
 
   val logger = Logger[this.type]
 
-  def sortSentencesByTF(sentences: List[List[String]]): Seq[(String,Double)] = {
+  def sortSentencesByTF(document: Document): Seq[(String,Double)] = {
 
-    val document = Document(sentences.flatten)
+    val sentenceStems = TextPreprocessor.removeStopwordsAndStemDocument(document)
+    val sentenceStemsMap = sentenceStems.toMap
     val documentTermFrequency = TFIDFCalculator termFrequency(document)
     var scoreMap = Map[String,Double]() //TODO replace String by sentence because that is what it means
 
-    for(sentence <- sentences) {
+    for(sentence <- sentenceStemsMap.keySet) {
       var sentenceScore: Double = 0.0
-      for (word <- sentence) {
-        sentenceScore += documentTermFrequency.termFrequencies.get(word).getOrElse(0.0)
+      for (term <- sentenceStemsMap.get(sentence).get) {
+        sentenceScore += documentTermFrequency.termFrequencies.get(term).getOrElse(0.0)
       }
       //TODO refactor the way sentence is being built
-      scoreMap += (sentence.mkString(" ") -> sentenceScore/sentence.mkString(" ").length) // Normalizing the sentence score so that long sentences don't automatically get selected
+      scoreMap += (sentence -> sentenceScore/sentence.mkString(" ").length) // Normalizing the sentence score so that long getSentences don't automatically get selected
     }
 
     val map = scoreMap.toSeq.sortWith(_._2 > _._2)
@@ -91,24 +92,16 @@ object TFTextSummarizer {
 
   }
 
-  def topSentences(sentences: List[List[String]], numberOfSentence: Int = 2): List[String] ={
-     val top = sortSentencesByTF(sentences)
+  def topSentences(document: Document, numberOfSentence: Int = 2): List[String] ={
+     val top = sortSentencesByTF(document)
      top map (_._1) take(numberOfSentence) toList
   }
 
-  def summarize(text: String, sentences: Int = 2) = {
-    //call the sentence parser and split to sentences (maybe use opennlp sentence detecter)
-    val rawSentences = StanfordNLPService.getSentences(text)
-    val sentences = StanfordNLPService.analyze(text)
+  /*def summarize(document: Document, ratio: Float = 0.2F) = {
 
-    val filteredSentences: List[List[String]] = sentences map(s => s.words filterNot(w => stopWords.contains(w.word)) map (_.word))
-
-    if(rawSentences.length != sentences.length)
-      throw new RuntimeException("Sentence Tokenization did not work as expected")
-
-    val summarySentences = topSentences(filteredSentences)
+    val summarySentences = topSentences(document, Math.round(ratio * sentences.length))
     logger.debug(summarySentences)
     summarySentences
-  }
+  }*/
 
 }

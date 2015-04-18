@@ -36,7 +36,7 @@ public class OpenNlpToolkitTest {
 						+ " chairman of Consolidated Gold Fields PLC, was named a director"
 						+ " of this British industrial conglomerate."
 						// added this for more boundary cases
-						+ " Those contraction-less sentences don't have boundary/odd"
+						+ " Those contraction-less getSentences don't have boundary/odd"
 						+ " cases...this one does.";
 
 		final String[][] expected = new String[][] {
@@ -49,13 +49,13 @@ public class OpenNlpToolkitTest {
 						"former", "chairman", "of", "Consolidated", "Gold", "Fields",
 						"PLC", ",", "was", "named", "a", "director", "of", "this",
 						"British", "industrial", "conglomerate", "."},
-				new String[] {"Those", "contraction-less", "sentences", "do",
+				new String[] {"Those", "contraction-less", "getSentences", "do",
 						"n't", "have", "boundary/odd", "cases", "...this", "one",
 						"does", "."}
 		};
 
 		final String[] sentences = toolkit.detectSentences(content);
-		assertEquals("Incorrect number of sentences detected.",
+		assertEquals("Incorrect number of getSentences detected.",
 				expected.length, sentences.length);
 
 		for (int i=0; i < sentences.length; i++) {
@@ -91,7 +91,7 @@ public class OpenNlpToolkitTest {
 						+ " chairman of Consolidated Gold Fields PLC, was named a director"
 						+ " of this British industrial conglomerate."
 						// added this for more boundary cases
-						+ " Those contraction-less sentences don't have boundary/odd"
+						+ " Those contraction-less getSentences don't have boundary/odd"
 						+ " cases...this one does.";
 
 		final String[] expected = new String[] {
@@ -102,13 +102,13 @@ public class OpenNlpToolkitTest {
 				"Rudolph Agnew, 55 years old and former chairman of Consolidated"
 						+ " Gold Fields PLC, was named a director of this British"
 						+ " industrial conglomerate.",
-				"Those contraction-less sentences don't have boundary/odd"
+				"Those contraction-less getSentences don't have boundary/odd"
 						+ " cases...this one does."
 		};
 
 		final String[] sentences = toolkit.detectSentences(content);
 		// compare each sentence against expectations
-		assertEquals("Incorrect number of sentences detected.",
+		assertEquals("Incorrect number of getSentences detected.",
 				expected.length, sentences.length);
 		for (int i=0; i < expected.length; i++) {
 			assertEquals("Unexpected sentence content",
@@ -137,7 +137,7 @@ public class OpenNlpToolkitTest {
 				testFile, Charset.forName("UTF-8"));
 
 		// compare each sentence against expectations
-		assertEquals("Incorrect number of sentences detected.",
+		assertEquals("Incorrect number of getSentences detected.",
 				expected.length, sentences.length);
 		for (int i=0; i < expected.length; i++) {
 			assertEquals("Unexpected sentence content",

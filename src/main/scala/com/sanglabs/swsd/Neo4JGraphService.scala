@@ -45,7 +45,7 @@ object Neo4JGraphService {
     val synsetPOS: POS = POS.getPOSForKey(synsetNameParts(1))
     val synsetIndex: Int = Integer.valueOf(synsetNameParts(2))
    
-    WordnetDictionaryService.indexWord(synsetPOS, synsetWord).getSenses.get(synsetIndex - 1)
+    WordNetDictionaryService.indexWord(synsetPOS, synsetWord).getSenses.get(synsetIndex - 1)
   }
 
   def getHypernymTree(synsetName: String): Long = {
@@ -120,7 +120,7 @@ object Neo4JGraphService {
   protected def printSynsetNode(node: Node): Long = {
     val tx = graphDb.beginTx()
     val synsetWordsString: StringBuilder = new StringBuilder("(")
-    val parentSynset: Synset = WordnetDictionaryService.getSynsetAt(node.getProperty("pos").asInstanceOf[String], node.getProperty("offset").asInstanceOf[Long])
+    val parentSynset: Synset = WordNetDictionaryService.getSynsetAt(node.getProperty("pos").asInstanceOf[String], node.getProperty("offset").asInstanceOf[Long])
     import scala.collection.JavaConversions._
     for (word <- parentSynset.getWords) {
       synsetWordsString.append(word.getLemma).append(", ")

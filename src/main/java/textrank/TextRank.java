@@ -134,7 +134,7 @@ public class
 
 	initTime();
 
-	// scan sentences to construct a graph of relevent morphemes
+	// scan getSentences to construct a graph of relevent morphemes
 
 	final ArrayList<Sentence> s_list = new ArrayList<Sentence>();
 
