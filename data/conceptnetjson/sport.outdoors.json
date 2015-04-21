@@ -1,0 +1,3583 @@
+{
+  "edges": [
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/someone /r/AtLocation -",
+        "/c/en/someone - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/a222ca7d80a95cc121579eacc1de5df2585a4fe2",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/or/[/and/[/s/activity/omcs/globalmind/,/s/contributor/omcs/openmind/]/,/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/anaitis/]/,/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/staris/]/,/and/[/s/activity/omcs/vote/,/s/contributor/omcs/Chuddy/]/]",
+      "sources": [
+        "/s/activity/omcs/globalmind",
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/activity/omcs/vote",
+        "/s/contributor/omcs/Chuddy",
+        "/s/contributor/omcs/anaitis",
+        "/s/contributor/omcs/openmind",
+        "/s/contributor/omcs/staris"
+      ],
+      "start": "/c/en/someone",
+      "surfaceText": "Somewhere [[someone]] can be is [[outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/someone/,/c/en/outdoors/]",
+      "weight": 3.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/marmot /r/AtLocation -",
+        "/c/en/marmot - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/84e7a62136dac8cf1da2980a3345ba9896519204",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/or/[/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/lisaclovis/]/,/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/lmklein2000/]/,/and/[/s/activity/omcs/vote/,/s/contributor/omcs/yvonne578/]/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/activity/omcs/vote",
+        "/s/contributor/omcs/lisaclovis",
+        "/s/contributor/omcs/lmklein2000",
+        "/s/contributor/omcs/yvonne578"
+      ],
+      "start": "/c/en/marmot",
+      "surfaceText": "You are likely to find [[a marmot]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/marmot/,/c/en/outdoors/]",
+      "weight": 2.584962500721156
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/rosebush /r/AtLocation -",
+        "/c/en/rosebush - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/ae9fc611dcf0bef5eb4a1d3d760e713c78a7b78d",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/or/[/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/Hazn/]/,/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/zach/]/,/and/[/s/activity/omcs/vote/,/s/contributor/omcs/browni/]/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/activity/omcs/vote",
+        "/s/contributor/omcs/Hazn",
+        "/s/contributor/omcs/browni",
+        "/s/contributor/omcs/zach"
+      ],
+      "start": "/c/en/rosebush",
+      "surfaceText": "You are likely to find [[a rosebush]] in [[outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/rosebush/,/c/en/outdoors/]",
+      "weight": 2.584962500721156
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/forest /r/AtLocation -",
+        "/c/en/forest - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/99746ea33ddf9d8269a4d3136614192e0b6be2c2",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/or/[/and/[/s/activity/omcs/globalmind/,/s/contributor/omcs/openmind/,/s/rule/preposition_fix/]/,/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/Jennifer/]/]",
+      "sources": [
+        "/s/activity/omcs/globalmind",
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/Jennifer",
+        "/s/contributor/omcs/openmind",
+        "/s/rule/preposition_fix"
+      ],
+      "start": "/c/en/forest",
+      "surfaceText": "You are likely to find [[a forest]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/forest/,/c/en/outdoors/]",
+      "weight": 2.321928094887362
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/brook /r/AtLocation -",
+        "/c/en/brook - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/8bd5ffcb59b948babf4c441980ea18e01c7f06ea",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/or/[/and/[/s/activity/omcs/globalmind/,/s/contributor/omcs/openmind/,/s/rule/preposition_fix/]/,/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/kpit/]/]",
+      "sources": [
+        "/s/activity/omcs/globalmind",
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/kpit",
+        "/s/contributor/omcs/openmind",
+        "/s/rule/preposition_fix"
+      ],
+      "start": "/c/en/brook",
+      "surfaceText": "You are likely to find [[a brook]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/brook/,/c/en/outdoors/]",
+      "weight": 2.321928094887362
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/sky /r/AtLocation -",
+        "/c/en/sky - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/fa398d4c8d625580cf98c96ee5a5fad7ae5e39e6",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/or/[/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/caparks/]/,/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/xerolooper/]/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/caparks",
+        "/s/contributor/omcs/xerolooper"
+      ],
+      "start": "/c/en/sky",
+      "surfaceText": "You are likely to find [[the sky]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/sky/,/c/en/outdoors/]",
+      "weight": 2.321928094887362
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/international_highway /r/AtLocation -",
+        "/c/en/international_highway - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/0d542f634b6af5a262ccf1a20d0d264314fcfd0e",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/or/[/and/[/s/activity/omcs/globalmind/,/s/contributor/omcs/openmind/,/s/rule/preposition_fix/]/,/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/Jeffw/]/]",
+      "sources": [
+        "/s/activity/omcs/globalmind",
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/Jeffw",
+        "/s/contributor/omcs/openmind",
+        "/s/rule/preposition_fix"
+      ],
+      "start": "/c/en/international_highway",
+      "surfaceText": "You are likely to find [[an international highway]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/international_highway/,/c/en/outdoors/]",
+      "weight": 2.321928094887362
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/something /r/AtLocation -",
+        "/c/en/something - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/95a1616cc353e500486ceed38fbc8fe32b98b6fb",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/or/[/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/dazflint/]/,/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/diantell/]/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/dazflint",
+        "/s/contributor/omcs/diantell"
+      ],
+      "start": "/c/en/something",
+      "surfaceText": "Somewhere [[something]] can be is [[Outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/something/,/c/en/outdoors/]",
+      "weight": 2.321928094887362
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/ferret /r/AtLocation -",
+        "/c/en/ferret - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/44c843f3620e95aeeee051b77ab48a09f711bf7d",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/or/[/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/NovaLyte/]/,/and/[/s/activity/omcs/vote/,/s/contributor/omcs/rsalvo/]/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/activity/omcs/vote",
+        "/s/contributor/omcs/NovaLyte",
+        "/s/contributor/omcs/rsalvo"
+      ],
+      "start": "/c/en/ferret",
+      "surfaceText": "You are likely to find [[a ferret]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/ferret/,/c/en/outdoors/]",
+      "weight": 2.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/globalmind",
+      "end": "/c/en/do_sport",
+      "features": [
+        "/c/en/outdoors /r/HasSubevent -",
+        "/c/en/outdoors - /c/en/do_sport",
+        "- /r/HasSubevent /c/en/do_sport"
+      ],
+      "id": "/e/ccadc53e13f192e47d9232397ae8938c95f696f3",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/HasSubevent",
+      "source_uri": "/and/[/s/activity/globalmind/assert/,/s/contributor/omcs/Nyarlathotep/]",
+      "sources": [
+        "/s/activity/globalmind/assert",
+        "/s/contributor/omcs/Nyarlathotep"
+      ],
+      "start": "/c/en/outdoors",
+      "surfaceText": "Something you might do when [[outdoors]] is [[do sports]].",
+      "uri": "/a/[/r/HasSubevent/,/c/en/outdoors/,/c/en/do_sport/]",
+      "weight": 2.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/globalmind",
+      "end": "/c/en/jog",
+      "features": [
+        "/c/en/outdoors /r/HasSubevent -",
+        "/c/en/outdoors - /c/en/jog",
+        "- /r/HasSubevent /c/en/jog"
+      ],
+      "id": "/e/b7078d79bfcc8e2a3ba124ac2a97b2fa9def2534",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/HasSubevent",
+      "source_uri": "/and/[/s/activity/globalmind/assert/,/s/contributor/omcs/Nyarlathotep/]",
+      "sources": [
+        "/s/activity/globalmind/assert",
+        "/s/contributor/omcs/Nyarlathotep"
+      ],
+      "start": "/c/en/outdoors",
+      "surfaceText": "Something you might do when [[outdoors]] is [[jog]].",
+      "uri": "/a/[/r/HasSubevent/,/c/en/outdoors/,/c/en/jog/]",
+      "weight": 2.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/snake /r/AtLocation -",
+        "/c/en/snake - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/8796136b6bda96ab523afb2860b60d414b9e42fd",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/or/[/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/lmklein2000/]/,/and/[/s/activity/omcs/vote/,/s/contributor/omcs/bjb/]/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/activity/omcs/vote",
+        "/s/contributor/omcs/bjb",
+        "/s/contributor/omcs/lmklein2000"
+      ],
+      "start": "/c/en/snake",
+      "surfaceText": "You are likely to find [[a snake]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/snake/,/c/en/outdoors/]",
+      "weight": 2.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/globalmind",
+      "end": "/c/en/go_for_walk",
+      "features": [
+        "/c/en/outdoors /r/HasSubevent -",
+        "/c/en/outdoors - /c/en/go_for_walk",
+        "- /r/HasSubevent /c/en/go_for_walk"
+      ],
+      "id": "/e/291effe82705a87521b30186ce505d29381a3197",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/HasSubevent",
+      "source_uri": "/and/[/s/activity/globalmind/assert/,/s/contributor/omcs/Nyarlathotep/]",
+      "sources": [
+        "/s/activity/globalmind/assert",
+        "/s/contributor/omcs/Nyarlathotep"
+      ],
+      "start": "/c/en/outdoors",
+      "surfaceText": "Something you might do when [[outdoors]] is [[go for a walk]].",
+      "uri": "/a/[/r/HasSubevent/,/c/en/outdoors/,/c/en/go_for_walk/]",
+      "weight": 2.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/globalmind",
+      "end": "/c/en/play",
+      "features": [
+        "/c/en/outdoors /r/HasSubevent -",
+        "/c/en/outdoors - /c/en/play",
+        "- /r/HasSubevent /c/en/play"
+      ],
+      "id": "/e/d556fd14cc5f7be74629ca678d96eea2523c6fc1",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/HasSubevent",
+      "source_uri": "/and/[/s/activity/globalmind/assert/,/s/contributor/omcs/Nyarlathotep/]",
+      "sources": [
+        "/s/activity/globalmind/assert",
+        "/s/contributor/omcs/Nyarlathotep"
+      ],
+      "start": "/c/en/outdoors",
+      "surfaceText": "Something you might do when [[outdoors]] is [[play]].",
+      "uri": "/a/[/r/HasSubevent/,/c/en/outdoors/,/c/en/play/]",
+      "weight": 2.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/lizard /r/AtLocation -",
+        "/c/en/lizard - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/13bdf093a068f0ecd948d48649915647301f0aeb",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/and/[/s/activity/omcs/globalmind/,/s/contributor/omcs/openmind/,/s/rule/preposition_fix/]",
+      "sources": [
+        "/s/activity/omcs/globalmind",
+        "/s/contributor/omcs/openmind",
+        "/s/rule/preposition_fix"
+      ],
+      "start": "/c/en/lizard",
+      "surfaceText": "You are likely to find [[a lizard]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/lizard/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/opposite_of_indoors",
+      "features": [
+        "/c/en/outdoors /r/DefinedAs -",
+        "/c/en/outdoors - /c/en/opposite_of_indoors",
+        "- /r/DefinedAs /c/en/opposite_of_indoors"
+      ],
+      "id": "/e/7762709ce044c37a00f36446212678b59e5afd48",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/DefinedAs",
+      "source_uri": "/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/MarcusHill/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/MarcusHill"
+      ],
+      "start": "/c/en/outdoors",
+      "surfaceText": "[[Outdoors]] is the [[opposite of indoors]]",
+      "uri": "/a/[/r/DefinedAs/,/c/en/outdoors/,/c/en/opposite_of_indoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/garden /r/IsA -",
+        "/c/en/garden - /c/en/outdoors",
+        "- /r/IsA /c/en/outdoors"
+      ],
+      "id": "/e/eaf473e81c2a2ec0cc3807bf525e892b738917c4",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/IsA",
+      "source_uri": "/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/fetherlan/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/fetherlan"
+      ],
+      "start": "/c/en/garden",
+      "surfaceText": "[[A garden]] is [[outdoors]]",
+      "uri": "/a/[/r/IsA/,/c/en/garden/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/cow /r/AtLocation -",
+        "/c/en/cow - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/0d4b3389f946be5129d33ba406044bb09e38ccbc",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/browni/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/browni"
+      ],
+      "start": "/c/en/cow",
+      "surfaceText": "You are likely to find [[a cow]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/cow/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/fox /r/AtLocation -",
+        "/c/en/fox - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/0311b426d3bb31add6b4b3d59aca9f0172ebde0b",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/and/[/s/activity/omcs/commons2_template/,/s/contributor/omcs/oChuckles/]",
+      "sources": [
+        "/s/activity/omcs/commons2_template",
+        "/s/contributor/omcs/oChuckles"
+      ],
+      "start": "/c/en/fox",
+      "surfaceText": "You are likely to find [[a fox]] in [[outdoors]].",
+      "uri": "/a/[/r/AtLocation/,/c/en/fox/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wordnet/3.0",
+      "end": "/c/en/outdoors/n/where_the_air_is_unconfined",
+      "features": [
+        "/c/en/outdoorsy/a/characteristic_of_or_suitable_to_outdoor_life /r/DerivedFrom -",
+        "/c/en/outdoorsy/a/characteristic_of_or_suitable_to_outdoor_life - /c/en/outdoors/n/where_the_air_is_unconfined",
+        "- /r/DerivedFrom /c/en/outdoors/n/where_the_air_is_unconfined"
+      ],
+      "id": "/e/a7a55487721a8bbac2a1e5a7c3bdcaf893e4b10e",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/DerivedFrom",
+      "source_uri": "/s/wordnet/3.0",
+      "sources": [
+        "/s/wordnet/3.0"
+      ],
+      "start": "/c/en/outdoorsy/a/characteristic_of_or_suitable_to_outdoor_life",
+      "surfaceText": null,
+      "uri": "/a/[/r/DerivedFrom/,/c/en/outdoorsy/a/characteristic_of_or_suitable_to_outdoor_life/,/c/en/outdoors/n/where_the_air_is_unconfined/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/wind /r/AtLocation -",
+        "/c/en/wind - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/dc5266dbfcc95c266aef833981ee0b5be053ba9b",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/and/[/s/activity/omcs/commons_manual_entry/,/s/contributor/omcs/richard_h0lt/]",
+      "sources": [
+        "/s/activity/omcs/commons_manual_entry",
+        "/s/contributor/omcs/richard_h0lt"
+      ],
+      "start": "/c/en/wind",
+      "surfaceText": "You are likely to find [[wind]] in [[the outdoors]].",
+      "uri": "/a/[/r/AtLocation/,/c/en/wind/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/patio /r/IsA -",
+        "/c/en/patio - /c/en/outdoors",
+        "- /r/IsA /c/en/outdoors"
+      ],
+      "id": "/e/237c28a395990f7b17e84dce97d5bd2abb137af8",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/IsA",
+      "source_uri": "/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/bwiederholt/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/bwiederholt"
+      ],
+      "start": "/c/en/patio",
+      "surfaceText": "[[a patio]] is [[outdoors]]",
+      "uri": "/a/[/r/IsA/,/c/en/patio/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/play_frisbee /r/UsedFor -",
+        "/c/en/play_frisbee - /c/en/outdoors",
+        "- /r/UsedFor /c/en/outdoors"
+      ],
+      "id": "/e/c456cb33300281807eb1e370dae5514782aefa36",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/UsedFor",
+      "source_uri": "/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/SHESSE/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/SHESSE"
+      ],
+      "start": "/c/en/play_frisbee",
+      "surfaceText": "[[playing frisbee]] is for [[outdoors]]",
+      "uri": "/a/[/r/UsedFor/,/c/en/play_frisbee/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/firefly /r/AtLocation -",
+        "/c/en/firefly - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/7bbf2ee73dad4ded0733d6ef31600b6eacf57665",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/and/[/s/activity/omcs/commons2_template/,/s/contributor/omcs/trimalchio/]",
+      "sources": [
+        "/s/activity/omcs/commons2_template",
+        "/s/contributor/omcs/trimalchio"
+      ],
+      "start": "/c/en/firefly",
+      "surfaceText": "You are likely to find [[firefly]] in [[outdoors]].",
+      "uri": "/a/[/r/AtLocation/,/c/en/firefly/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/waterfall",
+      "features": [
+        "/c/en/outdoors /r/AtLocation -",
+        "/c/en/outdoors - /c/en/waterfall",
+        "- /r/AtLocation /c/en/waterfall"
+      ],
+      "id": "/e/997e35058761cf2aca81990a555780e5f685e25d",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/bbuzzell/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/bbuzzell"
+      ],
+      "start": "/c/en/outdoors",
+      "surfaceText": "*Something you find at [[a waterfall]] is [[outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/outdoors/,/c/en/waterfall/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/toll_highway /r/AtLocation -",
+        "/c/en/toll_highway - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/33fec82ca578032ab72964b50b56b434a57a1ff8",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/browni/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/browni"
+      ],
+      "start": "/c/en/toll_highway",
+      "surfaceText": "You are likely to find [[a toll highway]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/toll_highway/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/sunset /r/IsA -",
+        "/c/en/sunset - /c/en/outdoors",
+        "- /r/IsA /c/en/outdoors"
+      ],
+      "id": "/e/506dee2f490e16631031d83da7cafa854ba6bffb",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/IsA",
+      "source_uri": "/and/[/s/activity/omcs/response_to_picture/,/s/contributor/omcs/MILA/]",
+      "sources": [
+        "/s/activity/omcs/response_to_picture",
+        "/s/contributor/omcs/MILA"
+      ],
+      "start": "/c/en/sunset",
+      "surfaceText": "[[Sunsets]] are always [[outdoors]]",
+      "uri": "/a/[/r/IsA/,/c/en/sunset/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/this_chair /r/UsedFor -",
+        "/c/en/this_chair - /c/en/outdoors",
+        "- /r/UsedFor /c/en/outdoors"
+      ],
+      "id": "/e/c76cbc2c97114875075368edbddbba5fbf7bec7a",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/UsedFor",
+      "source_uri": "/and/[/s/activity/omcs/response_to_picture/,/s/contributor/omcs/mspace/]",
+      "sources": [
+        "/s/activity/omcs/response_to_picture",
+        "/s/contributor/omcs/mspace"
+      ],
+      "start": "/c/en/this_chair",
+      "surfaceText": "[[this chair]] is for [[outdoors]]",
+      "uri": "/a/[/r/UsedFor/,/c/en/this_chair/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/mouse /r/AtLocation -",
+        "/c/en/mouse - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/43168b6420876d378119bb76ac532ddf9af0d4f4",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/bjb/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/bjb"
+      ],
+      "start": "/c/en/mouse",
+      "surfaceText": "You are likely to find [[a mouse]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/mouse/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wordnet/3.0",
+      "end": "/c/en/outdoors/n/where_the_air_is_unconfined",
+      "features": [
+        "/c/en/open/a/having_no_protecting_cover_or_enclosure /r/DerivedFrom -",
+        "/c/en/open/a/having_no_protecting_cover_or_enclosure - /c/en/outdoors/n/where_the_air_is_unconfined",
+        "- /r/DerivedFrom /c/en/outdoors/n/where_the_air_is_unconfined"
+      ],
+      "id": "/e/31c44814f94af243080e4c99765cdd330a25e73e",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/DerivedFrom",
+      "source_uri": "/s/wordnet/3.0",
+      "sources": [
+        "/s/wordnet/3.0"
+      ],
+      "start": "/c/en/open/a/having_no_protecting_cover_or_enclosure",
+      "surfaceText": null,
+      "uri": "/a/[/r/DerivedFrom/,/c/en/open/a/having_no_protecting_cover_or_enclosure/,/c/en/outdoors/n/where_the_air_is_unconfined/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wordnet/3.0",
+      "end": "/c/en/outdoors/n/where_the_air_is_unconfined",
+      "features": [
+        "/c/en/outdoor/a/pertaining_to_or_concerning_the_outdoors_or_outdoor_activities /r/wordnet/adjectivePertainsTo -",
+        "/c/en/outdoor/a/pertaining_to_or_concerning_the_outdoors_or_outdoor_activities - /c/en/outdoors/n/where_the_air_is_unconfined",
+        "- /r/wordnet/adjectivePertainsTo /c/en/outdoors/n/where_the_air_is_unconfined"
+      ],
+      "id": "/e/9fb8891816c6a1778716ffb7fde889c0053a6644",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/wordnet/adjectivePertainsTo",
+      "source_uri": "/s/wordnet/3.0",
+      "sources": [
+        "/s/wordnet/3.0"
+      ],
+      "start": "/c/en/outdoor/a/pertaining_to_or_concerning_the_outdoors_or_outdoor_activities",
+      "surfaceText": null,
+      "uri": "/a/[/r/wordnet/adjectivePertainsTo/,/c/en/outdoor/a/pertaining_to_or_concerning_the_outdoors_or_outdoor_activities/,/c/en/outdoors/n/where_the_air_is_unconfined/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/creek /r/AtLocation -",
+        "/c/en/creek - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/335a23d631f9cdbe26da444eb9da38de9b7ae548",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/browni/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/browni"
+      ],
+      "start": "/c/en/creek",
+      "surfaceText": "You are likely to find [[a creek]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/creek/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/weasel /r/AtLocation -",
+        "/c/en/weasel - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/13b90b055c42d6f29adb23308cccb435a44c186c",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/NovaLyte/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/NovaLyte"
+      ],
+      "start": "/c/en/weasel",
+      "surfaceText": "You are likely to find [[a weasel]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/weasel/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/person_enjoy /r/IsA -",
+        "/c/en/person_enjoy - /c/en/outdoors",
+        "- /r/IsA /c/en/outdoors"
+      ],
+      "id": "/e/ddef47f563854993edc011db23eb3cf26f1f05cf",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/IsA",
+      "source_uri": "/and/[/s/activity/omcs/response_to_picture/,/s/contributor/omcs/MarkFarrar/]",
+      "sources": [
+        "/s/activity/omcs/response_to_picture",
+        "/s/contributor/omcs/MarkFarrar"
+      ],
+      "start": "/c/en/person_enjoy",
+      "surfaceText": "[[People enjoy]] being [[outdoors]]",
+      "uri": "/a/[/r/IsA/,/c/en/person_enjoy/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/bee /r/AtLocation -",
+        "/c/en/bee - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/c752279aaf21ce8b24ab26d1819f5ebdcebe028e",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/XenoZephyr01X/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/XenoZephyr01X"
+      ],
+      "start": "/c/en/bee",
+      "surfaceText": "You are likely to find [[a bee]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/bee/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/bug /r/AtLocation -",
+        "/c/en/bug - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/b1073ecfb86cf52733db076ac4d6ac292f4a5167",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/and/[/s/activity/omcs/template/,/s/contributor/omcs/Visionsofkaos/]",
+      "sources": [
+        "/s/activity/omcs/template",
+        "/s/contributor/omcs/Visionsofkaos"
+      ],
+      "start": "/c/en/bug",
+      "surfaceText": "Somewhere [[a bug]] can be is [[outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/bug/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/marmoset /r/AtLocation -",
+        "/c/en/marmoset - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/92abffcaba9d339af0e780f4c8b8e83b143429cc",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/browni/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/browni"
+      ],
+      "start": "/c/en/marmoset",
+      "surfaceText": "You are likely to find [[a marmoset]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/marmoset/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/pond /r/AtLocation -",
+        "/c/en/pond - /c/en/outdoors",
+        "- /r/AtLocation /c/en/outdoors"
+      ],
+      "id": "/e/cedcafd93759235599e094c0b582a10d788e9e98",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/AtLocation",
+      "source_uri": "/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/NovaLyte/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/NovaLyte"
+      ],
+      "start": "/c/en/pond",
+      "surfaceText": "You are likely to find [[a pond]] in [[the outdoors]]",
+      "uri": "/a/[/r/AtLocation/,/c/en/pond/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/beautiful",
+      "features": [
+        "/c/en/outdoors /r/HasProperty -",
+        "/c/en/outdoors - /c/en/beautiful",
+        "- /r/HasProperty /c/en/beautiful"
+      ],
+      "id": "/e/fc341e7f0e3505a316ab8060986e45c917045bce",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/HasProperty",
+      "source_uri": "/and/[/s/activity/omcs/response_to_picture/,/s/contributor/omcs/smknbddha/]",
+      "sources": [
+        "/s/activity/omcs/response_to_picture",
+        "/s/contributor/omcs/smknbddha"
+      ],
+      "start": "/c/en/outdoors",
+      "surfaceText": "[[the outdoors]] is [[beautiful]]",
+      "uri": "/a/[/r/HasProperty/,/c/en/outdoors/,/c/en/beautiful/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/conceptnet/4/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/amphitheater /r/IsA -",
+        "/c/en/amphitheater - /c/en/outdoors",
+        "- /r/IsA /c/en/outdoors"
+      ],
+      "id": "/e/bfee27a4e5001ff650cf481453463dc321e0dca2",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/IsA",
+      "source_uri": "/and/[/s/activity/omcs/omcs1,_possibly_free_text/,/s/contributor/omcs/Laserjoy/]",
+      "sources": [
+        "/s/activity/omcs/omcs1,_possibly_free_text",
+        "/s/contributor/omcs/Laserjoy"
+      ],
+      "start": "/c/en/amphitheater",
+      "surfaceText": "[[An amphitheater]] may be [[outdoors]]",
+      "uri": "/a/[/r/IsA/,/c/en/amphitheater/,/c/en/outdoors/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wordnet/3.0",
+      "end": "/c/en/outside/n/the_region_that_is_outside_of_something",
+      "features": [
+        "/c/en/outdoors/n/where_the_air_is_unconfined /r/IsA -",
+        "/c/en/outdoors/n/where_the_air_is_unconfined - /c/en/outside/n/the_region_that_is_outside_of_something",
+        "- /r/IsA /c/en/outside/n/the_region_that_is_outside_of_something"
+      ],
+      "id": "/e/263804478ac9533a4b968194adbdc933ccd83261",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/IsA",
+      "source_uri": "/s/wordnet/3.0",
+      "sources": [
+        "/s/wordnet/3.0"
+      ],
+      "start": "/c/en/outdoors/n/where_the_air_is_unconfined",
+      "surfaceText": null,
+      "uri": "/a/[/r/IsA/,/c/en/outdoors/n/where_the_air_is_unconfined/,/c/en/outside/n/the_region_that_is_outside_of_something/]",
+      "weight": 1.5849625007211563
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/camp /r/RelatedTo -",
+        "/c/en/camp - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/e71e9a6ace7ebdd22926f2fe0521da0cdb787ced",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/camp",
+      "surfaceText": "[[camp]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/camp/,/c/en/outdoors/]",
+      "weight": 1.4126527720429523
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/outdoorsy /r/EtymologicallyDerivedFrom -",
+        "/c/en/outdoorsy - /c/en/outdoors",
+        "- /r/EtymologicallyDerivedFrom /c/en/outdoors"
+      ],
+      "id": "/e/988a8bebe2287d39a59ee78080245165009a4b23",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/EtymologicallyDerivedFrom",
+      "source_uri": "/and/[/s/rule/etymology_section/,/s/web/en.wiktionary.org/wiki/outdoorsy/]",
+      "sources": [
+        "/s/rule/etymology_section",
+        "/s/web/en.wiktionary.org/wiki/outdoorsy"
+      ],
+      "start": "/c/en/outdoorsy",
+      "surfaceText": null,
+      "uri": "/a/[/r/EtymologicallyDerivedFrom/,/c/en/outdoorsy/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/de",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/de/wanderlust/n /r/RelatedTo -",
+        "/c/de/wanderlust/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/ac528c546f93cb5ca353885bf2b0fb12d48a37f2",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/Wanderlust/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/Wanderlust"
+      ],
+      "start": "/c/de/wanderlust/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/de/wanderlust/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/alfresco/a /r/RelatedTo -",
+        "/c/en/alfresco/a - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/395aac2d7fc2b76ed36e6538e70281e96fb07deb",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/alfresco/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/alfresco"
+      ],
+      "start": "/c/en/alfresco/a",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/alfresco/a/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/fr",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/fr/en_plein_air/r /r/RelatedTo -",
+        "/c/fr/en_plein_air/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/5a84a77e6a45a1ee7f104e3ee5cd917ef57cd1ef",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/en_plein_air/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/en_plein_air"
+      ],
+      "start": "/c/fr/en_plein_air/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/fr/en_plein_air/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/ka",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/ka/გარედან/r /r/RelatedTo -",
+        "/c/ka/გარედან/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/102c1e78beb4e58f06f6bc35da7b00b2402dd869",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/გარედან/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/გარედან"
+      ],
+      "start": "/c/ka/გარედან/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/ka/გარედან/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/la",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/la/excubo/v /r/RelatedTo -",
+        "/c/la/excubo/v - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/aaa79adf27fa89f6f53e6da595541405775268d6",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/excubo/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/excubo"
+      ],
+      "start": "/c/la/excubo/v",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/la/excubo/v/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/lv",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/lv/ārs/n /r/RelatedTo -",
+        "/c/lv/ārs/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/c1a7bf01625ebb82146bc4b69a2933715e958680",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/ārs/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/ārs"
+      ],
+      "start": "/c/lv/ārs/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/lv/ārs/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/fr/dehors",
+      "features": [
+        "/c/en/outdoors/n/environment_outside_of_enclosed_structures /r/TranslationOf -",
+        "/c/en/outdoors/n/environment_outside_of_enclosed_structures - /c/fr/dehors",
+        "- /r/TranslationOf /c/fr/dehors"
+      ],
+      "id": "/e/1bacee57b77a0bb9795665da8bab00bd71218f93",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/TranslationOf",
+      "source_uri": "/and/[/s/rule/translation_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/translation_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n/environment_outside_of_enclosed_structures",
+      "surfaceText": null,
+      "uri": "/a/[/r/TranslationOf/,/c/en/outdoors/n/environment_outside_of_enclosed_structures/,/c/fr/dehors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/bird_table/n /r/RelatedTo -",
+        "/c/en/bird_table/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/88df59e48a4ee6281329a85910f8b1203da72407",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/bird_table/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/bird_table"
+      ],
+      "start": "/c/en/bird_table/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/bird_table/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/ecotherapy/n /r/RelatedTo -",
+        "/c/en/ecotherapy/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/0656b1e95886cf169f9205152e6d6e530c5ee0a5",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/ecotherapy/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/ecotherapy"
+      ],
+      "start": "/c/en/ecotherapy/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/ecotherapy/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/fieldball/n /r/RelatedTo -",
+        "/c/en/fieldball/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/0bf7a7b17dd9721ce058623f9619c7178007ea2c",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/fieldball/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/fieldball"
+      ],
+      "start": "/c/en/fieldball/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/fieldball/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/hot_tub/n /r/RelatedTo -",
+        "/c/en/hot_tub/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/b527b7b49f9664eed74ff76171a405332fb67361",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/hot_tub/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/hot_tub"
+      ],
+      "start": "/c/en/hot_tub/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/hot_tub/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/mudroom/n /r/RelatedTo -",
+        "/c/en/mudroom/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/59d27c6cc04ba4365c63951550874e63eb3d54e2",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/mudroom/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/mudroom"
+      ],
+      "start": "/c/en/mudroom/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/mudroom/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/open-air/a /r/RelatedTo -",
+        "/c/en/open-air/a - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/55475b2f64ef3c97e54fa9515078bf39b65d6c9a",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/open-air/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/open-air"
+      ],
+      "start": "/c/en/open-air/a",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/open-air/a/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/open_air/n /r/RelatedTo -",
+        "/c/en/open_air/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/0ad8fce5a1b421ff633bc0097700b3f46a39d977",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/open_air/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/open_air"
+      ],
+      "start": "/c/en/open_air/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/open_air/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/open_air_museum/n /r/RelatedTo -",
+        "/c/en/open_air_museum/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/da766d6767dc69bfdb6ee50eb239cc57aca57aa0",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/open_air_museum/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/open_air_museum"
+      ],
+      "start": "/c/en/open_air_museum/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/open_air_museum/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoorsman",
+      "features": [
+        "/c/en/outdoors/n /r/RelatedTo -",
+        "/c/en/outdoors/n - /c/en/outdoorsman",
+        "- /r/RelatedTo /c/en/outdoorsman"
+      ],
+      "id": "/e/ebedb2c1cdafdd48e7f228409c303ab2e5459eef",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/link_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/link_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/outdoors/n/,/c/en/outdoorsman/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/hi",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/hi/बाहर/n /r/RelatedTo -",
+        "/c/hi/बाहर/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/dec242c4343a481e9ccf7ffd24b4c3c6db8188cf",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/बाहर/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/बाहर"
+      ],
+      "start": "/c/hi/बाहर/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/hi/बाहर/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/sq",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/sq/jashtë/r /r/RelatedTo -",
+        "/c/sq/jashtë/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/d670de38f7775acd0daa0f6b1f7f0bfef4422859",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/jashtë/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/jashtë"
+      ],
+      "start": "/c/sq/jashtë/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/sq/jashtë/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/pl/dwór",
+      "features": [
+        "/c/en/outdoors/n/environment_outside_of_enclosed_structures /r/TranslationOf -",
+        "/c/en/outdoors/n/environment_outside_of_enclosed_structures - /c/pl/dwór",
+        "- /r/TranslationOf /c/pl/dwór"
+      ],
+      "id": "/e/1c0ded18d2d4fa6a60aed21d8103e3091a38a2f8",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/TranslationOf",
+      "source_uri": "/and/[/s/rule/translation_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/translation_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n/environment_outside_of_enclosed_structures",
+      "surfaceText": null,
+      "uri": "/a/[/r/TranslationOf/,/c/en/outdoors/n/environment_outside_of_enclosed_structures/,/c/pl/dwór/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/al_fresco/a /r/RelatedTo -",
+        "/c/en/al_fresco/a - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/fd1fb8e8e49e57a557fbbd90a9d7d256540475f3",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/al_fresco/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/al_fresco"
+      ],
+      "start": "/c/en/al_fresco/a",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/al_fresco/a/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/al_fresco/r /r/RelatedTo -",
+        "/c/en/al_fresco/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/2ac40c98531a0387866d2292996bac935fc21bc3",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/al_fresco/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/al_fresco"
+      ],
+      "start": "/c/en/al_fresco/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/al_fresco/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/in_open/r /r/RelatedTo -",
+        "/c/en/in_open/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/3f2c8250d3a23bf213a09ce51cfec4c57a709ce6",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/in_the_open/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/in_the_open"
+      ],
+      "start": "/c/en/in_open/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/in_open/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/outdoor/a /r/RelatedTo -",
+        "/c/en/outdoor/a - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/a2e7032b025b1050b509446f541a2c1cf55dae65",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/link_section/,/s/web/en.wiktionary.org/wiki/outdoor/]",
+      "sources": [
+        "/s/rule/link_section",
+        "/s/web/en.wiktionary.org/wiki/outdoor"
+      ],
+      "start": "/c/en/outdoor/a",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/outdoor/a/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/al_fresco",
+      "features": [
+        "/c/en/outdoors/n /r/RelatedTo -",
+        "/c/en/outdoors/n - /c/en/al_fresco",
+        "- /r/RelatedTo /c/en/al_fresco"
+      ],
+      "id": "/e/aa0d5406234a9b2a7373324cb89645b0d0b41c4a",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/link_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/link_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/outdoors/n/,/c/en/al_fresco/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/enclose",
+      "features": [
+        "/c/en/outdoors/n /r/RelatedTo -",
+        "/c/en/outdoors/n - /c/en/enclose",
+        "- /r/RelatedTo /c/en/enclose"
+      ],
+      "id": "/e/218867cbf4dd28b9dbc7ce7af7a37e786df515d3",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/outdoors/n/,/c/en/enclose/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/outdoorsy/a /r/RelatedTo -",
+        "/c/en/outdoorsy/a - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/9904002477139aecac73f18ea1f6576ab0c88c3f",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/outdoorsy/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/outdoorsy"
+      ],
+      "start": "/c/en/outdoorsy/a",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/outdoorsy/a/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/thereout/r /r/RelatedTo -",
+        "/c/en/thereout/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/b1266280d3b43b8619c079e1c7762acc6406d3ea",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/thereout/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/thereout"
+      ],
+      "start": "/c/en/thereout/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/thereout/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/fi",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/fi/ulkoilma/n /r/RelatedTo -",
+        "/c/fi/ulkoilma/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/37068494915912c1fe2ea7d3709a454589e3200d",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/ulkoilma/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/ulkoilma"
+      ],
+      "start": "/c/fi/ulkoilma/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/fi/ulkoilma/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/fi",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/fi/ulkona/r /r/RelatedTo -",
+        "/c/fi/ulkona/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/75cc142f1a5e9c1788e9f8024a1befd2919c0b54",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/ulkona/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/ulkona"
+      ],
+      "start": "/c/fi/ulkona/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/fi/ulkona/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/fr",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/fr/à_l'extérieur/r /r/RelatedTo -",
+        "/c/fr/à_l'extérieur/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/f1f922c16e117ecd77a0115608c0fae871922eea",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/à_l'extérieur/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/à_l'extérieur"
+      ],
+      "start": "/c/fr/à_l'extérieur/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/fr/à_l'extérieur/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/hu",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/hu/kívül/r /r/RelatedTo -",
+        "/c/hu/kívül/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/11cffefe50dacc809588fe7708e88424a2b65224",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/kívül/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/kívül"
+      ],
+      "start": "/c/hu/kívül/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/hu/kívül/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/it",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/it/aprico/a /r/RelatedTo -",
+        "/c/it/aprico/a - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/96330aa79e83ab6204b9d3013a53409b4aea6d79",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/aprico/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/aprico"
+      ],
+      "start": "/c/it/aprico/a",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/it/aprico/a/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/ja",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/ja/野外/n /r/RelatedTo -",
+        "/c/ja/野外/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/95bc3cd0269c168c0ecfa86f9086aa3162e1ceca",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/野外/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/野外"
+      ],
+      "start": "/c/ja/野外/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/ja/野外/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/scn",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/scn/fori/r /r/RelatedTo -",
+        "/c/scn/fori/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/c73ded5b2f45998a60e8826aa887bc8fc29d78a0",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/fori/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/fori"
+      ],
+      "start": "/c/scn/fori/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/scn/fori/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/sv",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/sv/utomhus/r /r/RelatedTo -",
+        "/c/sv/utomhus/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/e20113171f9d303d0b4428ba2c3ede2b53045e3e",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/utomhus/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/utomhus"
+      ],
+      "start": "/c/sv/utomhus/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/sv/utomhus/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/ur",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/ur/باہر/n /r/RelatedTo -",
+        "/c/ur/باہر/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/bfa985c19d8946a24edfd2e1df6d01d2606a1d26",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/باہر/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/باہر"
+      ],
+      "start": "/c/ur/باہر/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/ur/باہر/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/fi/luonto",
+      "features": [
+        "/c/en/outdoors/n/environment_outside_of_enclosed_structures /r/TranslationOf -",
+        "/c/en/outdoors/n/environment_outside_of_enclosed_structures - /c/fi/luonto",
+        "- /r/TranslationOf /c/fi/luonto"
+      ],
+      "id": "/e/fc1a09c3132b66143c5cb8c766da82c5ca4a9eb8",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/TranslationOf",
+      "source_uri": "/and/[/s/rule/translation_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/translation_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n/environment_outside_of_enclosed_structures",
+      "surfaceText": null,
+      "uri": "/a/[/r/TranslationOf/,/c/en/outdoors/n/environment_outside_of_enclosed_structures/,/c/fi/luonto/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/de",
+      "end": "/c/de/luft/n",
+      "features": [
+        "/c/en/outdoors /r/DerivedFrom -",
+        "/c/en/outdoors - /c/de/luft/n",
+        "- /r/DerivedFrom /c/de/luft/n"
+      ],
+      "id": "/e/f84312d7901ba66f6b2d531bd30ad216a8005247",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/DerivedFrom",
+      "source_uri": "/and/[/s/rule/link_section/,/s/web/en.wiktionary.org/wiki/Luft/]",
+      "sources": [
+        "/s/rule/link_section",
+        "/s/web/en.wiktionary.org/wiki/Luft"
+      ],
+      "start": "/c/en/outdoors",
+      "surfaceText": null,
+      "uri": "/a/[/r/DerivedFrom/,/c/en/outdoors/,/c/de/luft/n/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/bowl/n /r/RelatedTo -",
+        "/c/en/bowl/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/38135d0b8a076589a747db530263ca42f4d0af27",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/bowling/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/bowling"
+      ],
+      "start": "/c/en/bowl/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/bowl/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/camp_out/v /r/RelatedTo -",
+        "/c/en/camp_out/v - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/361b1002b07f6311d51b602ea3cedf8965b04500",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/camp_out/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/camp_out"
+      ],
+      "start": "/c/en/camp_out/v",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/camp_out/v/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/easter_egg_hunt/n /r/RelatedTo -",
+        "/c/en/easter_egg_hunt/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/41d524a529cc7b0df0cef406a8c9a4b3511f6299",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/Easter_egg_hunt/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/Easter_egg_hunt"
+      ],
+      "start": "/c/en/easter_egg_hunt/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/easter_egg_hunt/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoorsy",
+      "features": [
+        "/c/en/outdoors/n /r/RelatedTo -",
+        "/c/en/outdoors/n - /c/en/outdoorsy",
+        "- /r/RelatedTo /c/en/outdoorsy"
+      ],
+      "id": "/e/03c31f654d86de1713b1747844ae145475fe6657",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/link_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/link_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/outdoors/n/,/c/en/outdoorsy/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/structure",
+      "features": [
+        "/c/en/outdoors/n /r/RelatedTo -",
+        "/c/en/outdoors/n - /c/en/structure",
+        "- /r/RelatedTo /c/en/structure"
+      ],
+      "id": "/e/e4092d44aa859dfe04b50aff949a0eaf13c59468",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/outdoors/n/,/c/en/structure/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/outside/r /r/RelatedTo -",
+        "/c/en/outside/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/e49a7e9beecf9d603073252aa58c588e52edb979",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/outside/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/outside"
+      ],
+      "start": "/c/en/outside/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/outside/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/wind_chime/n /r/RelatedTo -",
+        "/c/en/wind_chime/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/222246b22b102c283214bd0218e211e5e74879c0",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/wind_chimes/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/wind_chimes"
+      ],
+      "start": "/c/en/wind_chime/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/wind_chime/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/fi",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/fi/ulos/r /r/RelatedTo -",
+        "/c/fi/ulos/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/2729b82f74dd7662214bacb1943c2c6ada7a12fb",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/ulos/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/ulos"
+      ],
+      "start": "/c/fi/ulos/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/fi/ulos/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/fo",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/fo/uttanhýsis/r /r/RelatedTo -",
+        "/c/fo/uttanhýsis/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/c27b2dd061a64d55a56eb1423217a0d628a79c7d",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/uttanhýsis/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/uttanhýsis"
+      ],
+      "start": "/c/fo/uttanhýsis/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/fo/uttanhýsis/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/pl",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/pl/na_zewnątrz/r /r/RelatedTo -",
+        "/c/pl/na_zewnątrz/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/76f010bc4191626f9a3dd6e76e82f9015b0f730a",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/na_zewnątrz/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/na_zewnątrz"
+      ],
+      "start": "/c/pl/na_zewnątrz/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/pl/na_zewnątrz/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/pt",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/pt/a_céu_aberto/a /r/RelatedTo -",
+        "/c/pt/a_céu_aberto/a - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/4366eb007239df23aba573f71d810d94eb367dc1",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/a_céu_aberto/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/a_céu_aberto"
+      ],
+      "start": "/c/pt/a_céu_aberto/a",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/pt/a_céu_aberto/a/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/sv",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/sv/ute/r /r/RelatedTo -",
+        "/c/sv/ute/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/bdd5f817c978a903497acc0fd1791d306cbf589c",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/ute/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/ute"
+      ],
+      "start": "/c/sv/ute/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/sv/ute/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/birdfeeder/n /r/RelatedTo -",
+        "/c/en/birdfeeder/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/cc2102e5dd5d37175a4bef7c7b7e262d45806e86",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/birdfeeder/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/birdfeeder"
+      ],
+      "start": "/c/en/birdfeeder/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/birdfeeder/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/exterior/a /r/RelatedTo -",
+        "/c/en/exterior/a - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/be397e28535b0321108b026f01625975c37ad7cd",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/exterior/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/exterior"
+      ],
+      "start": "/c/en/exterior/a",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/exterior/a/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/march_band/n /r/RelatedTo -",
+        "/c/en/march_band/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/8a4bcf0ff711d94af9c2e3149f5a81b7b02de917",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/marching_band/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/marching_band"
+      ],
+      "start": "/c/en/march_band/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/march_band/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/environment",
+      "features": [
+        "/c/en/outdoors/n /r/RelatedTo -",
+        "/c/en/outdoors/n - /c/en/environment",
+        "- /r/RelatedTo /c/en/environment"
+      ],
+      "id": "/e/6110323906ebe15f52bd79360e5dbce8fc4c6e69",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/outdoors/n/,/c/en/environment/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoor",
+      "features": [
+        "/c/en/outdoors/n /r/RelatedTo -",
+        "/c/en/outdoors/n - /c/en/outdoor",
+        "- /r/RelatedTo /c/en/outdoor"
+      ],
+      "id": "/e/3169ee278bb8f7507d404e6a648492e5d07dbf62",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/link_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/link_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/outdoors/n/,/c/en/outdoor/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/skyclad/a /r/RelatedTo -",
+        "/c/en/skyclad/a - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/4b6db5ab02cb282b536de29f92ee0a94784d1338",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/skyclad/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/skyclad"
+      ],
+      "start": "/c/en/skyclad/a",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/skyclad/a/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/he",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/he/בר/n /r/RelatedTo -",
+        "/c/he/בר/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/62e2f79c354b42e2fcc0a8e572d81812c6ea471c",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/בר/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/בר"
+      ],
+      "start": "/c/he/בר/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/he/בר/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/hy",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/hy/դուրս/n /r/RelatedTo -",
+        "/c/hy/դուրս/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/e0d56802a7ad551963a74fe887c903af4e530e72",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/դուրս/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/դուրս"
+      ],
+      "start": "/c/hy/դուրս/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/hy/դուրս/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/it",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/it/all'aperto/r /r/RelatedTo -",
+        "/c/it/all'aperto/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/1f1c06ed0ccc4e14fa9c025c5c0ba6dffeeddbd2",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/all'aperto/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/all'aperto"
+      ],
+      "start": "/c/it/all'aperto/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/it/all'aperto/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/la",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/la/foris/r /r/RelatedTo -",
+        "/c/la/foris/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/ecc228ddf28dbb104b62f467c9088c5244e43647",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/foris/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/foris"
+      ],
+      "start": "/c/la/foris/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/la/foris/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/syc",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/syc/ܒܪܐ/n /r/RelatedTo -",
+        "/c/syc/ܒܪܐ/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/23651811ce5d7c04232d3a6a90aaea99141e6c66",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/ܒܪܐ/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/ܒܪܐ"
+      ],
+      "start": "/c/syc/ܒܪܐ/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/syc/ܒܪܐ/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/es/aire_libre",
+      "features": [
+        "/c/en/outdoors/n/environment_outside_of_enclosed_structures /r/TranslationOf -",
+        "/c/en/outdoors/n/environment_outside_of_enclosed_structures - /c/es/aire_libre",
+        "- /r/TranslationOf /c/es/aire_libre"
+      ],
+      "id": "/e/9187fff08de77ec3111ae081ac0e1047e780e09e",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/TranslationOf",
+      "source_uri": "/and/[/s/rule/translation_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/translation_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n/environment_outside_of_enclosed_structures",
+      "surfaceText": null,
+      "uri": "/a/[/r/TranslationOf/,/c/en/outdoors/n/environment_outside_of_enclosed_structures/,/c/es/aire_libre/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/fi/ulkoilmaelämä",
+      "features": [
+        "/c/en/outdoors/n/environment_outside_of_enclosed_structures /r/TranslationOf -",
+        "/c/en/outdoors/n/environment_outside_of_enclosed_structures - /c/fi/ulkoilmaelämä",
+        "- /r/TranslationOf /c/fi/ulkoilmaelämä"
+      ],
+      "id": "/e/5d8a995776f3a03b9e906e5ccba9a51ee09008c9",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/TranslationOf",
+      "source_uri": "/and/[/s/rule/translation_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/translation_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n/environment_outside_of_enclosed_structures",
+      "surfaceText": null,
+      "uri": "/a/[/r/TranslationOf/,/c/en/outdoors/n/environment_outside_of_enclosed_structures/,/c/fi/ulkoilmaelämä/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/outdoor_education/n /r/RelatedTo -",
+        "/c/en/outdoor_education/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/1be14cb81d56bb273834385d42dde624f2fcf6f8",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/outdoor_education/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/outdoor_education"
+      ],
+      "start": "/c/en/outdoor_education/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/outdoor_education/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/pond_hockey/n /r/RelatedTo -",
+        "/c/en/pond_hockey/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/9795b052399cedf389c0bcb63f76f745a0195b78",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/pond_hockey/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/pond_hockey"
+      ],
+      "start": "/c/en/pond_hockey/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/pond_hockey/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/fr",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/fr/à_la_belle_étoile/r /r/RelatedTo -",
+        "/c/fr/à_la_belle_étoile/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/8cd00ad2cf193f5c286a973854a233f06a98b5db",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/à_la_belle_étoile/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/à_la_belle_étoile"
+      ],
+      "start": "/c/fr/à_la_belle_étoile/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/fr/à_la_belle_étoile/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/ko",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/ko/바깥/n /r/RelatedTo -",
+        "/c/ko/바깥/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/d30db7789ec3c09c70644f5a832c3ac12a7cb1d6",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/바깥/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/바깥"
+      ],
+      "start": "/c/ko/바깥/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/ko/바깥/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/la",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/la/foras/r /r/RelatedTo -",
+        "/c/la/foras/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/58d1a02fd73b15a4ea8329dd141cf058152cd6c6",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/foras/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/foras"
+      ],
+      "start": "/c/la/foras/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/la/foras/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/mn",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/mn/гадаа/n /r/RelatedTo -",
+        "/c/mn/гадаа/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/10283e9419cb4d1ac6d16fdaccf8cd443c20f261",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/гадаа/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/гадаа"
+      ],
+      "start": "/c/mn/гадаа/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/mn/гадаа/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/scn",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/scn/fora/r /r/RelatedTo -",
+        "/c/scn/fora/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/1066f55fd08df8b65ace3e755a1cd382620f94da",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/fora/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/fora"
+      ],
+      "start": "/c/scn/fora/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/scn/fora/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/sq",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/sq/përjashta/r /r/RelatedTo -",
+        "/c/sq/përjashta/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/d74889e716de061b6705cfcad541979da835e291",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/përjashta/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/përjashta"
+      ],
+      "start": "/c/sq/përjashta/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/sq/përjashta/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/indoors",
+      "features": [
+        "/c/en/outdoors/n /r/Antonym -",
+        "/c/en/outdoors/n - /c/en/indoors",
+        "- /r/Antonym /c/en/indoors"
+      ],
+      "id": "/e/0f499c168416d0cf6528def4e654833aaed33bcc",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/Antonym",
+      "source_uri": "/and/[/s/rule/link_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/link_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/Antonym/,/c/en/outdoors/n/,/c/en/indoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/lawn_chair/n /r/RelatedTo -",
+        "/c/en/lawn_chair/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/70a54beb77f439abb6cbb2c1d469bf58216c8e3f",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/lawn_chair/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/lawn_chair"
+      ],
+      "start": "/c/en/lawn_chair/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/lawn_chair/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/natural",
+      "features": [
+        "/c/en/outdoors/n /r/RelatedTo -",
+        "/c/en/outdoors/n - /c/en/natural",
+        "- /r/RelatedTo /c/en/natural"
+      ],
+      "id": "/e/4d544ba6997439fabba2ecb06735e2a77bfe1f38",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/outdoors/n/,/c/en/natural/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/inside",
+      "features": [
+        "/c/en/outdoors/r /r/RelatedTo -",
+        "/c/en/outdoors/r - /c/en/inside",
+        "- /r/RelatedTo /c/en/inside"
+      ],
+      "id": "/e/fb11b26a4e9c434bb4bbbda75d20db14d483d4f0",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/outdoors/r/,/c/en/inside/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/weather-beaten/a /r/RelatedTo -",
+        "/c/en/weather-beaten/a - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/0f67013e9a1d1129fc27f0fc8fe9aaaeb995d0b2",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/weather-beaten/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/weather-beaten"
+      ],
+      "start": "/c/en/weather-beaten/a",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/weather-beaten/a/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/is",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/is/úti/r /r/RelatedTo -",
+        "/c/is/úti/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/1bbf96dd8a74b0207d0833653e4629dd0f7f6cb9",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/úti/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/úti"
+      ],
+      "start": "/c/is/úti/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/is/úti/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/ja",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/ja/青空/n /r/RelatedTo -",
+        "/c/ja/青空/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/8a4b875a8717d6d63818b0315cdad5dba7ee5f26",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/青空/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/青空"
+      ],
+      "start": "/c/ja/青空/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/ja/青空/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/ru",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/ru/внешне/r /r/RelatedTo -",
+        "/c/ru/внешне/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/758f0d9a7083e6a844dfb2fada7193cdc7a7f35a",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/внешне/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/внешне"
+      ],
+      "start": "/c/ru/внешне/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/ru/внешне/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/indoors/r /r/Antonym -",
+        "/c/en/indoors/r - /c/en/outdoors",
+        "- /r/Antonym /c/en/outdoors"
+      ],
+      "id": "/e/4010cfadb48f6a96e4f842e60a513e4dc6361470",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/Antonym",
+      "source_uri": "/and/[/s/rule/link_section/,/s/web/en.wiktionary.org/wiki/indoors/]",
+      "sources": [
+        "/s/rule/link_section",
+        "/s/web/en.wiktionary.org/wiki/indoors"
+      ],
+      "start": "/c/en/indoors/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/Antonym/,/c/en/indoors/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/outdoorswoman /r/EtymologicallyDerivedFrom -",
+        "/c/en/outdoorswoman - /c/en/outdoors",
+        "- /r/EtymologicallyDerivedFrom /c/en/outdoors"
+      ],
+      "id": "/e/400d93d87147eae28e987c048a57bb3570545ba1",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/EtymologicallyDerivedFrom",
+      "source_uri": "/and/[/s/rule/etymology_section/,/s/web/en.wiktionary.org/wiki/outdoorswoman/]",
+      "sources": [
+        "/s/rule/etymology_section",
+        "/s/web/en.wiktionary.org/wiki/outdoorswoman"
+      ],
+      "start": "/c/en/outdoorswoman",
+      "surfaceText": null,
+      "uri": "/a/[/r/EtymologicallyDerivedFrom/,/c/en/outdoorswoman/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/barbecue/n /r/RelatedTo -",
+        "/c/en/barbecue/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/494f4212b2a743cee6cd9f8210ff82605cb01525",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/barbecue/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/barbecue"
+      ],
+      "start": "/c/en/barbecue/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/barbecue/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/bosberaad/n /r/RelatedTo -",
+        "/c/en/bosberaad/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/2a9a6dac188e369e44da997d352bb2ad450f0551",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/bosberaad/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/bosberaad"
+      ],
+      "start": "/c/en/bosberaad/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/bosberaad/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/mud_room/n /r/RelatedTo -",
+        "/c/en/mud_room/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/2f02418a11121aab035bd66c0184833a9b93af81",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/mud_room/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/mud_room"
+      ],
+      "start": "/c/en/mud_room/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/mud_room/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/out-of-doors/n /r/RelatedTo -",
+        "/c/en/out-of-doors/n - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/ac8e3cac6a0308532a25566a5f21d2e648da80d5",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/out-of-doors/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/out-of-doors"
+      ],
+      "start": "/c/en/out-of-doors/n",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/out-of-doors/n/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/out-of-doors/r /r/RelatedTo -",
+        "/c/en/out-of-doors/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/b4cad215f7c18843b6dc0cab62d2b423d44c6b9e",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/out-of-doors/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/out-of-doors"
+      ],
+      "start": "/c/en/out-of-doors/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/out-of-doors/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/en/open",
+      "features": [
+        "/c/en/outdoors/r /r/RelatedTo -",
+        "/c/en/outdoors/r - /c/en/open",
+        "- /r/RelatedTo /c/en/open"
+      ],
+      "id": "/e/af342715c4cc2d2aa4532450df5f17599ec8902f",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/en/outdoors/r/,/c/en/open/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/lv",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/lv/laukā/r /r/RelatedTo -",
+        "/c/lv/laukā/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/69b01a3a9be0a85dd3571b63793f2f81e54a7a1c",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/laukā/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/laukā"
+      ],
+      "start": "/c/lv/laukā/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/lv/laukā/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/mn",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/mn/гадаа/r /r/RelatedTo -",
+        "/c/mn/гадаа/r - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/b7d528a4225906e6e1d9921c98c5d51cf5f99e55",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/and/[/s/rule/definition_section/,/s/web/en.wiktionary.org/wiki/гадаа/]",
+      "sources": [
+        "/s/rule/definition_section",
+        "/s/web/en.wiktionary.org/wiki/гадаа"
+      ],
+      "start": "/c/mn/гадаа/r",
+      "surfaceText": null,
+      "uri": "/a/[/r/RelatedTo/,/c/mn/гадаа/r/,/c/en/outdoors/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/umbel",
+      "end": "/c/en/open-air",
+      "features": [
+        "/c/en/outdoors /r/Synonym -",
+        "/c/en/outdoors - /c/en/open-air",
+        "- /r/Synonym /c/en/open-air"
+      ],
+      "id": "/e/439aa7aa0927d7b29a2fcef158e2eed89613d001",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/Synonym",
+      "source_uri": "/s/umbel/2013",
+      "sources": [
+        "/s/umbel/2013"
+      ],
+      "start": "/c/en/outdoors",
+      "surfaceText": "[[outdoors]] is a synonym of [[open-air]]",
+      "uri": "/a/[/r/Synonym/,/c/en/outdoors/,/c/en/open-air/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/wiktionary/en/en",
+      "end": "/c/th/ข้างนอก",
+      "features": [
+        "/c/en/outdoors/n/environment_outside_of_enclosed_structures /r/TranslationOf -",
+        "/c/en/outdoors/n/environment_outside_of_enclosed_structures - /c/th/ข้างนอก",
+        "- /r/TranslationOf /c/th/ข้างนอก"
+      ],
+      "id": "/e/d49454cd7f0ba1865b7116900a14792bfce0e78b",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/TranslationOf",
+      "source_uri": "/and/[/s/rule/translation_section/,/s/web/en.wiktionary.org/wiki/outdoors/]",
+      "sources": [
+        "/s/rule/translation_section",
+        "/s/web/en.wiktionary.org/wiki/outdoors"
+      ],
+      "start": "/c/en/outdoors/n/environment_outside_of_enclosed_structures",
+      "surfaceText": null,
+      "uri": "/a/[/r/TranslationOf/,/c/en/outdoors/n/environment_outside_of_enclosed_structures/,/c/th/ข้างนอก/]",
+      "weight": 1.0
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/nature /r/RelatedTo -",
+        "/c/en/nature - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/98f8663bc100d97567590d76354c0b000a9900fd",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/nature",
+      "surfaceText": "[[nature]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/nature/,/c/en/outdoors/]",
+      "weight": 0.8427353794998098
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/jmdict",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/ja/室外 /r/TranslationOf -",
+        "/c/ja/室外 - /c/en/outdoors",
+        "- /r/TranslationOf /c/en/outdoors"
+      ],
+      "id": "/e/ba6dcc88952d4c4f18bf100e55efbc2d9751c0bc",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/TranslationOf",
+      "source_uri": "/s/jmdict/1.07",
+      "sources": [
+        "/s/jmdict/1.07"
+      ],
+      "start": "/c/ja/室外",
+      "surfaceText": null,
+      "uri": "/a/[/r/TranslationOf/,/c/ja/室外/,/c/en/outdoors/]",
+      "weight": 0.5849625007211562
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/jmdict",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/ja/屋外 /r/TranslationOf -",
+        "/c/ja/屋外 - /c/en/outdoors",
+        "- /r/TranslationOf /c/en/outdoors"
+      ],
+      "id": "/e/c452bca06286811edcd7ab79a23bcca06c81938e",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/TranslationOf",
+      "source_uri": "/s/jmdict/1.07",
+      "sources": [
+        "/s/jmdict/1.07"
+      ],
+      "start": "/c/ja/屋外",
+      "surfaceText": null,
+      "uri": "/a/[/r/TranslationOf/,/c/ja/屋外/,/c/en/outdoors/]",
+      "weight": 0.5849625007211562
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/jmdict",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/ja/アウトゥドアズ /r/TranslationOf -",
+        "/c/ja/アウトゥドアズ - /c/en/outdoors",
+        "- /r/TranslationOf /c/en/outdoors"
+      ],
+      "id": "/e/7ed6ee03f86dc010ee49691587323ac166808ddb",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/TranslationOf",
+      "source_uri": "/s/jmdict/1.07",
+      "sources": [
+        "/s/jmdict/1.07"
+      ],
+      "start": "/c/ja/アウトゥドアズ",
+      "surfaceText": null,
+      "uri": "/a/[/r/TranslationOf/,/c/ja/アウトゥドアズ/,/c/en/outdoors/]",
+      "weight": 0.5849625007211562
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/jmdict",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/ja/アウトドアズ /r/TranslationOf -",
+        "/c/ja/アウトドアズ - /c/en/outdoors",
+        "- /r/TranslationOf /c/en/outdoors"
+      ],
+      "id": "/e/ee32ba3495d057f5d71af0ce0a7d93fc88bc9f23",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/TranslationOf",
+      "source_uri": "/s/jmdict/1.07",
+      "sources": [
+        "/s/jmdict/1.07"
+      ],
+      "start": "/c/ja/アウトドアズ",
+      "surfaceText": null,
+      "uri": "/a/[/r/TranslationOf/,/c/ja/アウトドアズ/,/c/en/outdoors/]",
+      "weight": 0.5849625007211562
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/jmdict",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/ja/野外 /r/TranslationOf -",
+        "/c/ja/野外 - /c/en/outdoors",
+        "- /r/TranslationOf /c/en/outdoors"
+      ],
+      "id": "/e/f0cd6d0ee05a39f4460a9cfaa25e7a031dfc3063",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/TranslationOf",
+      "source_uri": "/s/jmdict/1.07",
+      "sources": [
+        "/s/jmdict/1.07"
+      ],
+      "start": "/c/ja/野外",
+      "surfaceText": null,
+      "uri": "/a/[/r/TranslationOf/,/c/ja/野外/,/c/en/outdoors/]",
+      "weight": 0.5849625007211562
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/jmdict",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/ja/戸外 /r/TranslationOf -",
+        "/c/ja/戸外 - /c/en/outdoors",
+        "- /r/TranslationOf /c/en/outdoors"
+      ],
+      "id": "/e/7a9b46f5fe8b783911570ba58edb412932ff5e89",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/TranslationOf",
+      "source_uri": "/s/jmdict/1.07",
+      "sources": [
+        "/s/jmdict/1.07"
+      ],
+      "start": "/c/ja/戸外",
+      "surfaceText": null,
+      "uri": "/a/[/r/TranslationOf/,/c/ja/戸外/,/c/en/outdoors/]",
+      "weight": 0.5849625007211562
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/garden /r/RelatedTo -",
+        "/c/en/garden - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/a8d276af1769c556a67cc3bdc2bcc531f3dd04db",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/garden",
+      "surfaceText": "[[garden]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/garden/,/c/en/outdoors/]",
+      "weight": 0.19186054952251505
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/market /r/RelatedTo -",
+        "/c/en/market - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/59715995892db56562a90b06618684d9d0e4eed9",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/market",
+      "surfaceText": "[[market]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/market/,/c/en/outdoors/]",
+      "weight": 0.18670866428263494
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/grind /r/RelatedTo -",
+        "/c/en/grind - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/9eb2a3942d6788c014caa84c8c4538a9eb202250",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/grind",
+      "surfaceText": "[[ground]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/grind/,/c/en/outdoors/]",
+      "weight": 0.07239682612935916
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/weather /r/RelatedTo -",
+        "/c/en/weather - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/cdcdb99013fecd29b76d030f966ed83426f64ec0",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/weather",
+      "surfaceText": "[[weather]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/weather/,/c/en/outdoors/]",
+      "weight": 0.061986477586302186
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/farm /r/RelatedTo -",
+        "/c/en/farm - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/0da974e0e7b37ebe2f67071a30eb1e9e6523fc43",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/farm",
+      "surfaceText": "[[farm]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/farm/,/c/en/outdoors/]",
+      "weight": 0.04264433740849372
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/coat /r/RelatedTo -",
+        "/c/en/coat - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/a27a554e739bc1875dc6b2e7e916b5217d9d0c7a",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/coat",
+      "surfaceText": "[[coat]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/coat/,/c/en/outdoors/]",
+      "weight": 0.04098007652894166
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/room /r/Antonym -",
+        "/c/en/room - /c/en/outdoors",
+        "- /r/Antonym /c/en/outdoors"
+      ],
+      "id": "/e/17c82c7b69ba4fd0db13a40d1dfb6f2a2f91dfe9",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/Antonym",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/room",
+      "surfaceText": "[[room]] is the opposite of [[outdoors]]",
+      "uri": "/a/[/r/Antonym/,/c/en/room/,/c/en/outdoors/]",
+      "weight": 0.03815520102596883
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/mountain /r/RelatedTo -",
+        "/c/en/mountain - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/b1744a76693a9582fb13eea478c03f6900c46d44",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/mountain",
+      "surfaceText": "[[mountain]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/mountain/,/c/en/outdoors/]",
+      "weight": 0.0194795337036281
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/sky /r/RelatedTo -",
+        "/c/en/sky - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/02a2493ea19ad15587a64688d240687e09220f45",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/sky",
+      "surfaceText": "[[sky]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/sky/,/c/en/outdoors/]",
+      "weight": 0.017921907997262315
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/thunder /r/RelatedTo -",
+        "/c/en/thunder - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/2dbcdba9615ab1657c9164ba0d813c1ff7b272fa",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/thunder",
+      "surfaceText": "[[thunder]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/thunder/,/c/en/outdoors/]",
+      "weight": 0.01766744198709763
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/squirrel /r/RelatedTo -",
+        "/c/en/squirrel - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/4afa05f036628782e7e92dad7086223af71df666",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/squirrel",
+      "surfaceText": "[[squirrel]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/squirrel/,/c/en/outdoors/]",
+      "weight": 0.016674595465269063
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/public /r/RelatedTo -",
+        "/c/en/public - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/6f00679ae33828d3f07cfb926f565384f6ddb306",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/public",
+      "surfaceText": "[[public]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/public/,/c/en/outdoors/]",
+      "weight": 0.014355292977070055
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/rain /r/RelatedTo -",
+        "/c/en/rain - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/03924c3a39dacd1733215a5f74514202b5444b80",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/rain",
+      "surfaceText": "[[rain]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/rain/,/c/en/outdoors/]",
+      "weight": 0.012568673503055681
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/flea /r/RelatedTo -",
+        "/c/en/flea - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/f1c9a975de7ee5ced0da24415fda8f318bc69e85",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/flea",
+      "surfaceText": "[[flea]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/flea/,/c/en/outdoors/]",
+      "weight": 0.011978603203514663
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/field /r/RelatedTo -",
+        "/c/en/field - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/3d0643c5e8b5520212a1997a86c2c0518fa8f855",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/field",
+      "surfaceText": "[[field]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/field/,/c/en/outdoors/]",
+      "weight": 0.011450911735753787
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/river /r/RelatedTo -",
+        "/c/en/river - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/4ed9e076489bb96ca87f49a061587747f2b42aac",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/river",
+      "surfaceText": "[[river]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/river/,/c/en/outdoors/]",
+      "weight": 0.010068697668300375
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/adventurer /r/RelatedTo -",
+        "/c/en/adventurer - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/fb1acff21e1d8db0adf12d8fe92b36586669ffdd",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/adventurer",
+      "surfaceText": "[[adventurer]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/adventurer/,/c/en/outdoors/]",
+      "weight": 0.0095908259571858
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/landscape /r/RelatedTo -",
+        "/c/en/landscape - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/7f95a0e5080a6a6bf0f3a677f7cf11a71a7ddf24",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/landscape",
+      "surfaceText": "[[landscape]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/landscape/,/c/en/outdoors/]",
+      "weight": 0.00929207573711929
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/lantern /r/RelatedTo -",
+        "/c/en/lantern - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/38bd22f1d6a39c74e26a9d10b1686cd77c020168",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/lantern",
+      "surfaceText": "[[lantern]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/lantern/,/c/en/outdoors/]",
+      "weight": 0.009192478581168683
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/stadium /r/RelatedTo -",
+        "/c/en/stadium - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/b9ea284d7be75dcfff7441684e23fee4b6eb4004",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/stadium",
+      "surfaceText": "[[stadium]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/stadium/,/c/en/outdoors/]",
+      "weight": 0.00791308164326493
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/herd /r/RelatedTo -",
+        "/c/en/herd - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/ed3f7b60310254da2afa2347e9b0958b91a96f43",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/herd",
+      "surfaceText": "[[herd]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/herd/,/c/en/outdoors/]",
+      "weight": 0.00779350971987041
+    },
+    {
+      "context": "/ctx/all",
+      "dataset": "/d/verbosity",
+      "end": "/c/en/outdoors",
+      "features": [
+        "/c/en/crowd /r/RelatedTo -",
+        "/c/en/crowd - /c/en/outdoors",
+        "- /r/RelatedTo /c/en/outdoors"
+      ],
+      "id": "/e/9790926eacdf49ba2dc7b7328e01d72a34bc5430",
+      "license": "/l/CC/By-SA",
+      "rel": "/r/RelatedTo",
+      "source_uri": "/s/site/verbosity",
+      "sources": [
+        "/s/site/verbosity"
+      ],
+      "start": "/c/en/crowd",
+      "surfaceText": "[[crowd]] is related to [[outdoors]]",
+      "uri": "/a/[/r/RelatedTo/,/c/en/crowd/,/c/en/outdoors/]",
+      "weight": 0.007554336138273421
+    }
+  ],
+  "numFound": 163
+}
