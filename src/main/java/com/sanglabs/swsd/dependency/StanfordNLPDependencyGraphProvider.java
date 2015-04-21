@@ -1,6 +1,7 @@
 package com.sanglabs.swsd.dependency;
 
 import com.chaoticity.dependensee.Main;
+import com.dpdearing.nlp.opennlp.OpenNlpToolkit;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.ObjectArrays;
@@ -9,7 +10,6 @@ import edu.stanford.nlp.process.CoreLabelTokenFactory;
 import edu.stanford.nlp.process.PTBTokenizer;
 import edu.stanford.nlp.process.TokenizerFactory;
 import edu.stanford.nlp.trees.*;
-import opennlp.OpenNlpToolkit;
 import org.apache.commons.lang.WordUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -117,7 +117,7 @@ public class StanfordNLPDependencyGraphProvider {
 
 		Set<Action> actions = new LinkedHashSet<Action>();
 
-		List<String> lines = openNLPSentenceDetector.detectSentencesApplyNewlines(text);
+		List<String> lines = Arrays.asList(openNLPSentenceDetector.detectSentences(text));
 
 		for(String line: lines){
 

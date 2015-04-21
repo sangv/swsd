@@ -1,7 +1,7 @@
 package com.sanglabs.swsd
 
+import com.dpdearing.nlp.opennlp.OpenNlpToolkit
 import grizzled.slf4j.Logger
-import opennlp.OpenNlpToolkit
 import org.tartarus.snowball.ext.englishStemmer
 
 import scala.collection.mutable.ListBuffer

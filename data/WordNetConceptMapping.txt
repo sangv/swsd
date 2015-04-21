@@ -105,6 +105,7 @@ deposit#n#1:money
 trust_fund#n#1:money
 budget#n#1:money
 bank#n#2:money
+credit_union#2:money
 money_supply#n#1:money
 bankroll#v#1:money
 slush_fund#n#1:money

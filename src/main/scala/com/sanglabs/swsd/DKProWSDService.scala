@@ -51,7 +51,7 @@ object DKProWSDService extends JungGraphConnectivityService {
   wsdAlgorithm.setGraphVisualizer(graphVisualizer)
   wsdAlgorithm.setSearchDepth(4)
 
-  def rawDisambiguate(text: List[WordAnalysis], useOwn: Boolean = false): Map[String,String] = {
+  def rawDisambiguate(text: List[WordAnalysis]): Map[String,String] = {
 
 
     val sentence: java.util.Collection[Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS]] = new java.util.ArrayList[Pair[String, de.tudarmstadt.ukp.dkpro.wsd.si.POS]]
@@ -62,10 +62,7 @@ object DKProWSDService extends JungGraphConnectivityService {
         //TODO reset lemma in WordAnalysis as well
     }
 
-    val dabMap: Map[Pair[String, POS], Map[String, Double]] = useOwn match {
-      case true => ownDisambiguation(sentence)
-      case false => wsdAlgorithm.getDisambiguation(sentence).asScala.toMap mapValues(_.asScala.toMap mapValues(_.toDouble))
-    }
+    val dabMap: Map[Pair[String, POS], Map[String, Double]] = wsdAlgorithm.getDisambiguation(sentence).asScala.toMap mapValues(_.asScala.toMap mapValues(_.toDouble))
 
     var result = Map[String,String]()
     var resultWithPOS = Map[(POS,String),Int]()
@@ -82,21 +79,21 @@ object DKProWSDService extends JungGraphConnectivityService {
     result
   }
 
-  def disambiguate(text: List[WordAnalysis], useOwn: Boolean = false): Map[String,String] = {
+  def disambiguate(text: List[WordAnalysis]): Map[String,String] = {
 
-    val result = rawDisambiguate(text,useOwn)
+    val result = rawDisambiguate(text)
     result mapValues (synsetFormatForSenseId)
   }
 
-  def disambiguateWithSenseId(text: List[WordAnalysis], useOwn: Boolean = false): Map[String,String] = {
+  def disambiguateWithSenseId(text: List[WordAnalysis]): Map[String,String] = {
 
-    val result = rawDisambiguate(text,useOwn)
+    val result = rawDisambiguate(text)
     result
   }
 
   def disambiguateWithGloss(text: List[WordAnalysis], useOwn: Boolean = false): Map[String,(String,String)] = {
 
-    val result = rawDisambiguate(text,useOwn)
+    val result = rawDisambiguate(text)
     result mapValues (synsetFormatForSenseIdWithGloss)
   }
 

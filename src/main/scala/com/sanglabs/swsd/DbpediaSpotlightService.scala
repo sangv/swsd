@@ -46,7 +46,7 @@ object DbpediaSpotlightService {
   val DEFAULT_SUPPORT: String = "20"
   val DEFAULT_CONFIDENCE: String = "0.5"
 
-  val BRAND_TYPES = Array("DBpedia:Company")
+  val BRAND_TYPES = Array("DBpedia:Company","dbpedia:Subsidiary")
 
   val logger = Logger[this.type]
 
@@ -83,27 +83,8 @@ object DbpediaSpotlightService {
 
 
   def getEntities(text: String): Set[NamedEntity] = {
-
-    /*val spots: Set[String] = StanfordNLPService.nerSpots(text).keySet
-    var options: Map[String, String] = Map[String, String]()
-    options += ("spotter" -> "SpotXmlParser")
-    options += ("api" -> "spot")
-    var namedEntities = Set[NamedEntity]()
-    try {
-      val textForSpotting = if(text.length > 1200) text.substring(0,1200) else text
-      namedEntities ++= getDbpediaEntities(buildSpotXmlParserPayload(textForSpotting, spots), options)
-    }
-    catch {
-      case (e: Exception) => {
-        logger.info(s"Unable to use NLP algorithms locally for named entity spotting. Using only Dbpedia spotlight + ${e.getLocalizedMessage}")
-      }
-    }  */
     val namedEntities = getDbpediaEntities(text)
-    namedEntities.foreach(n => println(n.uri))
-    println(" ======================================= ")
     val filteredResults = namedEntities.filter(n => {n.types.intersect(BRAND_TYPES).length > 0 || isBrand(n.uri)})
-    filteredResults.foreach(n => println(n.uri))
-    println(" ======================================= ***** =======================================")
     filteredResults
   }
 

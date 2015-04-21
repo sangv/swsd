@@ -84,11 +84,11 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.3.6</version>
 		</dependency>
-		<!--dependency>
-			<groupId>gov.sandia.foundry</groupId>
-			<artifactId>porter-stemmer</artifactId>
-			<version>1.4</version>
-		</dependency-->
+		<dependency>
+			<groupId>com.dpdearing</groupId>
+			<artifactId>nlp</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
@@ -124,11 +124,6 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.7.7</version>
-		</dependency>
-		<dependency>
-			<groupId>org.neo4j</groupId>
-			<artifactId>neo4j</artifactId>
-			<version>2.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.json4s</groupId>

@@ -13,7 +13,7 @@ import org.junit.Test
 class DbpediaNamedEntityIT extends TestCase {
 
   val testSentences = Array("I go to school at Stanford University, which is located in California.",
-    "schooled at the Philippines",
+    "Schooled at the Philippines",
     "Where does Toyota have its factories?",
     "What does Mary produce?",
     "What does GM produce?",
@@ -24,22 +24,9 @@ class DbpediaNamedEntityIT extends TestCase {
     "You told me I was like the Dead Sea")
 
   @Test
-  def testNerSpots() {
-    Option("""
-      |President Obama called Wednesday on Congress to extend a tax break
-      |for students included in last year's economic stimulus package, arguing
-      |that the policy provides more generous assistance.
-    """.stripMargin) foreach {sentence =>
-      println(sentence)
-      val result = DbpediaSpotlightService.getEntities(sentence)//StanfordNLPService.nerSpots(sentence)
-      println(result)
-    }
-  }
-
-  @Test
   def testFMeasureScore() {
     val result = FMeasureCalculator.calculate(Array("Concept1"),Array("Concept1","Concept2"))
-    println(result)
+    assert(result.fMeasure > 0.5)
   }
 
   @Test
@@ -48,33 +35,7 @@ class DbpediaNamedEntityIT extends TestCase {
     assert(isBrand)
   }
 
-  @Test
-  def testSong(): Unit = {
-    DbpediaSpotlightService.getEntities(TestText.beautifulDayLyrics)
-    println("Done")
-  }
 
-  @Test
-  def testNERSong2(): Unit = {
-    DbpediaSpotlightService.getEntities(NERTest.Fashion_LadyGaga)
-    println("Done")
-  }
-
-  @Test
-  def testNERSong3(): Unit = {
-    DbpediaSpotlightService.getEntities(NERTest.ItsAllAboutThePentiums_WeirdAl)
-    println("Done")
-  }
-
-  def testNERSongs() = {
-    val results = DbpediaSpotlightService.getEntities(TextPreprocessor.preprocess(NERTest.ItsAllAboutThePentiums_WeirdAl))
-    println(results)
-  }
-
-  def testFloridaGeorgiaLine() = {
-    val results = DbpediaSpotlightService.getEntities(TextPreprocessor.preprocess(NERTest.AnythingGoes_FloridaGeorgiaLine))
-    println(results)
-  }
 
 
 

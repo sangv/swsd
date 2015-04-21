@@ -20,7 +20,7 @@ import org.scalatest.junit.{AssertionsForJUnit, JUnitSuite}
 class MostFrequentWordNetSenseTest extends JUnitSuite with Matchers with AssertionsForJUnit {
 
 
-  val extJWNLPropertiesFile: String = "file:///Users/sang/Temp/swsd/data/file_properties.xml"
+  val extJWNLPropertiesFile: String = "file://" + (new java.io.File("/Users/sang/Temp/swsd/data/file_properties.xml")).getAbsolutePath
 
   val inventory: WordNetSynsetSenseInventory = new WordNetSynsetSenseInventory(new URL(extJWNLPropertiesFile))
 

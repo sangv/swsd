@@ -36,7 +36,7 @@ object StanfordNLPService {
   lazy val maxentPOSTagger = new MaxentTagger("edu/stanford/nlp/models/pos-tagger/english-left3words/english-left3words-distsim.tagger")
 
   //TODO change to relative path
-  val nerClassifier = CRFClassifier.getClassifierNoExceptions("/Users/sang/Temp/swsd/data/stanfordnlp/ner/english.all.3class.caseless.distsim.crf.ser.gz")
+  val nerClassifier = CRFClassifier.getClassifierNoExceptions("data/stanfordnlp/ner/english.all.3class.caseless.distsim.crf.ser.gz")
 
   val logger = Logger[this.type]
 

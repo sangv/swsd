@@ -96,12 +96,4 @@ object TFTextSummarizer {
      val top = sortSentencesByTF(document)
      top map (_._1) take(numberOfSentence) toList
   }
-
-  /*def summarize(document: Document, ratio: Float = 0.2F) = {
-
-    val summarySentences = topSentences(document, Math.round(ratio * sentences.length))
-    logger.debug(summarySentences)
-    summarySentences
-  }*/
-
 }

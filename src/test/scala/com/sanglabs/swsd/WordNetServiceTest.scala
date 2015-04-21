@@ -15,6 +15,10 @@ import org.scalatest.{Matchers, BeforeAndAfter, FlatSpec}
 @RunWith(classOf[JUnitRunner])
 class WordNetServiceTest extends FlatSpec with Matchers with BeforeAndAfter {
 
+  "Hard disk" should "have base form" in {
+    WordNetDictionaryService.getBaseForm(POS.NOUN,"Hard disk") shouldEqual  "hard disk"
+  }
+
   "Plethora of fish at sea" should "have synset options for 3 words" in {
     val options = WordNetDictionaryService.lookupOptions("Plethora of fish at sea")
     options.size shouldEqual(3)
@@ -43,25 +47,6 @@ class WordNetServiceTest extends FlatSpec with Matchers with BeforeAndAfter {
     options.size shouldEqual(2)
     options.get(WordAnalysis("live","live",POS.VERB,"VBP")).get shouldEqual List("live#v#1", "live#v#2", "live#v#3", "live#v#4", "live#v#5", "live#v#6", "live#v#7")
     options.get(WordAnalysis("New York","new york",POS.NOUN,"NNP")).get shouldEqual List("new york#n#1", "new york#n#2", "new york#n#3")
-  }
-
-  "Plethora of fish at sea" should "all steps" in {
-    val options = WordNetDictionaryService.lookupOptions("Plethora of fish at sea")
-    val result =  Neo4JGraphService.disambiguate(options)
-    //result foreach (println)
-    result.get("Plethora").get shouldEqual "plethora#n#1"
-    result.get("fish").get shouldEqual "fish#n#3"  //WRONG ASSERT
-    result.get("sea").get shouldEqual "sea#n#1"
-  }
-
-  "A large sea of people" should "all steps" in {
-    val options = WordNetDictionaryService.lookupOptions("A large sea of people")
-    val result = Neo4JGraphService.disambiguate(options)
-    result.size shouldEqual (3)
-
-    result.get("people").get shouldEqual "people#n#2"
-    result.get("large").get shouldEqual "large#a#3"
-    result.get("sea").get shouldEqual "sea#n#1"
   }
 
 }
