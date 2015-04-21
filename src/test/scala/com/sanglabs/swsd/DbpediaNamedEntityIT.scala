@@ -1,15 +1,16 @@
 package com.sanglabs.swsd
 
 import junit.framework.TestCase
+import org.junit.Test
 
 /**
  *
- * The DbpediaNamedEntityTest 
+ * The DbpediaNamedEntityIT
  *
  * @author Sang Venkatraman
  *
  */
-class DbpediaNamedEntityTest extends TestCase {
+class DbpediaNamedEntityIT extends TestCase {
 
   val testSentences = Array("I go to school at Stanford University, which is located in California.",
     "schooled at the Philippines",
@@ -22,7 +23,7 @@ class DbpediaNamedEntityTest extends TestCase {
     "fixing a General Motors car",
     "You told me I was like the Dead Sea")
 
-  /*@Test
+  @Test
   def testNerSpots() {
     Option("""
       |President Obama called Wednesday on Congress to extend a tax break
@@ -39,9 +40,9 @@ class DbpediaNamedEntityTest extends TestCase {
   def testFMeasureScore() {
     val result = FMeasureCalculator.calculate(Array("Concept1"),Array("Concept1","Concept2"))
     println(result)
-  } */
+  }
 
-  /*@Test
+  @Test
   def testIsBrand() {
     val isBrand = DbpediaSpotlightService.isBrand("http://dbpedia.org/resource/Fendi")
     assert(isBrand)
@@ -68,7 +69,7 @@ class DbpediaNamedEntityTest extends TestCase {
   def testNERSongs() = {
     val results = DbpediaSpotlightService.getEntities(TextPreprocessor.preprocess(NERTest.ItsAllAboutThePentiums_WeirdAl))
     println(results)
-  }*/
+  }
 
   def testFloridaGeorgiaLine() = {
     val results = DbpediaSpotlightService.getEntities(TextPreprocessor.preprocess(NERTest.AnythingGoes_FloridaGeorgiaLine))

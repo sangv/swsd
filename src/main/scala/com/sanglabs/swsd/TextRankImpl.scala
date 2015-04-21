@@ -113,12 +113,13 @@ object TextRankImpl {
          if(i == j){
            scoresMatrix(i)(j) = 0.0 //explicitly making a sentence not match itself, duh
          } else {
-           scoresMatrix(i)(j) = stemArray(i).intersect(stemArray(j)).length*1.0/Math.max(stemArray(i).length,stemArray(j).length)
+           scoresMatrix(i)(j) = stemArray(i).intersect(stemArray(j)).length*1.0/stemArray(i).length
            score += scoresMatrix(i)(j)
          }
       }
       sentenceScores += (i -> score)
     }
+    //println(scoresMatrix.foreach{_.mkString(" ")})
     //Math.round(0.3F*sentences.length)
     val indexes = ListMap(sentenceScores.toList.sortBy{_._2}:_*).toList.reverse take(numberOfSentences)
     val results: List[(String,Double)] = indexes.map(s => (sentences(s._1),s._2)).toList

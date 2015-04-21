@@ -34,7 +34,7 @@ class  DKProWSDServiceTest extends FlatSpec with Matchers with BeforeAndAfter {
   }
 
   "Test Fake Plastic tree" should "return " in {
-    val options = WordNetService.lookupOptions("Her green plastic watering can\nFor her fake Chinese rubber plant\nIn the fake plastic earth\nThat she bought from a rubber man\nIn a town full of rubber plans\nTo get rid of itself")
+    val options = WordNetDictionaryService.lookupOptions("Her green plastic watering can\nFor her fake Chinese rubber plant\nIn the fake plastic earth\nThat she bought from a rubber man\nIn a town full of rubber plans\nTo get rid of itself")
 
     val result = DKProWSDService.disambiguate(options.keys.toList)
     val result1 = DKProWSDService.disambiguate(options.keys.toList)
@@ -60,7 +60,7 @@ class  DKProWSDServiceTest extends FlatSpec with Matchers with BeforeAndAfter {
 
   "Beautiful Day" should "return " in {
 
-    val options = WordNetService.lookupOptions(TestText.beautifulDayLyrics)
+    val options = WordNetDictionaryService.lookupOptions(TestText.beautifulDayLyrics)
 
     val result = DKProWSDService.disambiguate(options.keys.toList)
     println(result.size)
@@ -70,7 +70,7 @@ class  DKProWSDServiceTest extends FlatSpec with Matchers with BeforeAndAfter {
 
   "Dead Sea" should "return " in {
 
-    val options = WordNetService.lookupOptions(TestText.deadSeaLyrics)
+    val options = WordNetDictionaryService.lookupOptions(TestText.deadSeaLyrics)
 
     val result = DKProWSDService.disambiguate(options.keys.toList)
     println(result.size)
@@ -79,22 +79,69 @@ class  DKProWSDServiceTest extends FlatSpec with Matchers with BeforeAndAfter {
 
   "Fake plastic tree full lyrics" should "return " in {
 
-    val options = WordNetService.lookupOptions(TestText.fakePlasticTrees)
+    val options = WordNetDictionaryService.lookupOptions(TestText.fakePlasticTrees)
 
     val result = DKProWSDService.disambiguate(options.keys.toList)
     println(result.size)
     println(result)
-  }*/
+  }
 
   "Four five seconds lyrics" should "return " in {
 
     //val fourFiveSecondsStanzas = TestText.fourFiveSecondsLyrics.split("\n\n")
     //println(fourFiveSecondsStanzas(0))
     //println(TextPreprocessor.preprocess(fourFiveSecondsStanzas(0)))
-    val options = WordNetDictionaryService.lookupOptions(TestText.fourFiveSecondsLyrics)
+    //val options = WordNetDictionaryService.lookupOptions(TextPreprocessor.getSentences("Whats the difference between a credit union and a bank").head)
+    val options = WordNetDictionaryService.lookupOptions(TextPreprocessor.preprocess(TestText.fourFiveSecondsLyrics))
     println(options)
-    val result = DKProWSDService.disambiguateWithGloss(options.keys.toList)
-    println(result.size)
+    val wsds = DKProWSDService.disambiguate(options.keys.toList)
+    println(wsds.size)
+    println(wsds)
+    val listOfLists = wsds.values map {Neo4JGraphService.getHypernymSynsetNodes(_,6) map {_._2.head}}
+    println(listOfLists)
+
+    var scores = Map[String,List[Double]]()
+
+    //results foreach {r => {println(r._1,r._2 mkString(", "))} }
+    //results.indices.foreach(i => {scores += (results(i) -> (scores.getOrElse(results(i),0.0) + scores(i)))})
+    listOfLists foreach { results =>
+      results.indices.foreach(i => {
+        val currentList: List[Double] = scores.getOrElse(results(i), List[Double]())
+        val score: Double = (results.length - i) * 1.0 / results.length
+        val newList: List[Double] = currentList :+ score
+        scores += (results(i) -> newList)
+      })
+    }
+    println(scores)
+    val sortedScoresByCount = ListMap(scores.toList.sortBy(l => {l._2.sum}): _*).toList.reverse //l._2.sum * 1.0/l._2.length
+    println("======================================")
+    println(sortedScoresByCount.take(6))
+    println("Done1")
+    assert(sortedScoresByCount.head._1 == "depository financial institution#n#1")
+    assert(sortedScoresByCount.tail.head._1 == "financial institution#n#1")
+  }*/
+
+  "Test Word Sense disambiguation" should "return " in {
+
+    var sentence = TextPreprocessor.getSentences("Whats the difference between a credit union and a bank").head
+    var options = WordNetDictionaryService.lookupOptions(sentence)
+    println(sentence)
+    println(options)
+    var result = DKProWSDService.disambiguateWithGloss(options.keys.toList)
+    println(result)
+    sentence = TextPreprocessor.getSentences("I am going to the bank").head
+    println(" ================= ")
+    println(sentence)
+    options = WordNetDictionaryService.lookupOptions(sentence)
+    println(options)
+    result = DKProWSDService.disambiguateWithGloss(options.keys.toList)
+    println(result)
+    println(" ================= ")
+    sentence = TextPreprocessor.getSentences("I am going to the bank of the river").head
+    println(sentence)
+    options = WordNetDictionaryService.lookupOptions("I am going to the bank of the river")
+    println(options)
+    result = DKProWSDService.disambiguateWithGloss(options.keys.toList)
     println(result)
   }
 

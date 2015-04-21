@@ -1,8 +1,9 @@
 package com.sanglabs.swsd
 
+import org.junit.Test
 import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
-import org.scalatest.{Matchers, BeforeAndAfter, FlatSpec}
+import org.scalatest.Matchers
+import org.scalatest.junit.{AssertionsForJUnit, JUnitRunner, JUnitSuite}
 
 /**
  *
@@ -12,9 +13,10 @@ import org.scalatest.{Matchers, BeforeAndAfter, FlatSpec}
  *
  */
 @RunWith(classOf[JUnitRunner])
-class StanfordNLPSentenceTest extends FlatSpec with Matchers with BeforeAndAfter {
+class StanfordNLPSentenceTest extends JUnitSuite with Matchers with AssertionsForJUnit {
 
-  "Test sentence splitting" should "return 3 getSentences" in {
+  @Test
+  def testSentenceSplitting() {
     val sentences = StanfordNLPService.getSentences("There are multiple getSentences in this text. The first one, is this. And this is the second one.")
     sentences.size shouldEqual(3)
     sentences(0) shouldEqual "There are multiple getSentences in this text."
@@ -33,12 +35,27 @@ class StanfordNLPSentenceTest extends FlatSpec with Matchers with BeforeAndAfter
     "fixing a General Motors car",
     "You told me I was like the Dead Sea")
 
-  "Test ner spots" should "return 3 getSentences" in {
+  @Test
+  def testNERSpots() {
     testSentences foreach {sentence =>
       println(sentence)
       val result = StanfordNLPService.nerSpots(sentence)
       println(result)
     }
   }
+
+  @Test
+  def testSentiment(): Unit = {
+    val options = WordNetDictionaryService.lookupOptions("They are really happy to be here.")
+    println(options)
+    val wsds = DKProWSDService.disambiguate(options.keys.toList)
+    println(wsds)
+    /*val sentiWordNetService = new SentiWordNetService()
+    val results = wsds map {s => sentiWordNetService.extract(s._2)}
+    results foreach println
+    println("Done")*/
+  }
+
+
 
 }

@@ -1,7 +1,10 @@
 package com.sanglabs.swsd
 
+import grizzled.slf4j.Logger
 import opennlp.OpenNlpToolkit
 import org.tartarus.snowball.ext.englishStemmer
+
+import scala.collection.mutable.ListBuffer
 
 /**
  *
@@ -18,6 +21,8 @@ object TextPreprocessor {
 
   //FIXME make StanfordNLP and OpenNLP configurable
   val openNlpToolkit = new OpenNlpToolkit
+
+  val logger = Logger[this.type]
 
   case class Document(text: String)  //terms imply uniqueness while words can be repeated
 
@@ -65,5 +70,31 @@ object TextPreprocessor {
 
   def getSentences(text: String) ={
     openNlpToolkit.detectSentences(preprocess(text)).toList
+  }
+
+  def getCompoundWords(sentences: List[Sentence]): List[Sentence] = {
+    //compoundify words (nouns) currently 2 at a time -- TODO add support for differently sized compound words
+    val compoundedSentences = sentences.map(getCompoundWords(_))
+    compoundedSentences
+  }
+
+  def getCompoundWords(sentence: Sentence) = {
+    val compoundedWords = ListBuffer[WordAnalysis]()
+    var index = 0
+    for ( (f,s) <- sentence.words zip sentence.words.drop(1) ) {
+      logger.trace(f.word + "  " + s.word)
+      index+=1
+      if (f.pos != null && s.pos != null && f.stanfordPOS.startsWith("NN") && s.stanfordPOS.startsWith("NN") && f.stanfordPOS.equals(s.stanfordPOS)) {
+        val compoundWord = StringBuilder.newBuilder.append(f.word).append(" ").append(s.word).toString()
+        if (WordNetDictionaryService.getBaseForm(f.pos,compoundWord) != null) {
+          compoundedWords += WordAnalysis(compoundWord, WordNetDictionaryService.getBaseForm(f.pos, compoundWord), f.pos, f.stanfordPOS)
+        } else {
+          compoundedWords += f; if (index == sentence.words.length - 1) compoundedWords += s
+        }
+      }  else {
+        compoundedWords+=f; if(index == sentence.words.length-1) compoundedWords+=s
+      }
+    }
+    Sentence(compoundedWords.toList)
   }
 }

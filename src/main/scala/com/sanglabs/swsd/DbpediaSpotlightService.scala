@@ -40,11 +40,13 @@ case class NamedEntity(surfaceForm: String, uri: String, support: Int, types: Li
 
 object DbpediaSpotlightService {
 
-  val dbpediaSpotlightServiceUrl = "http://spotlight.dbpedia.org/rest/"
+  val dbpediaSpotlightServiceUrl = "http://spotlight.sztaki.hu:2222/rest/" // "http://spotlight.dbpedia.org/rest/"
   val SPARQL_QUERY: String = ""
   val sparqlHost = "dbpedia.org"
-  val DEFAULT_SUPPORT: String = "100"
-  val DEFAULT_CONFIDENCE: String = "0.2"
+  val DEFAULT_SUPPORT: String = "20"
+  val DEFAULT_CONFIDENCE: String = "0.5"
+
+  val BRAND_TYPES = Array("DBpedia:Company")
 
   val logger = Logger[this.type]
 
@@ -70,11 +72,10 @@ object DbpediaSpotlightService {
       val similarityScore: Double = resource.getOrElse("@similarityScore","0.0").toDouble
       val percentageOfSecondRank: Double = resource.getOrElse("@percentageOfSecondRank","0.0").toDouble
       val surfaceForm: String = resource.getOrElse("@surfaceForm","")
-      //val types: Nothing = Arrays.asList(resource.get("@types").split(","))
-      //if (support >= Double.valueOf(supportThreshold)) {
-      //  namedEntities.add(new DbpediaNamedEntity(surfaceForm, null, uri, support, types, offset, similarityScore, percentageOfSecondRank))
-      //}
-      namedEntities += NamedEntity(surfaceForm,uri,support,Nil,offset,similarityScore,percentageOfSecondRank)
+      val types: List[String] = resource.getOrElse("@types","").split(",").toList
+      if (support >= supportThreshold) {
+        namedEntities += NamedEntity(surfaceForm,uri,support,types,offset,similarityScore,percentageOfSecondRank)
+      }
     }
 
     namedEntities
@@ -83,25 +84,27 @@ object DbpediaSpotlightService {
 
   def getEntities(text: String): Set[NamedEntity] = {
 
-    val spots: Set[String] = StanfordNLPService.nerSpots(text).keySet
+    /*val spots: Set[String] = StanfordNLPService.nerSpots(text).keySet
     var options: Map[String, String] = Map[String, String]()
     options += ("spotter" -> "SpotXmlParser")
+    options += ("api" -> "spot")
     var namedEntities = Set[NamedEntity]()
-    /*try {
-      namedEntities ++= getDbpediaEntities(buildSpotXmlParserPayload(text.substring(0,1200), spots), options)
+    try {
+      val textForSpotting = if(text.length > 1200) text.substring(0,1200) else text
+      namedEntities ++= getDbpediaEntities(buildSpotXmlParserPayload(textForSpotting, spots), options)
     }
     catch {
       case (e: Exception) => {
         logger.info(s"Unable to use NLP algorithms locally for named entity spotting. Using only Dbpedia spotlight + ${e.getLocalizedMessage}")
       }
-    } */
-    namedEntities = namedEntities ++ getDbpediaEntities(text) //defaults to using new map - not the one with SpotterXML
-    println(namedEntities)
+    }  */
+    val namedEntities = getDbpediaEntities(text)
+    namedEntities.foreach(n => println(n.uri))
     println(" ======================================= ")
-    val filteredResults = namedEntities filter {n => isBrand(n.uri)}
-    println(filteredResults)
+    val filteredResults = namedEntities.filter(n => {n.types.intersect(BRAND_TYPES).length > 0 || isBrand(n.uri)})
+    filteredResults.foreach(n => println(n.uri))
     println(" ======================================= ***** =======================================")
-    return filteredResults
+    filteredResults
   }
 
   def buildSpotXmlParserPayload(text: String, namedEntities: Set[String]): String = {
@@ -136,7 +139,8 @@ object DbpediaSpotlightService {
     nvps.add(new BasicNameValuePair("text", URLEncoder.encode(text,"utf-8")))
     nvps.add(new BasicNameValuePair("spotter", options.getOrElse("spotter", "Default")))
     nvps.add(new BasicNameValuePair("sparql", options.getOrElse("sparql", SPARQL_QUERY)))
-    //nvps.add(new BasicNameValuePair("types", options.getOrElse("types", "Place,Organization"))) //Person
+    nvps.add(new BasicNameValuePair("policy", options.getOrElse("policy", "whitelist")))
+    //nvps.add(new BasicNameValuePair("types", options.getOrElse("types", "Organisation")))
     val formEntity = new UrlEncodedFormEntity(nvps, "UTF-8")
     httpPost.setEntity(formEntity)
 
@@ -152,6 +156,7 @@ object DbpediaSpotlightService {
       inputStream.close
     }
     httpClient.getConnectionManager.shutdown()
+    //println(content)
     return Option(content)
   }
 

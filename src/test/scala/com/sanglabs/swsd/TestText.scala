@@ -242,4 +242,10 @@ object TestText {
       |
     """.stripMargin
 
+  val apache_cassandra_wikipedia = "Apache Cassandra is an open source distributed database management system designed to handle large amounts of data across many commodity servers, providing high availability with no single point of failure. " +
+    "Cassandra offers robust support for clusters spanning multiple datacenters, with asynchronous masterless replication allowing low latency operations for all clients. " +
+    "Cassandra also places a high value on performance. In 2012, University of Toronto researchers studying NoSQL systems concluded that \"In terms of scalability, there is a clear winner throughout our experiments. Cassandra achieves the highest throughput for the maximum number of nodes in all experiments\" although \"this comes at the price of high write and read latencies.\" " +
+    "Cassandra's data model is a partitioned row store with tunable consistency. Rows are organized into tables; the first component of a table's primary key is the partition key; within a partition, rows are clustered by the remaining columns of the key. Other columns may be indexed separately from the primary key. Tables may be created, dropped, and altered at runtime without blocking updates and queries. Cassandra does not support joins or subqueries, except for batch analysis via Hadoop. " +
+    "Rather, Cassandra emphasizes denormalization through features like collections."
+
 }

@@ -6,7 +6,6 @@ import grizzled.slf4j.Logger
 import net.sf.extjwnl.data.{IndexWord, IndexWordSet, POS, Synset}
 import net.sf.extjwnl.dictionary.Dictionary
 
-import scala.collection.mutable.ListBuffer
 import scala.collection._
 
 
@@ -26,6 +25,8 @@ object WordNetDictionaryService {
   // a) below a certain path length (4)
   // b) without including other of its own synsets
 
+
+
   val dictionary = Dictionary.getInstance(new FileInputStream("data/file_properties.xml"))
 
   val posmap: Map[POS,Char] = Map(POS.NOUN -> 'n',POS.VERB -> 'v',POS.ADJECTIVE -> 'a', POS.ADVERB -> 'r')
@@ -39,26 +40,7 @@ object WordNetDictionaryService {
 
     val sentences = StanfordNLPService.analyze(words)
 
-    //compoundify words (nouns) currently 2 at a time -- TODO add support for differently sized compound words
-    val compoundedSentences = sentences map (sentence => {
-      val compoundedWords = ListBuffer[WordAnalysis]()
-      var index = 0
-      for ( (f,s) <- sentence.words zip sentence.words.drop(1) ) {
-        logger.trace(f.word + "  " + s.word)
-        index+=1
-        if (f.pos != null && s.pos != null && f.stanfordPOS.startsWith("NN") && s.stanfordPOS.startsWith("NN") && f.stanfordPOS.equals(s.stanfordPOS)) {
-          val compoundWord = StringBuilder.newBuilder.append(f.word).append(" ").append(s.word).toString()
-          if (WordNetDictionaryService.getBaseForm(f.pos,compoundWord) != null) {
-            compoundedWords += WordAnalysis(compoundWord, WordNetDictionaryService.getBaseForm(f.pos, compoundWord), f.pos, f.stanfordPOS)
-          } else {
-            compoundedWords += f; if (index == sentence.words.length - 1) compoundedWords += s
-          }
-        }  else {
-          compoundedWords+=f; if(index == sentence.words.length-1) compoundedWords+=s
-        }
-      }
-      Sentence(compoundedWords.toList)
-    })
+    val compoundedSentences = TextPreprocessor.getCompoundWords(sentences)
 
 
     //todo filter out stop words

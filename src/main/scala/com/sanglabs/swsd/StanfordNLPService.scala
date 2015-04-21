@@ -66,7 +66,7 @@ object StanfordNLPService {
     var sentences = ListBuffer[Sentence]()
 
     // create an empty Annotation just with the given text
-    val document: Annotation = new Annotation(documentText)
+    val document: Annotation = new Annotation(TextPreprocessor.preprocess(documentText))
 
     // run all Annotators on this text
     stanfordCoreNLPPipeline.annotate(document)

@@ -182,7 +182,7 @@ public class StanfordNLPDependencyGraphProvider {
 
 			try {
 				++lineNumber;
-				Main.writeImage(tree, tdl, "sue" + lineNumber + ".png", 3);
+				Main.writeImage(tree, tdl, "gened-images/" + text.trim().replaceAll(" ","_") + ".png", 3);
 			} catch (Exception e) {
 				e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
 			}

@@ -37,7 +37,7 @@ import scala.io.Source
   println("Done")
   //uri, rel, start, end, context, weight, sources, id, dataset, surfaceText
 
-  case class Relation(source: String, start: String, rel: String, end: String, weight: Double)
+  case class Relation(source: String, start: String, rel: String, end: String,weight: Double)
 
 
 
@@ -46,7 +46,7 @@ import scala.io.Source
     def getOrCreateConceptNetNode(name: String, source: String): Node = {
       val tx = graphDb.beginTx()
       var node:Node = null
-      val sourceName = "conceptnet"//if(source.contains("/conceptnet/")) "conceptnet" else "wordnet"
+      val sourceName = "conceptnetwordnet"//if(source.contains("/conceptnet/")) "conceptnet" else "wordnet"
       val conceptNetIndex = graphDb.index.forNodes(sourceName) //FIXME works only for 2 indexes now
       try {
         val nodeOpt = Option(conceptNetIndex.get("name", name).getSingle)

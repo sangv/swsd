@@ -35,6 +35,7 @@ trait JungGraphConnectivityService {
 
   // Set up a graph visualizer
   val graphVisualizer: JungGraphVisualizer = null//new JungGraphVisualizer
+  //graphVisualizer.setInteractive(true)
   inventory.setSenseDescriptionFormat("<html><b>%w</b><br />%d</html>")
 
   if(graphVisualizer != null) {

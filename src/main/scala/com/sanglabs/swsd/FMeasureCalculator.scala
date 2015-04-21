@@ -24,7 +24,7 @@ object FMeasureCalculator {
     var fMeasure = 0.0
     var precision = 0.0
     var recall = 0.0
-    fMeasureScores foreach {f => {fMeasure += f.fMeasure; precision += f.precision; recall += f.recall}}
+    fMeasureScores foreach {f => {println(f); fMeasure += f.fMeasure; precision += f.precision; recall += f.recall}}
     val instances = expectedAndPredicted.length
     FMeasureScore(precision/instances,recall/instances,fMeasure/instances)
   }

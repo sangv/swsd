@@ -4,7 +4,6 @@ import de.tudarmstadt.ukp.dkpro.wsd.graphconnectivity.algorithm.DegreeCentrality
 import de.tudarmstadt.ukp.dkpro.wsd.si.POS
 import de.tudarmstadt.ukp.dkpro.wsd.{Pair, UnorderedPair}
 import edu.uci.ics.jung.graph.Graph
-import net.sf.extjwnl.data.Word
 
 import scala.collection.JavaConverters._
 import scala.collection.immutable.Map
@@ -32,18 +31,9 @@ object DKProWSDService extends JungGraphConnectivityService {
   )
 
   def synsetFormatForSenseId(senseId: String): String = {
-    val SenseIdRegex(offset,pos) = inventory.getWordNetSynsetAndPos(senseId)
-
-    val synset = WordNetDictionaryService.getSynsetAt(pos,offset.toLong)
-
-    val indexWord = WordNetDictionaryService.indexWord(synset.getPOS,senseId.split("%")(0))
-    var words = List[String]()
-    for(s <- indexWord.getSenses.asScala.find(synset.equals)) {
-      for (w: Word <- synset.getWords.asScala.find(_.getLemma.equalsIgnoreCase(indexWord.getLemma))) {
-        words :+= w.getLemma + "#" + synset.getPOS.getKey + "#" + w.getIndex
-      }
-    }
-    words(0)
+    val result = WordNetDictionaryService.dictionary.getWordBySenseKey(senseId)
+    val word = result.getLemma + "#" + result.getPOS.getKey + "#" + result.getIndex
+    word.replaceAll(" ","_").toLowerCase
   }
 
   def synsetFormatForSenseIdWithGloss(senseId: String): (String,String) = {
@@ -51,14 +41,9 @@ object DKProWSDService extends JungGraphConnectivityService {
 
     val synset = WordNetDictionaryService.getSynsetAt(pos,offset.toLong)
 
-    val indexWord = WordNetDictionaryService.indexWord(synset.getPOS,senseId.split("%")(0))
-    var words = List[String]()
-    for(s <- indexWord.getSenses.asScala.find(synset.equals)) {
-      for (w: Word <- synset.getWords.asScala.find(_.getLemma.equalsIgnoreCase(indexWord.getLemma))) {
-        words :+= w.getLemma + "#" + synset.getPOS.getKey + "#" + w.getIndex
-      }
-    }
-    (words(0),synset.getGloss)
+    val result = WordNetDictionaryService.dictionary.getWordBySenseKey(senseId)
+    val word = result.getLemma + "#" + result.getPOS.getKey + "#" + result.getIndex
+    (word.replaceAll(" ","_").toLowerCase,synset.getGloss)
   }
 
 
@@ -103,14 +88,17 @@ object DKProWSDService extends JungGraphConnectivityService {
     result mapValues (synsetFormatForSenseId)
   }
 
+  def disambiguateWithSenseId(text: List[WordAnalysis], useOwn: Boolean = false): Map[String,String] = {
+
+    val result = rawDisambiguate(text,useOwn)
+    result
+  }
+
   def disambiguateWithGloss(text: List[WordAnalysis], useOwn: Boolean = false): Map[String,(String,String)] = {
 
     val result = rawDisambiguate(text,useOwn)
     result mapValues (synsetFormatForSenseIdWithGloss)
   }
-
-
-  ///
 
   def ownDisambiguation(sods: java.util.Collection[Pair[String, POS]], dGraph: Graph[String, UnorderedPair[String]]) : Map[Pair[String, POS], Map[String, Double]] = {
 
